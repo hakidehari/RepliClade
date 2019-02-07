@@ -1,11 +1,18 @@
 
 from Generator import Generator
+from Sequence import Sequence
 
 gn = Generator()
 
-print(len(gn.generateSequence(10000000)))
+print(gn.generateSequence(10))
 
-print(len(gn.generateSequenceGCContent(10000000, .61)))
+sequence = Sequence(gn.getSequence())
+
+print(sequence.sequence)
+print(sequence.randomModify())
+
+
+
 
 
 
