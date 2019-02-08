@@ -7,6 +7,8 @@ class Sequence:
     def __init__(self, sequence):
         self.sequence = sequence
 
+
+
     '''Modifies a sequence with a random nucleotide substitution at the user specified
         position'''
     def modify(self, position):
