@@ -4,12 +4,13 @@ from Sequence import Sequence
 
 gn = Generator()
 
-print(gn.generateSequence(10))
+print(len(gn.generateSequenceGCContent(10000,.75)))
 
 sequence = Sequence(gn.getSequence())
 
-print(sequence.sequence)
-print(sequence.randomModify())
+
+
+
 
 
 

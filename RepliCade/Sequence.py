@@ -24,9 +24,13 @@ class Sequence:
     def randomModify(self):
         nucleotides = ['A', 'G', 'C', 'T']
         ar = list(self.sequence)
-        ar[random.randint(0, len(self.sequence)-1)] = nucleotides[random.randint(0, 3)]
+        ar[random.randint(0, len(self.sequence)-1)] = random.choice(nucleotides)
         self.sequence = ''.join(ar)
         return self.sequence
+
+    '''Generate indels to insert of random lengths using probabilities of length insertion'''
+    def indelInsertion(self):
+        pass
 
     def getSequence(self):
         return self.sequence
