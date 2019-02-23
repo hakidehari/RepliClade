@@ -2,6 +2,14 @@
 import random
 
 
+"""
+
+This class provides the structure for DNA sequences
+The class contains certain functions that modify the sequence if required
+More detailed functions for indels and other modifications will be added in the future
+
+"""
+
 class Sequence:
 
     def __init__(self, sequence):

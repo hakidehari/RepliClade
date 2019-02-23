@@ -1,12 +1,11 @@
 
 from Generator import Generator
 from Sequence import Sequence
+from Main import *
 
-gn = Generator()
+runSimulation()
 
-print(len(gn.generateSequenceGCContent(10000,.75)))
 
-sequence = Sequence(gn.getSequence())
 
 
 
