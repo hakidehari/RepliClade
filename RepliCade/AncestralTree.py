@@ -4,7 +4,7 @@
     Sequence alignment will be performed before sequences are inserted into the tree'''
 class AncestralTree:
 
-    def __init__(self,root):
+    def __init__(self, root):
         self.root = root
 
 

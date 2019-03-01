@@ -16,6 +16,12 @@ from Sequence import Sequence
 def simulationParameters(DNALength,simulationTime):
     return [DNALength, simulationTime]
 
+def possibleIndelInsertion():
+    r = random.random()
+    if r < .00002:
+        return True
+    return False
+
 
 '''Will run through a probability model and return whether the sequence should duplicate or not'''
 def possibleDuplication():
@@ -30,7 +36,7 @@ def possibleDuplication():
 def possibleMutationDuringDuplication(sequence):
     #for now assign a random probability until I can get a good probability model in here
     r = random.random()
-    if r < 0.5:
+    if r < 0.2:
         sequence = Sequence(sequence.randomModify())
     return sequence
 
@@ -38,14 +44,24 @@ def possibleMutationDuringDuplication(sequence):
 '''will run through a probability model and return whether the sequence should mutate or not'''
 def possibleMutation():
     r = random.random()
-    if r < .2:
+    if r < .05:
         return True
     return False
 
+'''Prints the sequences returned from the simulation'''
+def printSequences(sequences):
+    #print(len(sequences))
+    for sequence in sequences:
+        print(sequence.sequence)
+    return sequences
 
 '''
     Run simulation given two user specified parameters returned from the simulationParameters() function
     Currently runs smoothly with 10k iterations but slows down tremendously after 50k iterations
+    What causes this is the fact that too many sequences are being created and the simulation cannot
+    keep up with the iteration through the sequences.  I have brainstormed possible solutions.
+    
+    We hope to implement MSA soon and construct a phylogenetic tree of the sequences simulated.
 '''
 def runSimulation():
     #vals[0] is the DNA length and vals[1] is the simulation time in (units here)
@@ -59,20 +75,22 @@ def runSimulation():
 
     #once the generation parameter runs out of steam, break from the while loop
     while runTime > 0:
-        for sequence in sequences:
+        for i in range(0, len(sequences)):
             #check if duplication should happen
             if possibleDuplication():
                 #append with a possible error in duplication
-                sequences.append(possibleMutationDuringDuplication(sequence))
+                sequences.append(possibleMutationDuringDuplication(sequences[i]))
+            #check if indel insertion should happen
+            if possibleIndelInsertion():
+                #insert an indel somewhere into the sequence
+                sequences[i] = Sequence(sequences[i].insertIndel())
             else:
-                #else check the probability of a mutation happening
+                #else check the probability of a nucleotide mutation happening
                 if possibleMutation():
                     #if so, modify it and save it to the sequence list
-                    sequence = Sequence(sequence.randomModify())
+                    sequences[i] = Sequence(sequences[i].randomModify())
         runTime -= 1
 
-    print(len(sequences))
-    for sequence in sequences:
-        print(sequence.sequence)
+    printSequences(sequences)
     return sequences
 
