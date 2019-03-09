@@ -28,7 +28,7 @@
         <entry file="file://$PROJECT_DIR$/RepliCade/test.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
-              <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+              <caret line="7" column="40" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
               <folding>
                 <element signature="e#1#32#0" expanded="true" />
               </folding>
@@ -170,12 +170,12 @@
       <workItem from="1551322891749" duration="602000" />
       <workItem from="1551414667220" duration="2324000" />
       <workItem from="1551741454894" duration="2096000" />
-      <workItem from="1552148419403" duration="5077000" />
+      <workItem from="1552148419403" duration="5128000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31107000" />
+    <option name="totallyTimeSpent" value="31158000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="207" y="63" width="1400" height="907" extended-state="0" />
@@ -247,7 +247,7 @@
     <entry file="file://$PROJECT_DIR$/RepliCade/test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+          <caret line="7" column="40" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
           <folding>
             <element signature="e#1#32#0" expanded="true" />
           </folding>
