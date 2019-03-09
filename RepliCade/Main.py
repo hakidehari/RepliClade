@@ -50,10 +50,12 @@ def possibleMutation():
 
 '''Prints the sequences returned from the simulation'''
 def printSequences(sequences):
-    #print(len(sequences))
+    ar = [];
     for sequence in sequences:
         print(sequence.sequence)
-    return sequences
+        ar.append(len(sequence.sequence))
+    print(len(sequences))
+    print(ar)
 
 '''
     Run simulation given two user specified parameters returned from the simulationParameters() function
@@ -63,19 +65,21 @@ def printSequences(sequences):
     
     We hope to implement MSA soon and construct a phylogenetic tree of the sequences simulated.
 '''
-def runSimulation():
+def runSimulationRandom():
     #vals[0] is the DNA length and vals[1] is the simulation time in (units here)
-    vals = simulationParameters(20, 10000)
+    vals = simulationParameters(500, 10000)
     seqLen = vals[0]
     runTime = vals[1]
     sequences = []
     a = Generator.generateSequenceGCContent(Generator, seqLen, 0.6)
     ancestor = Sequence(a)
     sequences.append(ancestor)
+    #use a previous array of sequences to prevent throttling as much as possible
+    prevIteration = sequences
 
     #once the generation parameter runs out of steam, break from the while loop
     while runTime > 0:
-        for i in range(0, len(sequences)):
+        for i in range(0, len(prevIteration)):
             #check if duplication should happen
             if possibleDuplication():
                 #append with a possible error in duplication
@@ -89,8 +93,13 @@ def runSimulation():
                 if possibleMutation():
                     #if so, modify it and save it to the sequence list
                     sequences[i] = Sequence(sequences[i].randomModify())
+
+        prevIteration = sequences
         runTime -= 1
 
     printSequences(sequences)
     return sequences
 
+
+def runSimulationGenome():
+    pass
