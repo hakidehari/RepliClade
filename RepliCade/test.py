@@ -5,7 +5,6 @@ from Main import *
 
 runSimulationRandom()
 
-'''ksdjfksjfslkjfslfjsldfj'''
 
 
 
