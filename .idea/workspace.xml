@@ -27,8 +27,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/RepliCade/test.py">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="90">
               <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+
               <folding>
                 <element signature="e#1#32#0" expanded="true" />
               </folding>
@@ -170,12 +172,16 @@
       <workItem from="1551322891749" duration="602000" />
       <workItem from="1551414667220" duration="2324000" />
       <workItem from="1551741454894" duration="2096000" />
-      <workItem from="1552148419403" duration="5077000" />
+      <workItem from="1552148419403" duration="5128000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31112000" />
+
+    <option name="totallyTimeSpent" value="31158000" />
+
+    
+
   </component>
   <component name="ToolWindowManager">
     <frame x="207" y="63" width="1400" height="907" extended-state="0" />
@@ -246,8 +252,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/RepliCade/test.py">
       <provider selected="true" editor-type-id="text-editor">
+
         <state relative-caret-position="90">
           <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+
           <folding>
             <element signature="e#1#32#0" expanded="true" />
           </folding>
