@@ -16,6 +16,8 @@ from Sequence import Sequence
 def simulationParameters(DNALength,simulationTime):
     return [DNALength, simulationTime]
 
+
+'''Checks Whether an indel should happen or not'''
 def possibleIndelInsertion():
     r = random.random()
     if r < .00002:
@@ -71,7 +73,8 @@ def runSimulationRandom():
     seqLen = vals[0]
     runTime = vals[1]
     sequences = []
-    a = Generator.generateSequenceGCContent(Generator, seqLen, 0.6)
+    g = Generator()
+    a = g.generateSequenceGCContent(seqLen, 0.6)
     ancestor = Sequence(a)
     sequences.append(ancestor)
     #use a previous array of sequences to prevent throttling as much as possible

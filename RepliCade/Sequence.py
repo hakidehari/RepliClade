@@ -45,7 +45,8 @@ class Sequence:
     '''
     def insertIndel(self):
         indelLength = random.randint(2, 20)
-        indel = Generator.generateSequence(Generator, indelLength)
+        g = Generator()
+        indel = g.generateSequence(indelLength)
         indelPosition = random.randint(0, len(self.sequence))
         self.sequence = self.sequence[:indelPosition] + indel + self.sequence[indelPosition:]
         return self.sequence
