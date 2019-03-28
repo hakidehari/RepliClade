@@ -1,4 +1,4 @@
-#!/Users/hakidehari/Desktop/python_shito/Replicade/venv/bin/python
+#!"/Users/hakidehari/Desktop/python shito/Replicade/venv/bin/python"
 # EASY-INSTALL-ENTRY-SCRIPT: 'pip==10.0.1','console_scripts','pip'
 __requires__ = 'pip==10.0.1'
 import re
