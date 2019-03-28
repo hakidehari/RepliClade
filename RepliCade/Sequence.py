@@ -42,6 +42,7 @@ class Sequence:
         Generate indels to insert of random lengths (for right now, I've chosen
         lengths between 2 and 20) using probabilities of length insertion
         More complex probability models will be added at a later time
+        
     '''
     def insertIndel(self):
         indelLength = random.randint(2, 20)

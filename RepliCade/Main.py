@@ -5,11 +5,34 @@ All dependencies and classes will be compiled here and ran accordingly
 
 """
 
-
 import random
 from Generator import Generator
 from Sequence import Sequence
+from Connector import Connector
+from ParseFasta import ParseFasta
+from Bio.Align.Applications import ClustalwCommandline
+from Bio import AlignIO
+import os
 
+
+'''
+    Performs multiple sequence alignment after simulation is run
+    using clustalW2, one of the fastest MSA algorithms out there.
+    Once finished, displays the sequences and their alignment
+'''
+def performMSA():
+    clustalw_exe = r"/applications/clustalw-2.1-macosx/clustalw2"
+    clustalw_cline = ClustalwCommandline(clustalw_exe, infile="influenza.fasta")
+    stdout, stderr = clustalw_cline()
+    align = AlignIO.read("influenza.aln", "clustal")
+    print(align)
+
+
+'''Gathers sequences from GenBank'''
+def getSequences():
+    con = Connector()
+    seq = con.getGeneData()
+    return seq
 
 
 '''returns the user specified DNA length and simulation time (in iterations)'''
@@ -29,7 +52,7 @@ def possibleIndelInsertion():
 def possibleDuplication():
     #for now returns true until a probability model is implemented
     r = random.random()
-    if r < .0002:
+    if r < .00002:
         return True
     return False
 
@@ -104,5 +127,39 @@ def runSimulationRandom():
     return sequences
 
 
+'''
+    Run Simulation off of 8 influenza genomes (this can be anything in the future, we used influenza
+    for testing purposes)
+    runTime is set to 10 thousand for now.  The proper probability models still need to be implemented
+    Mutation and duplication is still happening more often than we would hope.
+'''
 def runSimulationGenome():
-    pass
+    influenza = getSequences()
+    runTime = 10000
+    sequences = influenza
+    prevIteration = influenza
+
+    while runTime > 0:
+        for i in range(0, len(prevIteration)):
+            #check if duplication should happen
+            if possibleDuplication():
+                #append with a possible error in duplication
+                sequences.append(possibleMutationDuringDuplication(sequences[i]))
+            #check if indel insertion should happen
+            if possibleIndelInsertion():
+                #insert an indel somewhere into the sequence
+                sequences[i] = Sequence(sequences[i].insertIndel())
+            else:
+                #else check the probability of a nucleotide mutation happening
+                if possibleMutation():
+                    #if so, modify it and save it to the sequence list
+                    sequences[i] = Sequence(sequences[i].randomModify())
+
+        prevIteration = sequences
+        runTime -= 1
+
+    printSequences(sequences)
+    parseObj = ParseFasta()
+    parseObj.writeToFasta(sequences)
+
+    performMSA()
