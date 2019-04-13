@@ -9,10 +9,10 @@ import random
 from Generator import Generator
 from Sequence import Sequence
 from Connector import Connector
-from ParseFasta import ParseFasta
+from EyeOh import EyeOh
 from Bio.Align.Applications import ClustalwCommandline
 from Bio import AlignIO
-import os
+from Bio import Phylo
 
 
 '''
@@ -21,11 +21,22 @@ import os
     Once finished, displays the sequences and their alignment
 '''
 def performMSA():
+    print("Performing Multiple Sequence Alignment.......")
     clustalw_exe = r"/applications/clustalw-2.1-macosx/clustalw2"
     clustalw_cline = ClustalwCommandline(clustalw_exe, infile="influenza.fasta")
     stdout, stderr = clustalw_cline()
     align = AlignIO.read("influenza.aln", "clustal")
     print(align)
+    print("Alignment Complete.")
+
+
+'''
+    Creates and displays a phylogenetic tree based on the Multiple Sequence Alignment scores
+'''
+def displayTree():
+    tree = Phylo.read("influenza.dnd", "newick")
+    tree.rooted = False
+    Phylo.draw(tree)
 
 
 '''Gathers sequences from GenBank'''
@@ -61,7 +72,7 @@ def possibleDuplication():
 def possibleMutationDuringDuplication(sequence):
     #for now assign a random probability until I can get a good probability model in here
     r = random.random()
-    if r < 0.2:
+    if r < 0.0002:
         sequence = Sequence(sequence.randomModify())
     return sequence
 
@@ -69,7 +80,7 @@ def possibleMutationDuringDuplication(sequence):
 '''will run through a probability model and return whether the sequence should mutate or not'''
 def possibleMutation():
     r = random.random()
-    if r < .05:
+    if r < .0005:
         return True
     return False
 
@@ -135,7 +146,8 @@ def runSimulationRandom():
 '''
 def runSimulationGenome():
     influenza = getSequences()
-    runTime = 10000
+    print("Simulating..........")
+    runTime = 50000
     sequences = influenza
     prevIteration = influenza
 
@@ -158,8 +170,16 @@ def runSimulationGenome():
         prevIteration = sequences
         runTime -= 1
 
-    printSequences(sequences)
-    parseObj = ParseFasta()
+    parseObj = EyeOh()
     parseObj.writeToFasta(sequences)
+    print("Simulation Complete.")
 
     performMSA()
+    displayTree()
+
+'''
+    Simulation starting with a single ancestor.  Will be trying to implement some sort of extinction
+    mechanism
+'''
+def runSimulationSingleAncestor():
+    pass
