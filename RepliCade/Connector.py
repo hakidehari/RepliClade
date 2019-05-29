@@ -12,10 +12,13 @@ class Connector:
         self.IO = EyeOh()
 
 
-    def getGeneData(self):
+    def getGeneData(self, gene):
         print("Fetching influenza sequences..........")
-        influenza = ["KT388711", "KT388703", "KT388695", "KT388687", "KT388679", "KT388671",
-                     "KT388663", "KT388655"]
+        if gene is None:
+            influenza = ["KT388711", "KT388703", "KT388695", "KT388687", "KT388679", "KT388671",
+                        "KT388663", "KT388655"]
+        else:
+            influenza = [gene]
         seqArray = []
         for strain in influenza:
             if self.IO.checkForSequenceInFile(strain) is not None:

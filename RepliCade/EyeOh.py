@@ -24,13 +24,13 @@ class EyeOh:
         except FileNotFoundError:
             file = open("saved_sequence_data.txt", "w")
             file.close()
-        bool = False
+        existsInFile = False
         file = open("saved_sequence_data.txt", "r")
         for line in file:
-            if bool is True:
+            if existsInFile is True:
                 return line
             if id in line:
-                bool = True
+                existsInFile = True
         return None
 
     def writeSequenceToFile(self, id, seq):

@@ -2,13 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25743668-cf4f-4933-adde-90f8c00b1262" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/RepliCade/ProbabilityModels.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RepliCade/AncestralTree.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/RepliCade/Connector.py" beforeDir="false" afterPath="$PROJECT_DIR$/RepliCade/Connector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RepliCade/EyeOh.py" beforeDir="false" afterPath="$PROJECT_DIR$/RepliCade/EyeOh.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RepliCade/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/RepliCade/Main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RepliCade/ParseFasta.py" beforeDir="false" afterPath="$PROJECT_DIR$/RepliCade/EyeOh.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RepliCade/influenza.aln" beforeDir="false" afterPath="$PROJECT_DIR$/RepliCade/influenza.aln" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RepliCade/influenza.dnd" beforeDir="false" afterPath="$PROJECT_DIR$/RepliCade/influenza.dnd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RepliCade/influenza.fasta" beforeDir="false" afterPath="$PROJECT_DIR$/RepliCade/influenza.fasta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RepliCade/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/RepliCade/test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,10 +21,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RepliCade/Sequence.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
+            <state relative-caret-position="615">
               <caret line="41" column="41" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
               <folding>
                 <element signature="e#1#14#0" expanded="true" />
@@ -33,8 +36,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RepliCade/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            <state relative-caret-position="120">
+              <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
               <folding>
                 <element signature="e#1#32#0" expanded="true" />
               </folding>
@@ -45,10 +48,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RepliCade/Main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="607">
-              <caret line="172" column="20" selection-start-line="172" selection-start-column="20" selection-end-line="172" selection-end-column="20" />
+            <state relative-caret-position="458">
+              <caret line="195" column="55" selection-start-line="195" selection-start-column="55" selection-end-line="195" selection-end-column="55" />
               <folding>
                 <element signature="e#149#162#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/RepliCade/ProbabilityModels.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="441">
+              <caret line="41" column="28" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -57,8 +72,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RepliCade/Connector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="28" column="62" selection-start-line="28" selection-start-column="62" selection-end-line="28" selection-end-column="62" />
+            <state relative-caret-position="255">
+              <caret line="17" column="37" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
               <folding>
                 <element signature="e#1#23#0" expanded="true" />
               </folding>
@@ -67,27 +82,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RepliCade/saved_sequence_data.txt">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RepliCade/EyeOh.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="484">
-              <caret line="37" column="47" selection-start-line="37" selection-start-column="47" selection-end-line="37" selection-end-column="47" />
+            <state relative-caret-position="348">
+              <caret line="32" column="35" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
               <folding>
                 <element signature="e#1#30#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RepliCade/AncestralTree.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="23" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -99,6 +100,11 @@
               <caret line="14" selection-start-line="14" selection-end-line="14" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RepliCade/saved_sequence_data.txt">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -120,12 +126,13 @@
         <option value="$PROJECT_DIR$/RepliCade/AncestralTree.py" />
         <option value="$PROJECT_DIR$/RepliCade/Sequence.py" />
         <option value="$PROJECT_DIR$/RepliCade/Entrez.py" />
-        <option value="$PROJECT_DIR$/RepliCade/test.py" />
         <option value="$PROJECT_DIR$/RepliCade/influenza.fasta" />
         <option value="$PROJECT_DIR$/RepliCade/ParseFasta.py" />
-        <option value="$PROJECT_DIR$/RepliCade/Main.py" />
-        <option value="$PROJECT_DIR$/RepliCade/Connector.py" />
         <option value="$PROJECT_DIR$/RepliCade/EyeOh.py" />
+        <option value="$PROJECT_DIR$/RepliCade/Connector.py" />
+        <option value="$PROJECT_DIR$/RepliCade/test.py" />
+        <option value="$PROJECT_DIR$/RepliCade/Main.py" />
+        <option value="$PROJECT_DIR$/RepliCade/ProbabilityModels.py" />
       </list>
     </option>
   </component>
@@ -227,17 +234,18 @@
       <workItem from="1554577362913" duration="3847000" />
       <workItem from="1555019825687" duration="2869000" />
       <workItem from="1555169107924" duration="144000" />
+      <workItem from="1558895205123" duration="5933000" />
+      <workItem from="1559088612659" duration="2078000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49571000" />
+    <option name="totallyTimeSpent" value="57582000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="80" y="57" width="1400" height="907" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17746687" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18188512" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -251,7 +259,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.27730063" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.27730063" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32883435" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -284,13 +292,10 @@
     <entry file="file://$PROJECT_DIR$/RepliCade/influenza_tree.nwk">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/RepliCade/test.py">
+    <entry file="file://$PROJECT_DIR$/RepliCade/Generator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="e#1#32#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="210">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>
@@ -301,39 +306,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RepliCade/Generator.py">
+    <entry file="file://$PROJECT_DIR$/RepliCade/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RepliCade/Main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="607">
-          <caret line="172" column="20" selection-start-line="172" selection-start-column="20" selection-end-line="172" selection-end-column="20" />
+        <state relative-caret-position="120">
+          <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
           <folding>
-            <element signature="e#149#162#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RepliCade/EyeOh.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="37" column="47" selection-start-line="37" selection-start-column="47" selection-end-line="37" selection-end-column="47" />
-          <folding>
-            <element signature="e#1#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RepliCade/Connector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="28" column="62" selection-start-line="28" selection-start-column="62" selection-end-line="28" selection-end-column="62" />
-          <folding>
-            <element signature="e#1#23#0" expanded="true" />
+            <element signature="e#1#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -343,10 +321,50 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/RepliCade/Sequence.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
+        <state relative-caret-position="615">
           <caret line="41" column="41" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
           <folding>
             <element signature="e#1#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RepliCade/Connector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="37" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
+          <folding>
+            <element signature="e#1#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RepliCade/EyeOh.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="32" column="35" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
+          <folding>
+            <element signature="e#1#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RepliCade/Main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="195" column="55" selection-start-line="195" selection-start-column="55" selection-end-line="195" selection-end-column="55" />
+          <folding>
+            <element signature="e#149#162#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RepliCade/ProbabilityModels.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="41" column="28" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
