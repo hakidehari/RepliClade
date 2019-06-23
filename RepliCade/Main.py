@@ -146,12 +146,31 @@ def runSimulationGenome():
     performMSA()
     displayTree()
 
+
+#find percentage of similarity between 2 sequences
 def alikeness(s1, s2):
     count = 0
     for i in range(0, len(s1)):
         if s1[i] == s2[i]:
             count += 1
     return count / len(s1)
+
+
+def sequencify(arr):
+    for i in range(0, len(arr)):
+        arr[i] = Sequence(arr[i])
+    return arr
+
+
+#clean duplicate sequences in sequence list
+def cleanSequences(seqArray):
+    returnArr = []
+    returnArr.append(seqArray[0].sequence)
+    for i in range(1, len(seqArray)):
+        if seqArray[i].sequence not in returnArr:
+            returnArr.append(seqArray[i].sequence)
+    returnArr = sequencify(returnArr)
+    return returnArr
 
 
 
@@ -163,7 +182,7 @@ def runSimulationSingleAncestor():
     ancestor = getSequences("KT388711")[0]
     print("Simulating")
     #run time in generations
-    runtime = 5
+    runtime = 15
     #the rate of reproduction for the influenza A virus
     r0 = 1.5
     sequences = [ancestor]
@@ -186,6 +205,7 @@ def runSimulationSingleAncestor():
         newCurrent = []
         runtime -= 1
 
+    sequences = cleanSequences(sequences)
     parseObj = EyeOh()
     parseObj.writeToFasta(sequences)
     print("Simulation Complete.")
@@ -193,7 +213,6 @@ def runSimulationSingleAncestor():
     performMSA()
     displayTree()
 
-    print(alikeness(sequences[0].sequence, sequences[12].sequence))
 
 
 
