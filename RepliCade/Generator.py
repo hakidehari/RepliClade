@@ -29,7 +29,7 @@ class Generator:
         if (GCContent > 1 or GCContent < 0):
             return "Invalid GC Content. GC Content cannot be more than 100 percent or less than 0 percent"
         gcAr = ['G','C']
-        other = ['A','C']
+        other = ['A','T']
         ar = []
         gc = seqLen*GCContent
         for i in range(0, seqLen):

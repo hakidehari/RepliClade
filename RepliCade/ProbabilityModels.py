@@ -39,7 +39,6 @@ def possibleMutation():
 def influenzaMutate(sequence):
     for i in range (0, len(sequence.sequence)):
         if random.random() <= .000045:
-            print("hell yeah")
             sequence = Sequence(sequence.modify(i))
     return sequence
 

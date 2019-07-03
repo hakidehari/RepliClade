@@ -16,6 +16,9 @@ from Bio import Phylo
 from ProbabilityModels import *
 
 
+parseObj = EyeOh()
+
+
 '''
     Performs multiple sequence alignment after simulation is run
     using clustalW2, one of the fastest MSA algorithms out there.
@@ -36,7 +39,7 @@ def performMSA():
 '''
 def displayTree():
     tree = Phylo.read("influenza.dnd", "newick")
-    tree.rooted = False
+    tree.rooted = True
     Phylo.draw(tree)
 
 
@@ -54,12 +57,37 @@ def simulationParameters(DNALength,simulationTime):
 
 '''Prints the sequences returned from the simulation'''
 def printSequences(sequences):
-    ar = [];
+    ar = []
     for sequence in sequences:
         print(sequence.sequence)
         ar.append(len(sequence.sequence))
     print(len(sequences))
     print(ar)
+
+
+#find percentage of similarity between 2 sequences
+def alikeness(s1, s2):
+    count = 0
+    for i in range(0, len(s1)):
+        if s1[i] == s2[i]:
+            count += 1
+    return count / len(s1)
+
+
+def sequencify(arr):
+    for i in range(0, len(arr)):
+        arr[i] = Sequence(arr[i])
+    return arr
+
+
+#clean duplicate sequences in sequence list
+def cleanSequences(seqArray):
+    returnArr = [seqArray[0].sequence]
+    for i in range(1, len(seqArray)):
+        if seqArray[i].sequence not in returnArr:
+            returnArr.append(seqArray[i].sequence)
+    returnArr = sequencify(returnArr)
+    return returnArr
 
 
 '''
@@ -147,31 +175,6 @@ def runSimulationGenome():
     displayTree()
 
 
-#find percentage of similarity between 2 sequences
-def alikeness(s1, s2):
-    count = 0
-    for i in range(0, len(s1)):
-        if s1[i] == s2[i]:
-            count += 1
-    return count / len(s1)
-
-
-def sequencify(arr):
-    for i in range(0, len(arr)):
-        arr[i] = Sequence(arr[i])
-    return arr
-
-
-#clean duplicate sequences in sequence list
-def cleanSequences(seqArray):
-    returnArr = []
-    returnArr.append(seqArray[0].sequence)
-    for i in range(1, len(seqArray)):
-        if seqArray[i].sequence not in returnArr:
-            returnArr.append(seqArray[i].sequence)
-    returnArr = sequencify(returnArr)
-    return returnArr
-
 
 
 '''
@@ -202,11 +205,11 @@ def runSimulationSingleAncestor():
         else:
             r0 = 1.5
         current = newCurrent
+        #current = cleanSequences(current) implement or nah?
         newCurrent = []
         runtime -= 1
 
     sequences = cleanSequences(sequences)
-    parseObj = EyeOh()
     parseObj.writeToFasta(sequences)
     print("Simulation Complete.")
 
