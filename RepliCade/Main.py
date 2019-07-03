@@ -13,6 +13,10 @@ from EyeOh import EyeOh
 from Bio.Align.Applications import ClustalwCommandline
 from Bio import AlignIO
 from Bio import Phylo
+from ProbabilityModels import *
+
+
+parseObj = EyeOh()
 
 
 '''
@@ -35,14 +39,14 @@ def performMSA():
 '''
 def displayTree():
     tree = Phylo.read("influenza.dnd", "newick")
-    tree.rooted = False
+    tree.rooted = True
     Phylo.draw(tree)
 
 
 '''Gathers sequences from GenBank'''
-def getSequences():
+def getSequences(gene):
     con = Connector()
-    seq = con.getGeneData()
+    seq = con.getGeneData(gene)
     return seq
 
 
@@ -51,47 +55,40 @@ def simulationParameters(DNALength,simulationTime):
     return [DNALength, simulationTime]
 
 
-'''Checks Whether an indel should happen or not'''
-def possibleIndelInsertion():
-    r = random.random()
-    if r < .00002:
-        return True
-    return False
-
-
-'''Will run through a probability model and return whether the sequence should duplicate or not'''
-def possibleDuplication():
-    #for now returns true until a probability model is implemented
-    r = random.random()
-    if r < .00002:
-        return True
-    return False
-
-
-'''Will run through a probability model and return whether a mutation will occur during duplication'''
-def possibleMutationDuringDuplication(sequence):
-    #for now assign a random probability until I can get a good probability model in here
-    r = random.random()
-    if r < 0.0002:
-        sequence = Sequence(sequence.randomModify())
-    return sequence
-
-
-'''will run through a probability model and return whether the sequence should mutate or not'''
-def possibleMutation():
-    r = random.random()
-    if r < .0005:
-        return True
-    return False
-
 '''Prints the sequences returned from the simulation'''
 def printSequences(sequences):
-    ar = [];
+    ar = []
     for sequence in sequences:
         print(sequence.sequence)
         ar.append(len(sequence.sequence))
     print(len(sequences))
     print(ar)
+
+
+#find percentage of similarity between 2 sequences
+def alikeness(s1, s2):
+    count = 0
+    for i in range(0, len(s1)):
+        if s1[i] == s2[i]:
+            count += 1
+    return count / len(s1)
+
+
+def sequencify(arr):
+    for i in range(0, len(arr)):
+        arr[i] = Sequence(arr[i])
+    return arr
+
+
+#clean duplicate sequences in sequence list
+def cleanSequences(seqArray):
+    returnArr = [seqArray[0].sequence]
+    for i in range(1, len(seqArray)):
+        if seqArray[i].sequence not in returnArr:
+            returnArr.append(seqArray[i].sequence)
+    returnArr = sequencify(returnArr)
+    return returnArr
+
 
 '''
     Run simulation given two user specified parameters returned from the simulationParameters() function
@@ -145,7 +142,7 @@ def runSimulationRandom():
     Mutation and duplication is still happening more often than we would hope.
 '''
 def runSimulationGenome():
-    influenza = getSequences()
+    influenza = getSequences(None)
     print("Simulating..........")
     runTime = 50000
     sequences = influenza
@@ -177,9 +174,57 @@ def runSimulationGenome():
     performMSA()
     displayTree()
 
+
+
+
 '''
     Simulation starting with a single ancestor.  Will be trying to implement some sort of extinction
     mechanism
 '''
 def runSimulationSingleAncestor():
-    pass
+    ancestor = getSequences("KT388711")[0]
+    print("Simulating")
+    #run time in generations
+    runtime = 15
+    #the rate of reproduction for the influenza A virus
+    r0 = 1.5
+    sequences = [ancestor]
+    current = sequences
+    newCurrent = []
+    while runtime > 0:
+        for i in range(0, len(current)):
+            newSequence = influenzaMutate(current[i])
+            sequences.append(newSequence)
+            newCurrent.append(newSequence)
+            if r0 == 3:
+                newSequence = influenzaMutate(current[i])
+                sequences.append(newSequence)
+                newCurrent.append(newSequence)
+        if r0 == 1.5:
+            r0 = 3
+        else:
+            r0 = 1.5
+        current = newCurrent
+        #current = cleanSequences(current) implement or nah?
+        newCurrent = []
+        runtime -= 1
+
+    sequences = cleanSequences(sequences)
+    parseObj.writeToFasta(sequences)
+    print("Simulation Complete.")
+
+    performMSA()
+    displayTree()
+
+
+
+
+
+
+
+
+
+
+
+
+

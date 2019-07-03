@@ -6,7 +6,7 @@ from Connector import Connector
 
 #runSimulationRandom()
 
-runSimulationGenome()
+runSimulationSingleAncestor()
 
 
 
