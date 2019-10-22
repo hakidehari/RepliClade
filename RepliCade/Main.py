@@ -14,9 +14,8 @@ from Bio.Align.Applications import ClustalwCommandline
 from Bio import AlignIO
 from Bio import Phylo
 from ProbabilityModels import *
+import os
 
-
-parseObj = EyeOh()
 
 
 '''
@@ -26,7 +25,8 @@ parseObj = EyeOh()
 '''
 def performMSA():
     print("Performing Multiple Sequence Alignment.......")
-    clustalw_exe = r"/applications/clustalw-2.1-macosx/clustalw2"
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    clustalw_exe = os.path.join(dir_path, "clustalw2")
     clustalw_cline = ClustalwCommandline(clustalw_exe, infile="influenza.fasta")
     stdout, stderr = clustalw_cline()
     align = AlignIO.read("influenza.aln", "clustal")
@@ -181,13 +181,17 @@ def runSimulationGenome():
     Simulation starting with a single ancestor.  Will be trying to implement some sort of extinction
     mechanism
 '''
-def runSimulationSingleAncestor():
-    ancestor = getSequences("KT388711")[0]
+def runSimulationSingleAncestor(input=None):
+    ancestor = ''
+    if len(input.sequence) > 0 :
+        ancestor = input
+    else:
+        ancestor = getSequences("KT388711")[0]
     print("Simulating")
     #run time in generations
     runtime = 15
     #the rate of reproduction for the influenza A virus
-    r0 = 1.5
+    r0 = False
     sequences = [ancestor]
     current = sequences
     newCurrent = []
@@ -196,14 +200,14 @@ def runSimulationSingleAncestor():
             newSequence = influenzaMutate(current[i])
             sequences.append(newSequence)
             newCurrent.append(newSequence)
-            if r0 == 3:
+            if r0:
                 newSequence = influenzaMutate(current[i])
                 sequences.append(newSequence)
                 newCurrent.append(newSequence)
-        if r0 == 1.5:
-            r0 = 3
+        if not r0:
+            r0 = True
         else:
-            r0 = 1.5
+            r0 = False
         current = newCurrent
         #current = cleanSequences(current) implement or nah?
         newCurrent = []
@@ -218,6 +222,11 @@ def runSimulationSingleAncestor():
 
 
 
+
+if __name__ == '__main__':
+    parseObj = EyeOh()
+    seq = input("Please input your own sequence: ")
+    runSimulationSingleAncestor(Sequence(seq))
 
 
 
