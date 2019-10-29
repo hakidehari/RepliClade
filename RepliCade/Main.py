@@ -183,7 +183,7 @@ def runSimulationGenome():
 '''
 def runSimulationSingleAncestor(input=None):
     ancestor = ''
-    if len(input.sequence) > 0 :
+    if len(input.sequence) > 0:
         ancestor = input
     else:
         ancestor = getSequences("KT388711")[0]
