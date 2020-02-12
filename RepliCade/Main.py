@@ -125,7 +125,7 @@ class Simulation:
             newCurrent = []
             runtime -= 1
 
-        sequences = self.cleanSequences(sequences)
+        #sequences = self.cleanSequences(sequences)
         parseObj.writeToFasta(sequences)
         print("Simulation Complete.")
 
