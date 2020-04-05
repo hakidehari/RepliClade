@@ -102,7 +102,7 @@ class Simulation:
         print("Simulating")
         #run time in generations
         runtime = 15
-        #the rate of reproduction for the influenza A virus
+        #the rate of reproduction for the influenza A virus is 1.5
         r0 = False
         sequences = [ancestor]
         current = sequences
@@ -121,7 +121,7 @@ class Simulation:
             else:
                 r0 = False
             current = newCurrent
-            #current = cleanSequences(current) implement or nah?
+            current = self.cleanSequences(current) #implement or nah?
             newCurrent = []
             runtime -= 1
 
