@@ -16,23 +16,26 @@ class Connector:
     def getGeneData(self, gene):
         '''Fetches Gene data from Genbank or from the directory file if it exists in there'''
         print("Fetching influenza sequences..........")
-        if gene is None:
-            influenza = ["KT388711", "KT388703", "KT388695", "KT388687", "KT388679", "KT388671",
-                        "KT388663", "KT388655"]
+        if gene is None or gene == '':
+            f = open("influenzaB.txt", "r")
+            segment_ids = f.readlines()
+            segments = [segment for segment in segment_ids]
+            print(segments)
         else:
-            influenza = [gene]
+            segments = [gene]
+            print(segments)
         seqArray = []
-        for strain in influenza:
-            strainInFile = self.IO.checkForSequenceInFile(strain)
-            if strainInFile is not None:
-                seqArray.append(Sequence(strainInFile))
+        for segment in segments:
+            segment_in_file = self.IO.checkForSequenceInFile(segment)
+            if segment_in_file is not None:
+                seqArray.append(segment_in_file)
                 print("Fetched from file")
             else:
-                handle = Entrez.efetch(db="nucleotide", id=strain, rettype="gb", retmode="text")
+                handle = Entrez.efetch(db="nucleotide", id=segment, rettype="gb", retmode="text")
                 record = SeqIO.read(handle, "genbank")
-                seqArray.append(Sequence(record.seq))
+                seqArray.append(record.seq)
                 handle.close()
-                self.IO.writeSequenceToFile(strain, record.seq)
+                self.IO.writeSequenceToFile(segment, record.seq)
                 print("Fetched from NCBI")
         return seqArray
 

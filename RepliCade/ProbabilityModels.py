@@ -19,3 +19,14 @@ class ProbabilityModels:
                 sequence = Sequence(sequence.modify(i))
         return sequence
 
+
+    def influenza_recombination_independent_assortment(self, sequence):
+        pass
+
+
+    def influenza_recombination_incomplete_linkage(self, sequence):
+        pass
+
+
+
+

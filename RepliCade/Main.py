@@ -28,7 +28,7 @@ class Simulation:
         '''
         print("Performing Multiple Sequence Alignment.......")
         dir_path = os.path.dirname(os.path.realpath(__file__))
-        clustalw_exe = os.path.join(dir_path, "clustalw2")
+        clustalw_exe = os.path.join(dir_path, "clustalw2.exe")
         clustalw_cline = ClustalwCommandline(clustalw_exe, infile="influenza.fasta")
         stdout, stderr = clustalw_cline()
         align = AlignIO.read("influenza.aln", "clustal")
@@ -89,16 +89,11 @@ class Simulation:
 
 
 
-    def runSimulationSingleAncestor(self, input=None):
+    def run_influenza_B(self, ancestor):
         '''
                Simulation starting with a single ancestor.  Will be trying to implement some sort of extinction
                mechanism
         '''
-        ancestor = ''
-        if len(input.sequence) > 0:
-            ancestor = input
-        else:
-            ancestor = self.getSequences("KT388711")[0]
         print("Simulating")
         #run time in generations
         runtime = 15
@@ -138,9 +133,17 @@ class Simulation:
 if __name__ == '__main__':
     pm = ProbabilityModels()
     parseObj = EyeOh()
-    seq = input("Please input your own sequence: ")
     simulator = Simulation()
-    simulator.runSimulationSingleAncestor(Sequence(seq))
+    seq = input("Please input your own sequence or leave blank for Influenza B genome: ")
+    if len(seq) > 0:
+        simulator.run_influenza_B(Sequence(seq))
+    else:
+        influenza_B_segments = simulator.getSequences(seq)
+        influenza_B_segments = [line.replace("\n", "") for line in influenza_B_segments]
+        print(influenza_B_segments)
+        influenza_B_complete = "".join(influenza_B_segments)
+        print(len(influenza_B_complete))
+        simulator.run_influenza_B(Sequence(influenza_B_complete))
 
 
 
