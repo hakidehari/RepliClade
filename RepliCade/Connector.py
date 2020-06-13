@@ -13,7 +13,7 @@ class Connector:
         self.IO = EyeOh()
 
 
-    def getGeneData(self, gene):
+    def get_gene_data_influenza_B(self, gene):
         '''Fetches Gene data from Genbank or from the directory file if it exists in there'''
         print("Fetching influenza sequences..........")
         if gene is None or gene == '':

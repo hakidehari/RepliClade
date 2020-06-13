@@ -1,7 +1,7 @@
 """
 
 This is the Main file for Repliclade where the program will be run
-All dependencies and classes will be compiled here and ran accordingly
+All dependencies and classes will be imported here and ran accordingly
 
 """
 
@@ -17,10 +17,10 @@ from ProbabilityModels import ProbabilityModels
 import os
 
 
-class Simulation:
+class Simulation(object):
 
 
-    def performMSA(self):
+    def perform_MSA(self):
         '''
                 Performs multiple sequence alignment after simulation is run
                 using clustalW2, one of the fastest MSA algorithms out there.
@@ -36,22 +36,21 @@ class Simulation:
         print("Alignment Complete.")
 
 
-
-    def displayTree(self):
+    def display_tree(self):
         '''Creates and displays a phylogenetic tree based on the Multiple Sequence Alignment scores'''
         tree = Phylo.read("influenza.dnd", "newick")
         tree.rooted = True
         Phylo.draw(tree)
 
 
-    def getSequences(self, gene):
+    def get_sequences_influenza_B(self, gene):
         '''Gathers sequences from GenBank'''
         con = Connector()
-        seq = con.getGeneData(gene)
+        seq = con.get_gene_data_influenza_B(gene)
         return seq
 
 
-    def printSequences(self, sequences):
+    def print_sequences(self, sequences):
         '''Prints the sequences returned from the simulation'''
         ar = []
         for sequence in sequences:
@@ -59,7 +58,6 @@ class Simulation:
             ar.append(len(sequence.sequence))
         print(len(sequences))
         print(ar)
-
 
 
     def alikeness(self, s1, s2):
@@ -78,7 +76,7 @@ class Simulation:
         return arr
 
 
-    def cleanSequences(self, seqArray):
+    def clean_sequences(self, seqArray):
         '''clean duplicate sequences in sequence list'''
         returnArr = [seqArray[0].sequence]
         for i in range(1, len(seqArray)):
@@ -88,15 +86,14 @@ class Simulation:
         return returnArr
 
 
-
-    def run_influenza_B(self, ancestor):
+    def run_influenza_B(self, ancestor, generations):
         '''
                Simulation starting with a single ancestor.  Will be trying to implement some sort of extinction
                mechanism
         '''
-        print("Simulating")
+        print("Simulating Influenza B genome")
         #run time in generations
-        runtime = 15
+        runtime = generations
         #the rate of reproduction for the influenza A virus is 1.5
         r0 = False
         sequences = [ancestor]
@@ -116,18 +113,24 @@ class Simulation:
             else:
                 r0 = False
             current = newCurrent
-            current = self.cleanSequences(current) #implement or nah?
+            current = self.clean_sequences(current) #implement or nah?
             newCurrent = []
             runtime -= 1
 
-        #sequences = self.cleanSequences(sequences)
+        #sequences = self.clean_sequences(sequences)
         parseObj.writeToFasta(sequences)
         print("Simulation Complete.")
 
-        self.performMSA()
-        self.displayTree()
+        self.perform_MSA()
+        self.display_tree()
 
 
+    def run_simulation_input_sequence(self, ancestor, generations, genome_type):
+        '''
+            Simulation starting with a single ancestor input sequence
+        '''
+        print("Simulating input genome...")
+        
 
 
 if __name__ == '__main__':
@@ -135,15 +138,17 @@ if __name__ == '__main__':
     parseObj = EyeOh()
     simulator = Simulation()
     seq = input("Please input your own sequence or leave blank for Influenza B genome: ")
+    generations = eval(input("How many generations would you like the program to run for?: "))
     if len(seq) > 0:
-        simulator.run_influenza_B(Sequence(seq))
+        viral_genome_input = input("Is this a viral genome?  Please enter 'Y' for yes and 'N' for no:  ")
+        simulator.run_simulation_input_sequence(Sequence(seq), generations, viral_genome_input)
     else:
-        influenza_B_segments = simulator.getSequences(seq)
+        influenza_B_segments = simulator.get_sequences_influenza_B(seq)
         influenza_B_segments = [line.replace("\n", "") for line in influenza_B_segments]
         print(influenza_B_segments)
         influenza_B_complete = "".join(influenza_B_segments)
         print(len(influenza_B_complete))
-        simulator.run_influenza_B(Sequence(influenza_B_complete))
+        simulator.run_influenza_B(Sequence(influenza_B_complete), generations)
 
 
 
