@@ -24,20 +24,20 @@ class Connector:
         else:
             segments = [gene]
             print(segments)
-        seqArray = []
+        seq_array = []
         for segment in segments:
-            segment_in_file = self.IO.checkForSequenceInFile(segment)
+            segment_in_file = self.IO.check_for_sequence_in_file(segment)
             if segment_in_file is not None:
-                seqArray.append(segment_in_file)
+                seq_array.append(segment_in_file)
                 print("Fetched from file")
             else:
                 handle = Entrez.efetch(db="nucleotide", id=segment, rettype="gb", retmode="text")
                 record = SeqIO.read(handle, "genbank")
-                seqArray.append(record.seq)
+                seq_array.append(record.seq)
                 handle.close()
-                self.IO.writeSequenceToFile(segment, record.seq)
+                self.IO.write_sequence_to_file(segment, record.seq)
                 print("Fetched from NCBI")
-        return seqArray
+        return seq_array
 
 
     def printRecord(self):

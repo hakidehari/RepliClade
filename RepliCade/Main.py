@@ -118,7 +118,7 @@ class Simulation(object):
             runtime -= 1
 
         #sequences = self.clean_sequences(sequences)
-        parseObj.writeToFasta(sequences)
+        parseObj.write_to_fasta(sequences)
         print("Simulation Complete.")
 
         self.perform_MSA()
