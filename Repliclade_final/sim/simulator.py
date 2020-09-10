@@ -1,6 +1,6 @@
 from util.genbank_connector import GenBankConnector
 from util import file_util
-from DNA import genes.GENES
+from DNA.genes import GENES
 
 
 GENE_NAME_LIST = [
@@ -25,6 +25,17 @@ class Simulator(object):
         self.gene = gene_choice
 
     
-    def run_simulation():
+    def run_simulation(self):
         self.prompt()
+        genbank_ids = []
+        for gene in GENES[self.gene]:
+            genbank_ids.append(gene['id'])
+        
+        #fetch sequences from genbank
+        gene_array = self.fetch_gene_sequence_from_genbank(genbank_ids)
+        print(gene_array)
+        
+    
+    def fetch_gene_sequence_from_genbank(self, genes):
+        return gen_con.fetch_sequences(genes)
 
