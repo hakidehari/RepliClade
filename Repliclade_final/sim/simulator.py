@@ -1,6 +1,8 @@
 from util.genbank_connector import GenBankConnector
 from util import file_util
 from DNA.genes import GENES
+from util.seq_util import SequenceUtil
+import os
 
 
 GENE_NAME_LIST = [
@@ -8,6 +10,8 @@ GENE_NAME_LIST = [
 ]
 
 gen_con = GenBankConnector()
+seq_util = SequenceUtil()
+
 
 class Simulator(object):
 
@@ -33,7 +37,13 @@ class Simulator(object):
         
         #fetch sequences from genbank
         gene_array = self.fetch_gene_sequence_from_genbank(genbank_ids)
-        print(gene_array)
+        #write sequences to fasta file
+        seq_util.write_to_fasta(gene_array, self.gene)
+
+        #align gene sequences
+        seq_util.align_sequences_omega(self.gene)
+
+        #display phylo tree
         
     
     def fetch_gene_sequence_from_genbank(self, genes):

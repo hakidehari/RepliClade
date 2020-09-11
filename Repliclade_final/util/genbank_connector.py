@@ -28,11 +28,11 @@ class GenBankConnector(object):
             for seq_id in sequences:
                 handle = Entrez.efetch(db="nucleotide", id=seq_id, rettype="gb", retmode="text")
                 record = SeqIO.read(handle, "genbank")
-                seq_array.append(record.seq)
+                seq_array.append(record)
         else:
             handle = Entrez.efetch(db="nucleotide", id=sequencea, rettype="gb", retmode="text")
             record = SeqIO.read(handle, "genbank")
-            seq_array.append(record.seq)
+            seq_array.append(record)
         print("Finished fetching sequences from GenBank.")
         return seq_array
 
