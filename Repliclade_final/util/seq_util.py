@@ -1,4 +1,4 @@
-from Bio.Align.Applications import ClustalOmegaCommandline
+from Bio.Align.Applications import ClustalOmegaCommandline, ClustalwCommandline
 from Bio import SeqIO
 from Bio import Phylo
 from Bio import AlignIO
@@ -8,32 +8,48 @@ from datetime import datetime
 class SequenceUtil(object):
 
 
-    def align_sequences_omega(self, gene_name):
-        print("Aligning sequences using ClustalOmega...")
+    def align_sequences_w2(self, gene_name):
+        '''
+        Aligns sequences using the ClustalW2 executable
+
+        input: gene_name --> to specify which fasta file to read from
+        output:  Displays a phylogenetic tree
+        '''
+
+        print("Aligning sequences using ClustalW2...")
+        time = self.get_time()
         in_file = os.getcwd() + os.path.sep + 'alignment' + os.path.sep + 'fastas' + os.path.sep + '{0}.fasta'.format(gene_name)
-        out_file = os.getcwd() + os.path.sep + 'alignment' + os.path.sep + 'align' + os.path.sep + '{0}_out_{1}.fasta'.format(gene_name, self.get_time())
+        out_file = os.getcwd() + os.path.sep + 'alignment' + os.path.sep + 'align' + os.path.sep + '{0}_out_{1}.aln'.format(gene_name, time)
+
         if os.name == 'nt':
-            executable = ''
+            executable = os.getcwd() + os.path.sep + 'alignment' + os.path.sep + 'executables' + os.path.sep + 'clustalw2.exe'
         else:
             executable = os.getcwd() + os.path.sep + 'alignment' + os.path.sep + 'executables' + os.path.sep + 'clustal-omega-1.2.3-macosx'
-        clustalomega_cline = ClustalOmegaCommandline(executable, outfmt = 'align', infile=in_file, outfile=out_file, verbose=True, auto=True)
-        stdout, stderr = clustalomega_cline()
+        
+        clustalw_cline = ClustalwCommandline(executable, infile=in_file, outfile=out_file)
+        stdout, stderr = clustalw_cline()
         align = AlignIO.read(out_file, "clustal")
+
         print("Finished aligning sequences.")
-        self.display_phylo_tree(gene_name, out_file)
+        print(align)
 
-
-    def write_to_fasta(self, sequences, gene_name):
-        DNA_dir = os.getcwd() + os.path.sep + 'alignment' + os.path.sep + 'fastas' + os.path.sep + gene_name
-        with open(DNA_dir+'.fasta', 'w') as open_file:
-            SeqIO.write(sequences, open_file, "fasta")
+        self.display_phylo_tree(gene_name, in_file)
 
 
     def display_phylo_tree(self, gene_name, filename):
+        '''
+        Reads from the dnd file produced by the ClustalW2 alignment
+        and displays the phylogenetic tree based on the results of the alignment
+
+        input: gene_name --> to specify the alignment file
+               filename  --> specifies the path to the file
+        output: Diplays phylogenetic tree using the Phylo biopython module
+        '''
+
         print('Displaying Phylogenetic tree of sequences...')
-        alignment_path = filename
-        tree = Phylo.read(alignment_path, 'newick')
-        Phylo.draw()
+        dnd_file = filename.replace('{}.fasta'.format(gene_name), '{}.dnd'.format(gene_name))
+        tree = Phylo.read(dnd_file, 'newick')
+        Phylo.draw(tree)
 
     
     def get_time(self):

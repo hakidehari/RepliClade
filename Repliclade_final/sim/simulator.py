@@ -1,5 +1,5 @@
 from util.genbank_connector import GenBankConnector
-from util import file_util
+from util.file_util import FileStream
 from DNA.genes import GENES
 from util.seq_util import SequenceUtil
 import os
@@ -11,12 +11,14 @@ GENE_NAME_LIST = [
 
 gen_con = GenBankConnector()
 seq_util = SequenceUtil()
+file_util = FileStream()
 
 
 class Simulator(object):
 
     def __init__(self):
         self.gene = ''
+        self.motif_alg = ''
 
 
     def prompt(self):
@@ -29,6 +31,37 @@ class Simulator(object):
         self.gene = gene_choice
 
     
+    def prompt_motif_alg(self):
+        '''
+        Prompt to choose which motif finding algorithm will be used
+        on the set of aligned sequences
+        '''
+
+        MOTIFS = [
+            'deterministic',
+            'probabilistic'
+        ]
+
+        print('Now that the sequences have been aligned, which off the following motif finding \n \
+                    algorithms would you like to implement?')
+
+        for alg in MOTIFS:
+            print(alg)
+        choice = input("-->")
+
+        while choice.lower() not in MOTIFS:
+            print("Invalid input.  Please specify one of the motif finding algorithms provided")
+            for alg in MOTIFS:
+                print(alg)
+            choice = input("-->")
+
+        self.motif_alg = choice
+
+    
+    def motif_finder_det(self):
+        seq_list = file_util.read_from_alignment()
+    
+
     def run_simulation(self):
         self.prompt()
         genbank_ids = []
@@ -37,13 +70,18 @@ class Simulator(object):
         
         #fetch sequences from genbank
         gene_array = self.fetch_gene_sequence_from_genbank(genbank_ids)
+
         #write sequences to fasta file
-        seq_util.write_to_fasta(gene_array, self.gene)
+        file_util.write_to_fasta(gene_array, self.gene)
 
         #align gene sequences
-        seq_util.align_sequences_omega(self.gene)
+        seq_util.align_sequences_w2(self.gene)
 
-        #display phylo tree
+        #prompt motif finding alg
+        self.prompt_motif_alg()
+
+        #find motifs within the set of aligned sequences
+        self.motif_finder_det()
         
     
     def fetch_gene_sequence_from_genbank(self, genes):
