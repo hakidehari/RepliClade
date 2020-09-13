@@ -34,7 +34,7 @@ class FileStream(object):
         
         with open(alignment_file, "rU") as handle:
             for record in SeqIO.parse(handle, 'clustal'):
-                aligned_seqs.append(record.seq)
+                aligned_seqs.append(str(record.seq))
         
         return aligned_seqs
 

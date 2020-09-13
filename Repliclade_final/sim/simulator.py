@@ -2,6 +2,7 @@ from util.genbank_connector import GenBankConnector
 from util.file_util import FileStream
 from DNA.genes import GENES
 from util.seq_util import SequenceUtil
+from util.motif_det import DetMotifFinding
 import os
 
 
@@ -19,6 +20,7 @@ class Simulator(object):
     def __init__(self):
         self.gene = ''
         self.motif_alg = ''
+        self.motif_alg_func = ''
 
 
     def prompt(self):
@@ -42,6 +44,16 @@ class Simulator(object):
             'probabilistic'
         ]
 
+        DET_ALGS = [
+            'exhaustive',
+            'branch_and_bound',
+            'heuristic'
+        ]
+
+        PROB_ALGS = [
+            ''
+        ]
+
         print('Now that the sequences have been aligned, which off the following motif finding \n \
                     algorithms would you like to implement?')
 
@@ -57,9 +69,36 @@ class Simulator(object):
 
         self.motif_alg = choice
 
+        print("Which type of deterministic algorithm would you like to implement?")
+
+        for alg in DET_ALGS:
+            print(alg)
+        choice = input("-->")
+
+        while choice.lower() not in DET_ALGS:
+            print("Invalid input.  Please specify one of the deterministic motif finding algorithms provided")
+            for alg in DET_ALGS:
+                print(alg)
+            choice = input("-->")
+
+        self.motif_alg_func = choice
+
     
     def motif_finder_det(self):
         seq_list = file_util.read_from_alignment()
+        mf_det = DetMotifFinding(seqs=seq_list)
+
+        if self.motif_alg_func == 'exhaustive':
+            sol = mf_det.exhaustive_search()
+            print("Exhaustive search solution: ", sol)
+        
+        if self.motif_alg_func == 'branch_and_bound':
+            sol = mf_det.branch_and_bound()
+            print("Branch and Bound search solution: ", sol)
+
+        if self.motif_alg_func == 'heuristic':
+            sol = mf_det.heuristic_consensus()
+            print("Heuristic search solution: ", sol)
     
 
     def run_simulation(self):
@@ -81,7 +120,12 @@ class Simulator(object):
         self.prompt_motif_alg()
 
         #find motifs within the set of aligned sequences
-        self.motif_finder_det()
+        if self.motif_alg == 'deterministic':
+            self.motif_finder_det()
+
+        if self.motif_alg == 'probabilistic':
+            pass
+
         
     
     def fetch_gene_sequence_from_genbank(self, genes):
