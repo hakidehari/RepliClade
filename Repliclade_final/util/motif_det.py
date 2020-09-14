@@ -1,4 +1,4 @@
-
+from Bio import SeqIO
 
 class DetMotifFinding:
 
@@ -31,6 +31,10 @@ class DetMotifFinding:
 
 
     def create_motifs_from_indexes(self, indexes):
+        '''
+        Build a matrix to count the frequency of a nucleotide base 
+        in the given position
+        '''
         pseqs = []
         res = [[0] * self.motif_size for char in range(len(self.alphabet))]
 
@@ -45,6 +49,10 @@ class DetMotifFinding:
     
 
     def score(self, s):
+        '''
+        Iterates through all positions of the motif and for each position,
+        determines the maximum value which is added to the score of the motif
+        '''
         score = 0
         mat = self.create_motifs_from_indexes(s)
         for j in range(len(mat[0])):
@@ -58,6 +66,10 @@ class DetMotifFinding:
 
     
     def score_multiplicative(self, s):
+        '''
+        Another variation of the score function but scores by multiplication
+        instead of addition
+        '''
         score = 1.0
         mat = self.create_motifs_from_indexes(s)
         for j in range(len(mat[0])):
@@ -70,6 +82,10 @@ class DetMotifFinding:
 
     
     def next_solution(self, s):
+        '''
+        iterates through all of the n-L+1 possible values of the position in input sequence of the
+        sequence list
+        '''
         next_sol = [0]*len(s)
         pos = len(s) - 1
         while pos >= 0 and s[pos] == self.seq_size(pos) - self.motif_size:
@@ -86,6 +102,9 @@ class DetMotifFinding:
 
 
     def exhaustive_search(self):
+        '''
+        Brute force algorithm to search for the position of the best motif given the input motif size
+        '''
         best_score = -1
         res = []
         s = [0]*len(self.seqs)

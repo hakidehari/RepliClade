@@ -6,7 +6,10 @@ import os
 from datetime import datetime
 
 class SequenceUtil(object):
-
+    """
+    All functions related to working directly with sequences other than the motif
+    finding functions which are contained in their own files
+    """
 
     def align_sequences_w2(self, gene_name):
         '''

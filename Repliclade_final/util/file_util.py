@@ -39,6 +39,17 @@ class FileStream(object):
         return aligned_seqs
 
     
+    def read_from_fasta(self, gene_name):
+        fasta_file = os.getcwd() + os.path.sep + 'alignment' + os.path.sep + 'fastas' + os.path.sep + '{}.fasta'.format(gene_name)
+        fasta_seqs = []
+
+        with open(fasta_file, "rU") as handle:
+            for record in SeqIO.parse(handle, 'fasta'):
+                fasta_seqs.append(str(record.seq))
+                
+        return fasta_seqs
+
+    
     def write_to_fasta(self, sequences, gene_name):
         DNA_dir = os.getcwd() + os.path.sep + 'alignment' + os.path.sep + 'fastas' + os.path.sep + gene_name
         with open(DNA_dir+'.fasta', 'w') as open_file:

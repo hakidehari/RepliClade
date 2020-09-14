@@ -23,7 +23,7 @@ class Simulator(object):
         self.motif_alg_func = ''
 
 
-    def prompt(self):
+    def gene_prompt(self):
         print("Please select a gene from the list so simulate:")
         for gene in GENE_NAME_LIST:
             print(gene)
@@ -85,8 +85,8 @@ class Simulator(object):
 
     
     def motif_finder_det(self):
-        seq_list = file_util.read_from_alignment()
-        mf_det = DetMotifFinding(seqs=seq_list)
+        seq_list = file_util.read_from_alignment(self.gene)
+        mf_det = DetMotifFinding(seqs=seq_list, size=50)
 
         if self.motif_alg_func == 'exhaustive':
             sol = mf_det.exhaustive_search()
@@ -102,7 +102,7 @@ class Simulator(object):
     
 
     def run_simulation(self):
-        self.prompt()
+        self.gene_prompt()
         genbank_ids = []
         for gene in GENES[self.gene]:
             genbank_ids.append(gene['id'])
