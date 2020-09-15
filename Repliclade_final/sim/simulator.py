@@ -129,7 +129,7 @@ class Simulator(object):
                 print("Heuristic Stochastic search solution: ", sol)
             
             if self.motif_alg_func == 'gibbs':
-                sol = mf.gibbs(iterations=1000)
+                sol = mf.gibbs(iterations=100)
                 for i in range(len(seq_list)):
                     print(seq_list[i][sol[i]:sol[i]+j])
                 print("Gibbs search solution: ", sol)
