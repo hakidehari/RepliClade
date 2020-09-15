@@ -1,6 +1,7 @@
 from Bio import SeqIO
+from util.prb_motif import MotifPrb
 
-class DetMotifFinding:
+class MotifFinding:
 
     def __init__(self, size=8, seqs=None):
         self.motif_size = size
@@ -196,4 +197,76 @@ class DetMotifFinding:
                     max_score = sc
                     res[k] = i
         return res
+
+
+    def create_motifs_from_indexes_stochastic(self, indexes):
+        pseqs = []
+        for i, ind in enumerate(indexes):
+            pseqs.append(self.seqs[i][ind:(ind+self.motif_size)])
+        return MotifPrb(pseqs)
+
+    
+    def heuristic_stochastic(self):
+        from random import randint
+        s = [0]*len(self.seqs)
+        for k in range(len(s)):
+            s[k] = randint(0, self.seq_size(k)-self.motif_size)
+        motif = self.create_motifs_from_indexes_stochastic(s)
+        motif.create_pwm()
+        sc = self.score_multiplicative(s)
+        bestsol = s
+        improve = True
+        while improve:
+            for k in range(len(s)):
+                s[k] = motif.most_probable_sequence(self.seqs[k])
+            if self.score_multiplicative(s) > sc:
+                sc = self.score_multiplicative(s)
+                bestsol = s
+                motif = self.create_motifs_from_indexes_stochastic(s)
+                motif.create_pwm()
+            else:
+                improve = False
+        return bestsol
+
+    
+    def gibbs(self, iterations=100):
+        from random import randint
+        s = []
+        for i in range(len(self.seqs)):
+            s.append(randint(0, len(self.seqs[0])-self.motif_size-1))
+        best_s = list(s)
+        best_score = self.score_multiplicative(s)
+        for it in range(iterations):
+            seq_idx = randint(0, len(self.seqs)-1)
+            seq_sel = self.seqs[seq_idx]
+            s.pop(seq_idx)
+            removed = self.seqs.pop(seq_idx)
+            motif = self.create_motifs_from_indexes_stochastic(s)
+            motif.create_pwm()
+            self.seqs.insert(seq_idx, removed)
+            r = motif.probability_all_positions(seq_sel)
+            pos = self.roulette(r)
+            s.insert(seq_idx, pos)
+            score = self.score_multiplicative(s)
+            if score > best_score:
+                best_score = score
+                best_s = list(s)
+        return best_s
+
+    
+    def roulette(self, f):
+        from random import random
+        tot = 0.0
+        for x in f:
+            tot += (0.01 + x)
+        val = random() * tot
+        acum = 0.0
+        idx = 0
+        while acum < val:
+            acum += (f[idx] + 0.01)
+            idx += 1
+        return idx-1
+
+
+
             

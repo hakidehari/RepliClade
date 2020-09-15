@@ -2,7 +2,7 @@ from util.genbank_connector import GenBankConnector
 from util.file_util import FileStream
 from DNA.genes import GENES
 from util.seq_util import SequenceUtil
-from util.motif_det import DetMotifFinding
+from util.motif_finding import MotifFinding
 import os
 
 
@@ -51,7 +51,8 @@ class Simulator(object):
         ]
 
         PROB_ALGS = [
-            ''
+            'heuristic_stochastic',
+            'gibbs'
         ]
 
         print('Now that the sequences have been aligned, which off the following motif finding \n \
@@ -69,37 +70,70 @@ class Simulator(object):
 
         self.motif_alg = choice
 
-        print("Which type of deterministic algorithm would you like to implement?")
+        if self.motif_alg == 'deterministic':
+            print("Which type of deterministic algorithm would you like to implement?")
 
-        for alg in DET_ALGS:
-            print(alg)
-        choice = input("-->")
-
-        while choice.lower() not in DET_ALGS:
-            print("Invalid input.  Please specify one of the deterministic motif finding algorithms provided")
             for alg in DET_ALGS:
                 print(alg)
             choice = input("-->")
 
-        self.motif_alg_func = choice
+            while choice.lower() not in DET_ALGS:
+                print("Invalid input.  Please specify one of the deterministic motif finding algorithms provided")
+                for alg in DET_ALGS:
+                    print(alg)
+                choice = input("-->")
+
+            self.motif_alg_func = choice
+        
+        if self.motif_alg == 'probabilistic':
+            print("Which type of probabilistic algorithm would you like to implement?")
+
+            for alg in PROB_ALGS:
+                print(alg)
+            choice = input("-->")
+
+            while choice.lower() not in PROB_ALGS:
+                print("Invalid input.  Please specift one of the probabilistic motif finding algorithms provided")
+                for alg in PROB_ALGS:
+                    print(alg)
+                choice = input("-->")
+            
+            self.motif_alg_func = choice
+
 
     
     def motif_finder_det(self):
-        seq_list = file_util.read_from_alignment(self.gene)
-        mf_det = DetMotifFinding(seqs=seq_list, size=50)
+        seq_list = file_util.read_from_alignment()
+        mf = MotifFinding(seqs=seq_list, size=50)
 
         if self.motif_alg_func == 'exhaustive':
-            sol = mf_det.exhaustive_search()
+            sol = mf.exhaustive_search()
             print("Exhaustive search solution: ", sol)
         
         if self.motif_alg_func == 'branch_and_bound':
-            sol = mf_det.branch_and_bound()
+            sol = mf.branch_and_bound()
             print("Branch and Bound search solution: ", sol)
 
         if self.motif_alg_func == 'heuristic':
-            sol = mf_det.heuristic_consensus()
+            sol = mf.heuristic_consensus()
             print("Heuristic search solution: ", sol)
+
     
+    def motif_finder_prb(self):
+        seq_list = file_util.read_from_alignment()
+        for j in range(8, int(len(seq_list[0])/2)):
+            mf = MotifFinding(seqs=seq_list, size=j)
+
+            if self.motif_alg_func == 'heuristic_stochastic':
+                sol = mf.heuristic_stochastic()
+                print("Heuristic Stochastic search solution: ", sol)
+            
+            if self.motif_alg_func == 'gibbs':
+                sol = mf.gibbs(iterations=1000)
+                for i in range(len(seq_list)):
+                    print(seq_list[i][sol[i]:sol[i]+j])
+                print("Gibbs search solution: ", sol)
+
 
     def run_simulation(self):
         self.gene_prompt()
@@ -124,7 +158,7 @@ class Simulator(object):
             self.motif_finder_det()
 
         if self.motif_alg == 'probabilistic':
-            pass
+            self.motif_finder_prb()
 
         
     
