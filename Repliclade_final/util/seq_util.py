@@ -2,8 +2,11 @@ from Bio.Align.Applications import ClustalOmegaCommandline, ClustalwCommandline
 from Bio import SeqIO
 from Bio import Phylo
 from Bio import AlignIO
-import os
 from datetime import datetime
+from util.file_util import FileStream
+import os
+
+file_tool = FileStream()
 
 class SequenceUtil(object):
     """
@@ -53,6 +56,12 @@ class SequenceUtil(object):
         dnd_file = filename.replace('{}.fasta'.format(gene_name), '{}.dnd'.format(gene_name))
         tree = Phylo.read(dnd_file, 'newick')
         Phylo.draw(tree)
+
+
+    def classify_conserved_regions_alignment(self):
+        print("Pulling sequences from most recent alignment output to classify conserved regions...")
+        aligned_seqs = file_tool.read_from_alignment()
+        
 
     
     def get_time(self):

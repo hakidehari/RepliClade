@@ -150,6 +150,10 @@ class Simulator(object):
         #align gene sequences
         seq_util.align_sequences_w2(self.gene)
 
+        #classify conserved regions of alignment
+        seq_util.classify_conserved_regions_alignment()
+        
+        '''
         #prompt motif finding alg
         self.prompt_motif_alg()
 
@@ -159,6 +163,7 @@ class Simulator(object):
 
         if self.motif_alg == 'probabilistic':
             self.motif_finder_prb()
+        '''
 
         
     
