@@ -151,8 +151,10 @@ class Simulator(object):
         seq_util.align_sequences_w2(self.gene)
 
         #classify conserved regions of alignment
-        seq_util.classify_conserved_regions_alignment()
-        
+        conserved_regions = seq_util.calculate_conserved_regions()
+        print(conserved_regions)
+
+
         '''
         #prompt motif finding alg
         self.prompt_motif_alg()

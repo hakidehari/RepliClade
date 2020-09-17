@@ -58,11 +58,41 @@ class SequenceUtil(object):
         Phylo.draw(tree)
 
 
-    def classify_conserved_regions_alignment(self):
-        print("Pulling sequences from most recent alignment output to classify conserved regions...")
+    def calculate_conserved_regions(self):
+        '''
+        Naively determines conserved regions based on the alignment of the sequences
+
+        input: no input but takes the most recent alignment file
+        output: dictionary of each conserved region with the value consisting of a tuple with the start and end index, as well as the conserved DNA string
+        '''
+        #fetch aligned sequences from most recent alignment
         aligned_seqs = file_tool.read_from_alignment()
-        
+
+        #declare tracking variables
+        cur = 0
+        start = 0
+        chunk = ''
+        chunks = {}
+        chunk_count = 1
+
+        #loop through each char in the sequences to determine whether they are conserved or not
+        while cur < len(aligned_seqs[0]):
+            column = [row[cur] for row in aligned_seqs]
+            if self.all_same(column):
+                chunk += aligned_seqs[0][cur]
+            else:
+                if len(chunk) > 1:
+                    chunks[chunk_count] = (start, cur, chunk)
+                    chunk_count += 1
+                chunk = ''
+                start = cur+1
+            cur += 1
+        return chunks
 
     
+    def all_same(self, items):
+        return all(x == items[0] for x in items)
+        
+
     def get_time(self):
         return datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
