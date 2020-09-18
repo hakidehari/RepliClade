@@ -81,7 +81,7 @@ class SequenceUtil(object):
         Phylo.draw(tree)
 
 
-    def calculate_conserved_regions(self, gene_name=None):
+    def calculate_conserved_regions(self):
         '''
         Naively determines conserved regions based on the alignment of the sequences
 
@@ -89,12 +89,8 @@ class SequenceUtil(object):
         output: dictionary of each conserved region with the value consisting of a tuple with the start and end index, as well as the conserved DNA string
         '''
         #fetch aligned sequences from most recent alignment
-        if gene_name is None:
-            aligned_seqs = file_tool.read_from_alignment()
-        else:
-            aligned_seqs = file_tool.read_from_blast(gene_name)
-            
-
+        aligned_seqs = file_tool.read_from_alignment()
+           
         print("Classifying conserved regions in the alignment")
 
         #declare tracking variables
