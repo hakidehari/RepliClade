@@ -31,7 +31,7 @@ class SequenceUtil(object):
         if os.name == 'nt':
             executable = os.getcwd() + os.path.sep + 'alignment' + os.path.sep + 'executables' + os.path.sep + 'clustalw2.exe'
         else:
-            executable = os.getcwd() + os.path.sep + 'alignment' + os.path.sep + 'executables' + os.path.sep + 'clustal-omega-1.2.3-macosx'
+            executable = os.getcwd() + os.path.sep + 'alignment' + os.path.sep + 'executables' + os.path.sep + 'clustalw2'
         
         clustalw_cline = ClustalwCommandline(executable, infile=in_file, outfile=out_file)
         stdout, stderr = clustalw_cline()
@@ -45,6 +45,7 @@ class SequenceUtil(object):
     
     def align_sequences_w2_file(self, filename):
         print("Aligning sequences using ClustalW2...")
+        print("file name:", filename)
         time = self.get_time()
         in_file = os.getcwd() + os.path.sep + 'DNA' + os.path.sep + '{}.fasta'.format(filename)
         out_file = os.getcwd() + os.path.sep + 'alignment' + os.path.sep + 'align' + os.path.sep + '{0}_out_{1}.aln'.format(filename, time)
@@ -52,7 +53,7 @@ class SequenceUtil(object):
         if os.name == 'nt':
             executable = os.getcwd() + os.path.sep + 'alignment' + os.path.sep + 'executables' + os.path.sep + 'clustalw2.exe'
         else:
-            executable = os.getcwd() + os.path.sep + 'alignment' + os.path.sep + 'executables' + os.path.sep + 'clustal-omega-1.2.3-macosx'
+            executable = os.getcwd() + os.path.sep + 'alignment' + os.path.sep + 'executables' + os.path.sep + 'clustalw2'
 
         clustalw_cline = ClustalwCommandline(executable, infile=in_file, outfile=out_file)
         stdout, stderr = clustalw_cline()
@@ -61,10 +62,10 @@ class SequenceUtil(object):
         print("Finished aligning sequences.")
         print(align)
 
-        self.display_phylo_tree(filename, in_file)
+        self.display_phylo_tree(filename)
 
 
-    def display_phylo_tree(self, gene_name, filename):
+    def display_phylo_tree(self, filename):
         '''
         Reads from the dnd file produced by the ClustalW2 alignment
         and displays the phylogenetic tree based on the results of the alignment
@@ -75,7 +76,7 @@ class SequenceUtil(object):
         '''
 
         print('Displaying Phylogenetic tree of sequences...')
-        dnd_file = os.getcwd() + os.path.sep + 'DNA' + os.path.sep + filename.replace('fasta', 'dnd') 
+        dnd_file = os.getcwd() + os.path.sep + 'DNA' + os.path.sep + '{}.dnd'.format(filename)
         tree = Phylo.read(dnd_file, 'newick')
         Phylo.draw(tree)
 
