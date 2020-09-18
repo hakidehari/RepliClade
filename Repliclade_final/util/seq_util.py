@@ -2,6 +2,7 @@ from Bio.Align.Applications import ClustalOmegaCommandline, ClustalwCommandline
 from Bio import SeqIO
 from Bio import Phylo
 from Bio import AlignIO
+from Bio.Seq import Seq
 from datetime import datetime
 from util.file_util import FileStream
 import os
@@ -14,7 +15,7 @@ class SequenceUtil(object):
     finding functions which are contained in their own files
     """
 
-    def align_sequences_w2(self, gene_name):
+    def align_sequences_w2_fasta(self, gene_name):
         '''
         Aligns sequences using the ClustalW2 executable
 
@@ -41,6 +42,27 @@ class SequenceUtil(object):
 
         self.display_phylo_tree(gene_name, in_file)
 
+    
+    def align_sequences_w2_file(self, filename):
+        print("Aligning sequences using ClustalW2...")
+        time = self.get_time()
+        in_file = os.getcwd() + os.path.sep + 'DNA' + os.path.sep + '{}.fasta'.format(filename)
+        out_file = os.getcwd() + os.path.sep + 'alignment' + os.path.sep + 'align' + os.path.sep + '{0}_out_{1}.aln'.format(filename, time)
+
+        if os.name == 'nt':
+            executable = os.getcwd() + os.path.sep + 'alignment' + os.path.sep + 'executables' + os.path.sep + 'clustalw2.exe'
+        else:
+            executable = os.getcwd() + os.path.sep + 'alignment' + os.path.sep + 'executables' + os.path.sep + 'clustal-omega-1.2.3-macosx'
+
+        clustalw_cline = ClustalwCommandline(executable, infile=in_file, outfile=out_file)
+        stdout, stderr = clustalw_cline()
+        align = AlignIO.read(out_file, "clustal")
+
+        print("Finished aligning sequences.")
+        print(align)
+
+        self.display_phylo_tree(filename, in_file)
+
 
     def display_phylo_tree(self, gene_name, filename):
         '''
@@ -53,12 +75,12 @@ class SequenceUtil(object):
         '''
 
         print('Displaying Phylogenetic tree of sequences...')
-        dnd_file = filename.replace('{}.fasta'.format(gene_name), '{}.dnd'.format(gene_name))
+        dnd_file = os.getcwd() + os.path.sep + 'DNA' + os.path.sep + filename.replace('fasta', 'dnd') 
         tree = Phylo.read(dnd_file, 'newick')
         Phylo.draw(tree)
 
 
-    def calculate_conserved_regions(self):
+    def calculate_conserved_regions(self, gene_name=None):
         '''
         Naively determines conserved regions based on the alignment of the sequences
 
@@ -66,7 +88,13 @@ class SequenceUtil(object):
         output: dictionary of each conserved region with the value consisting of a tuple with the start and end index, as well as the conserved DNA string
         '''
         #fetch aligned sequences from most recent alignment
-        aligned_seqs = file_tool.read_from_alignment()
+        if gene_name is None:
+            aligned_seqs = file_tool.read_from_alignment()
+        else:
+            aligned_seqs = file_tool.read_from_blast(gene_name)
+            
+
+        print("Classifying conserved regions in the alignment")
 
         #declare tracking variables
         cur = 0
@@ -87,12 +115,16 @@ class SequenceUtil(object):
                 chunk = ''
                 start = cur+1
             cur += 1
+        print("Done classifying conserved regions")
         return chunks
 
     
     def all_same(self, items):
         return all(x == items[0] for x in items)
-        
+
+    
+    def sequencify(self, seq_array):
+        return [Seq(seq) for seq in seq_array]
 
     def get_time(self):
         return datetime.now().strftime("%Y-%m-%d-%H-%M-%S")

@@ -7,7 +7,8 @@ import os
 
 
 GENE_NAME_LIST = [
-    'cytochrome_b'
+    'cytochrome_b',
+    'cytochrome_b_1'
 ]
 
 gen_con = GenBankConnector()
@@ -31,6 +32,14 @@ class Simulator(object):
         while gene_choice not in GENE_NAME_LIST:
             gene_choice = input("Invalid choice.  Please choose one of the genes listed above: ")
         self.gene = gene_choice
+
+
+    def file_prompt(self):
+        file_prompt = input("Would you like to use an input file?  Please specify Y or N:  ")
+        if file_prompt in ['y', 'Y']:
+            filename = input("Please specify the name of the file: ")
+            return (filename, True)
+        return (None, False)
 
     
     def prompt_motif_alg(self):
@@ -136,23 +145,33 @@ class Simulator(object):
 
 
     def run_simulation(self):
-        self.gene_prompt()
-        genbank_ids = []
-        for gene in GENES[self.gene]:
-            genbank_ids.append(gene['id'])
-        
-        #fetch sequences from genbank
-        gene_array = self.fetch_gene_sequence_from_genbank(genbank_ids)
+        file_bool = self.file_prompt()
+        if file_bool[1] == False:
+            self.gene_prompt()
+            genbank_ids = []
+            for gene in GENES[self.gene]:
+                genbank_ids.append(gene['id'])
+            
+            #fetch sequences from genbank
+            gene_array = self.fetch_gene_sequence_from_genbank(genbank_ids)
 
-        #write sequences to fasta file
-        file_util.write_to_fasta(gene_array, self.gene)
+            #write sequences to fasta file
+            file_util.write_to_fasta(gene_array, self.gene)
+            
+            #align gene sequences
+            seq_util.align_sequences_w2_fasta(self.gene)
 
-        #align gene sequences
-        seq_util.align_sequences_w2(self.gene)
+            #classify conserved regions of alignment
+            conserved_regions = seq_util.calculate_conserved_regions()
+            
+            print(conserved_regions)
+        else:
+            filename = file_bool[0]
+            gen_con.run_ncbi_blast_input_file(filename)
+            seqs_blast = file_util.read_from_blast(filename)
+            file_util.write_to_fasta_blast(seqs_blast, filename)
+            seq_util.align_sequences_w2_file(filename)
 
-        #classify conserved regions of alignment
-        conserved_regions = seq_util.calculate_conserved_regions()
-        print(conserved_regions)
 
 
         '''

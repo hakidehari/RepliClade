@@ -1,13 +1,9 @@
 from Bio import SeqIO
 import os
 import glob
+from Bio.Blast import NCBIXML
 
 class FileStream(object):
-
-    def __init__(self, filename=None, filepath=None):
-        self.filename = filename
-        self.filepath = filepath
-        self.cur_open_file = None
 
     
     def open_file(self):
@@ -50,9 +46,34 @@ class FileStream(object):
         return fasta_seqs
 
     
+    def read_from_blast(self, filename):
+        blast_file_path = os.getcwd() + os.path.sep + 'DNA' + os.path.sep + '{}.xml'.format(filename)
+        blast_seqs = []
+        result_handle = open(blast_file_path)
+        blast_records = NCBIXML.read(result_handle)
+        for alignment in blast_records.alignments:
+            for hsp in alignment.hsps:
+                print("****Alignment****")
+                print("sequence:", alignment.title)
+                print("length:", alignment.length)
+                print("e value:", hsp.expect)
+                print(hsp.query[0:75] + "...")
+                print(hsp.match[0:75] + "...")
+                print(hsp.sbjct[0:75] + "...")
+                blast_seqs.append((alignment.title, hsp.sbjct))
+        return blast_seqs
+
+    
     def write_to_fasta(self, sequences, gene_name):
         DNA_dir = os.getcwd() + os.path.sep + 'alignment' + os.path.sep + 'fastas' + os.path.sep + gene_name
         with open(DNA_dir+'.fasta', 'w') as open_file:
             SeqIO.write(sequences, open_file, "fasta")
+
+    
+    def write_to_fasta_blast(self, sequences, filename):
+        DNA_dir = os.getcwd() + os.path.sep + 'DNA' + os.path.sep
+        with open(DNA_dir+'{}.fasta'.format(filename), 'w') as open_file:
+            for seq in sequences:
+                open_file.write('>{0}\n{1}\n'.format(seq[0], seq[1]))
         
         

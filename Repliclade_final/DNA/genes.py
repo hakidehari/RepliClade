@@ -41,6 +41,13 @@ GENES = {
             'alias': 'Bostrychus Fish',
             'id': 'AB021231.1'
         },
+    ],
+    'cytochrome_b_1': [
+        {
+            'name': 'Bostrychus sinensis',
+            'alias': 'Bostrychus Fish',
+            'id': 'AB021231.1'
+        }
     ]
 }
 
