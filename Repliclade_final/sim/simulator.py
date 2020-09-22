@@ -3,6 +3,7 @@ from util.file_util import FileStream
 from DNA.genes import GENES
 from util.seq_util import SequenceUtil
 from util.motif_finding import MotifFinding
+from util.evolve import JukesCantor
 import os
 
 
