@@ -5,6 +5,7 @@ from util.seq_util import SequenceUtil
 from util.motif_finding import MotifFinding
 from util.evolve import JukesCantor, Kimura
 import os
+import json
 
 
 GENE_NAME_LIST = [
@@ -147,16 +148,21 @@ class Simulator(object):
     
     def prompt_time(self):
         generations = input("Please specify the amount of generations you would like to run the simulation for: ")
-
-        while not isinstance(generations, int):
-            generations = input("Invalid input.  Please input the amount of generations you would like to run the simulation for as an integer: ")
-
+        try:
+            generations = int(generations)
+        except:
+            while not isinstance(generations, int):
+                generations = input("Invalid input.  Please input the amount of generations you would like to run the simulation for as an integer: ")
+                try:
+                    generations = int(generations)
+                except:
+                    continue
         return generations
     
 
     def simulate(self, c_regions, filename):
         # read sequences from blast
-        seq_to_simulate = file_util.read_from_fasta('{}.fasta'.format(filename))
+        seq_to_simulate = file_util.read_from_blast_fasta(filename)
         #declare evolutionary model to use
         model = Kimura()
         #have user input the generations
@@ -171,7 +177,9 @@ class Simulator(object):
                 current_seqs.append(new_seq)
             generation_dict[unit] = current_seqs
             seq_to_simulate = current_seqs
-            current_seqs = []
+        
+        file_util.log_simulation_to_json(generation_dict)
+        
 
 
     def run_simulation(self):
@@ -197,11 +205,13 @@ class Simulator(object):
             print(conserved_regions)
         else:
             filename = file_bool[0]
-            gen_con.run_ncbi_blast_input_file(filename)
+            #commented out to speed up testing
+            #gen_con.run_ncbi_blast_input_file(filename)
             seqs_blast = file_util.read_from_blast(filename)
             file_util.write_to_fasta_blast(seqs_blast, filename)
             seq_util.align_sequences_w2_file(filename)
             conserved_regions = seq_util.calculate_conserved_regions()
+            print(filename)
 
             self.simulate(c_regions=conserved_regions, filename=filename)
 

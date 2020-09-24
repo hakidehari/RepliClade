@@ -61,6 +61,9 @@ class Kimura(object):
         ret_seq = ''
         for i in range(len(seq)):
             cur = seq[i]
+            if cur == '-':
+                ret_seq += cur
+                continue
             for j in range(len(self.prb_matrix[cur])):
                 if self.prb_matrix[cur][j] != 0:
                     roll = random.random()
