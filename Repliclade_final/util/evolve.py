@@ -32,6 +32,7 @@ class JukesCantor(object):
                     roll = random.random()
                     if roll <= self.prb_matrix[cur][j]:
                         cur = self.seq_list[j]
+                        break
             ret_seq += cur
         return ret_seq
 
@@ -65,6 +66,7 @@ class Kimura(object):
                     roll = random.random()
                     if roll <= self.prb_matrix[cur][j]:
                         cur = self.seq_list[j]
+                        break
             ret_seq += cur
         return ret_seq
 
