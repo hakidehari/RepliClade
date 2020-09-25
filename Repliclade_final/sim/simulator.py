@@ -177,7 +177,7 @@ class Simulator(object):
                 current_seqs.append(new_seq)
             generation_dict[unit] = current_seqs
             seq_to_simulate = current_seqs
-        
+        #comment test
         file_util.log_simulation_to_json(generation_dict)
         
 
