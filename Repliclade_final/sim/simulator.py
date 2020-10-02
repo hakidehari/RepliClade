@@ -169,9 +169,7 @@ class Simulator(object):
         generation_dict = {}
 
         #generate simulation model objects
-        obj_arr = []
-        for seq in seq_to_simulate:
-            obj_arr.append(Kimura())
+        obj_arr = [Kimura() for seq in seq_to_simulate]
 
         for unit in range(generations):
             current_seqs = []

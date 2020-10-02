@@ -11,7 +11,7 @@ class JukesCantor(object):
         in the Jukes and Cantor model, all of the probabilities from one nucleotide to the other
         are .25
         '''
-        self.alpha = .001
+        self.alpha = .0001
         self.t = 0
 
         self.calculate_matrix(self.alpha, self.t)
@@ -68,7 +68,7 @@ class Kimura(object):
         in the Jukes and Cantor model, all of the probabilities from one nucleotide to the other
         are .25
         '''
-        self.alpha = .001
+        self.alpha = .0001
         self.t = 0
 
         self.calculate_matrix(self.alpha, self.t)

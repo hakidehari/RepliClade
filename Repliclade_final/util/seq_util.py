@@ -132,6 +132,13 @@ class SequenceUtil(object):
             return 0
         return float((seq.count("G") + seq.count("C")) / len(seq))
 
+    
+    def get_nuc_count(self, seq):
+        count_dict = {"A":0, "G":0, "T":0, "C": 0}
+        for key in count_dict:
+            count_dict[key] = seq.count(key)
+        return count_dict
+
 
     def calculate_divergence_generations(self, generation_dict, generations):
         first_gen = generation_dict[0]
