@@ -163,22 +163,26 @@ class Simulator(object):
     def simulate(self, c_regions, filename):
         # read sequences from blast
         seq_to_simulate = file_util.read_from_blast_fasta(filename)
-        #declare evolutionary model to use
-        model = Kimura()
         #have user input the generations
         generations = self.prompt_time()
 
         generation_dict = {}
 
+        #generate simulation model objects
+        obj_arr = []
+        for seq in seq_to_simulate:
+            obj_arr.append(Kimura())
+
         for unit in range(generations):
             current_seqs = []
-            for seq in seq_to_simulate:
-                new_seq = model.evolve(seq)
+            for i in range(len(seq_to_simulate)):
+                new_seq = obj_arr[i].evolve(seq_to_simulate[i])
                 current_seqs.append(new_seq)
             generation_dict[unit] = current_seqs
             seq_to_simulate = current_seqs
         #comment test
         file_util.log_simulation_to_json(generation_dict)
+        seq_util.calculate_divergence_generations(generation_dict, generations)
         
 
 

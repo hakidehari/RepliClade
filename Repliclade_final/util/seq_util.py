@@ -125,3 +125,26 @@ class SequenceUtil(object):
 
     def get_time(self):
         return datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+
+    
+    def get_gc_content(self, seq):
+        if len(seq) == 0:
+            return 0
+        return float((seq.count("G") + seq.count("C")) / len(seq))
+
+
+    def calculate_divergence_generations(self, generation_dict, generations):
+        first_gen = generation_dict[0]
+        final_gen = generation_dict[generations - 1]
+
+        #calculate divergence
+        for i in range(len(first_gen)):
+            score = 0
+            origin_seq = first_gen[i]
+            final_seq = final_gen[i]
+            for j in range(len(origin_seq)):
+                if origin_seq[j] == final_seq[j]:
+                    score += 1
+            print("Sequence {0} in the first and last generation are {1} percent similar".format(i, float(score/len(origin_seq)) * 100))
+        
+
