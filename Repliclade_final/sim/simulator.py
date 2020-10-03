@@ -180,7 +180,8 @@ class Simulator(object):
             seq_to_simulate = current_seqs
         #comment test
         file_util.log_simulation_to_json(generation_dict)
-        seq_util.calculate_divergence_generations(generation_dict, generations)
+        seq_util.estimate_substitutions_generations(generation_dict, generations)
+        seq_util.calculate_divergence_k2p(generation_dict, generations)
         
 
 

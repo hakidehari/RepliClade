@@ -59,6 +59,8 @@ class JukesCantor(object):
         return ret_seq
 
 
+
+
 class Kimura(object):
 
     
@@ -70,25 +72,27 @@ class Kimura(object):
         '''
         self.alpha = .0001
         self.t = 0
+        self.beta= self.alpha / 3
 
-        self.calculate_matrix(self.alpha, self.t)
+        self.calculate_matrix(self.alpha, self.beta, self.t)
 
         self.seq_list = ['A', 'T', 'C', 'G']
 
 
-    def calculate_matrix(self, alpha, t):
+    def calculate_matrix(self, alpha, beta, t):
         '''
         Markov model which defines the probability substitution matrix
         in the current generation
         '''
-        same_nuc = .25 + .75*(math.e**(-4*alpha*t))
-        diff_nuc = .25-.25*(math.e**(-4*alpha*t))
+        transition = .25 + .25*(math.e**(-4*beta*t)) - .5*(math.e**(-2*(alpha + beta)*t))
+        transversion = .25 - .25*(math.e**(-4*beta*t))
+        same_nuc = 1 - transition - 2*transversion
         self.prb_matrix =  {
             #     A    T    C    G
-            'A': [same_nuc, diff_nuc/2, diff_nuc/2, diff_nuc],
-            'T': [diff_nuc/2, same_nuc, diff_nuc, diff_nuc/2],
-            'C': [diff_nuc/2, diff_nuc, same_nuc, diff_nuc/2],
-            'G': [diff_nuc, diff_nuc/2, diff_nuc/2, same_nuc]
+            'A': [same_nuc, transversion, transversion, transition],
+            'T': [transversion, same_nuc, transition, transversion],
+            'C': [transversion, transition, same_nuc, transversion],
+            'G': [transition, transversion, transversion, same_nuc]
         }
         
     
@@ -112,7 +116,7 @@ class Kimura(object):
                         break
             ret_seq += cur
         self.t += 1
-        self.calculate_matrix(self.alpha, self.t)
+        self.calculate_matrix(self.alpha, self.beta, self.t)
         return ret_seq
 
 

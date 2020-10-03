@@ -5,6 +5,7 @@ from Bio import AlignIO
 from Bio.Seq import Seq
 from datetime import datetime
 from util.file_util import FileStream
+import numpy as np
 import os
 
 file_tool = FileStream()
@@ -140,7 +141,7 @@ class SequenceUtil(object):
         return count_dict
 
 
-    def calculate_divergence_generations(self, generation_dict, generations):
+    def estimate_substitutions_generations(self, generation_dict, generations):
         first_gen = generation_dict[0]
         final_gen = generation_dict[generations - 1]
 
@@ -153,5 +154,61 @@ class SequenceUtil(object):
                 if origin_seq[j] == final_seq[j]:
                     score += 1
             print("Sequence {0} in the first and last generation are {1} percent similar".format(i, float(score/len(origin_seq)) * 100))
+
+    
+    def calculate_divergence_jc(self, generation_dict, generations):
+        first_gen = generation_dict[0]
+        final_gen = generation_dict[generations - 1]
+
+        for i in range(len(first_gen)):
+            differences = 0
+            origin_seq = first_gen[i]
+            final_seq = final_gen[i]
+            if len(origin_seq) == len(final_seq):
+                for j in range(len(origin_seq)):
+                    if origin_seq[j] != final_seq[j]:
+                        differences += 1
+            p = float(differences / len(origin_seq))
+            k = -.75 * np.log(1 - 1.25*p)
+            print("The K value for sequence {0} is {1}".format(i, k))
+
         
+    def calculate_divergence_k2p(self, generation_dict, generations):
+        transversions = {
+            "A": ["C", "T"],
+            "G": ["C", "T"],
+            "C": ["A", "G"],
+            "T": ["A", "G"],
+            "-": []
+        }
+
+        transitions = {
+            "A": ["G"],
+            "G": ["A"],
+            "C": ["T"],
+            "T": ["C"],
+            "-": []
+        }
+
+        first_gen = generation_dict[0]
+        final_gen = generation_dict[generations - 1]
+
+        for i in range(len(first_gen)):
+            p = 0
+            q = 0
+            origin_seq = first_gen[i]
+            final_seq = final_gen[i]
+            if len(origin_seq) == len(final_seq):
+                for j in range(len(origin_seq)):
+                    char_origin = origin_seq[j]
+                    char_final = final_seq[j]
+                    if char_final in transversions[char_origin]:
+                        q += 1
+                    elif char_final in transitions[char_origin]:
+                        p += 1
+            tp = float(p / len(origin_seq))
+            tv = float(q / len(origin_seq))
+            k = -.5 * np.log(1-2*tp-tv) - .25 * np.log(1-2*tv)
+            
+            print("The K value for sequence {0} is {1}".format(i, k))
 
