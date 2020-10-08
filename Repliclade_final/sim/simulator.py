@@ -158,18 +158,32 @@ class Simulator(object):
                 except:
                     continue
         return generations
+
     
+    def prompt_model(self):
+        evol_models = ["kimura", "jukescantor"]
+        for model in evol_models:
+            print(model)
+        model = input("Please specify the evolutionary model you would like to use from the ones given above: ")
+        while model.lower() not in evol_models:
+            model = input("Invalid input.  Please specify the evolutionary model you would like to use from the ones given above: ")
+        return model.lower()
+
 
     def simulate(self, c_regions, filename):
         # read sequences from blast
         seq_to_simulate = file_util.read_from_blast_fasta(filename)
         #have user input the generations
         generations = self.prompt_time()
+        evol_model = self.prompt_model()
 
         generation_dict = {}
 
         #generate simulation model objects
-        obj_arr = [Kimura() for seq in seq_to_simulate]
+        if evol_model == 'kimura':
+            obj_arr = [Kimura() for seq in seq_to_simulate]
+        elif evol_model == 'jukescantor':
+            obj_arr = [JukesCantor() for seq in seq_to_simulate]
 
         for unit in range(generations):
             current_seqs = []
