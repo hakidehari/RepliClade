@@ -1,6 +1,9 @@
 import random
 import numpy as np
 import math
+from util.seq_util import SequenceUtil
+
+seq_util = SequenceUtil()
 
 class JukesCantor(object):
 
@@ -44,6 +47,28 @@ class JukesCantor(object):
         ret_seq = ''
         for i in range(len(seq)):
             cur = seq[i]
+            if cur == '-':
+                ret_seq += cur
+                continue
+            for j in range(len(self.prb_matrix[cur])):
+                if self.prb_matrix[cur][j] != 0:
+                    roll = random.random()
+                    if roll <= self.prb_matrix[cur][j]:
+                        cur = self.seq_list[j]
+                        break
+            ret_seq += cur
+        self.t += 1
+        self.calculate_matrix(self.alpha, self.t)
+        return ret_seq
+
+    
+    def evolve_cr(self, seq, c_regions):
+        ret_seq = ''
+        for i in range(len(seq)):
+            cur = seq[i]
+            if seq_util.check_for_cr(i, c_regions):
+                ret_seq += cur
+                continue
             if cur == '-':
                 ret_seq += cur
                 continue
@@ -105,6 +130,31 @@ class Kimura(object):
         ret_seq = ''
         for i in range(len(seq)):
             cur = seq[i]
+            if cur == '-':
+                ret_seq += cur
+                continue
+            for j in range(len(self.prb_matrix[cur])):
+                if self.prb_matrix[cur][j] != 0:
+                    roll = random.random()
+                    if roll <= self.prb_matrix[cur][j]:
+                        cur = self.seq_list[j]
+                        break
+            ret_seq += cur
+        self.t += 1
+        self.calculate_matrix(self.alpha, self.beta, self.t)
+        return ret_seq
+
+    
+    def evolve_cr(self, seq, c_regions):
+        '''
+        Evolves the sequence while considering conserved regions
+        '''
+        ret_seq = ''
+        for i in range(len(seq)):
+            cur = seq[i]
+            if seq_util.check_for_cr(i, c_regions):
+                ret_seq += cur
+                continue
             if cur == '-':
                 ret_seq += cur
                 continue

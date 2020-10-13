@@ -6,6 +6,7 @@ from util.motif_finding import MotifFinding
 from util.evolve import JukesCantor, Kimura
 import os
 import json
+import re
 
 
 GENE_NAME_LIST = [
@@ -168,6 +169,14 @@ class Simulator(object):
         while model.lower() not in evol_models:
             model = input("Invalid input.  Please specify the evolutionary model you would like to use from the ones given above: ")
         return model.lower()
+        
+    
+    def cr_prompt(self):
+        inp = input("Would you like to consider conserved regions previously identified?  Please input Y or N: ")
+        while inp not in ['Y', 'y', 'N', 'n']:
+            inp = input("Invalid Input.  Please specify Y or N")
+        return inp
+
 
 
     def simulate(self, c_regions, filename):
@@ -176,6 +185,7 @@ class Simulator(object):
         #have user input the generations
         generations = self.prompt_time()
         evol_model = self.prompt_model()
+        cr_inp = self.cr_prompt()
 
         generation_dict = {}
 
@@ -188,10 +198,14 @@ class Simulator(object):
         for unit in range(generations):
             current_seqs = []
             for i in range(len(seq_to_simulate)):
-                new_seq = obj_arr[i].evolve(seq_to_simulate[i])
+                if cr_inp.lower() == 'y':
+                    new_seq = obj_arr[i].evolve_cr(seq_to_simulate[i], c_regions)
+                else:
+                    new_seq = obj_arr[i].evolve(seq_to_simulate[i])
                 current_seqs.append(new_seq)
             generation_dict[unit] = current_seqs
             seq_to_simulate = current_seqs
+
         #comment test
         file_util.log_simulation_to_json(generation_dict)
         seq_util.estimate_substitutions_generations(generation_dict, generations)

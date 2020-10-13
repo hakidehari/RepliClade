@@ -117,6 +117,18 @@ class SequenceUtil(object):
         return chunks
 
     
+    def check_for_cr(self, index, c_regions):
+        '''
+        checks if the nucleotide is a conserved region.  If it is, does not mutate
+        '''
+        for region in c_regions:
+            start_index = c_regions[region][0]
+            end_index = c_regions[region][1]
+            if index >= start_index and index <= end_index:
+                return True
+        return False
+
+
     def all_same(self, items):
         return all(x == items[0] for x in items)
 
