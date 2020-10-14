@@ -196,10 +196,10 @@ class Felsenstein(object):
 
     
     def prompt_rates(self):
-        self.A = float(input("Please enter the probability from 0 to 1 of a nucleotide mutating to base A: "))
-        self.G = float(input("Please enter the probability from 0 to 1 of a nucleotide mutating to base G: "))
-        self.T = float(input("Please enter the probability from 0 to 1 of a nucleotide mutating to base T: "))
-        self.C = float(input("Please enter the probability from 0 to 1 of a nucleotide mutating to base A: "))
+        self.A = float(input("Please enter the base frequency from 0 to 1 of a nucleotide mutating to base A: "))
+        self.G = float(input("Please enter the base frequency from 0 to 1 of a nucleotide mutating to base G: "))
+        self.T = float(input("Please enter the base frequency from 0 to 1 of a nucleotide mutating to base T: "))
+        self.C = float(input("Please enter the base frequency from 0 to 1 of a nucleotide mutating to base A: "))
 
 
     def calculate_matrix(self, t):
@@ -216,6 +216,9 @@ class Felsenstein(object):
             'C': [self.A*(1-math.e**(-1*u*self.t)), self.T*(1-math.e**(-1*u*self.t)), math.e**(-1*u*self.t) + self.C*(1 - math.e**(-1*u*self.t)), self.G*(1-math.e**(-1*u*self.t))],
             'G': [self.A*(1-math.e**(-1*u*self.t)), self.T*(1-math.e**(-1*u*self.t)), self.C*(1-math.e**(-1*u*self.t)), math.e**(-1*u*self.t) + self.G*(1 - math.e**(-1*u*self.t))]
         }
+        print(math.e**(-1*u*self.t) + self.A*(1 - math.e**(-1*u*self.t)))
+        print(self.T*(1-math.e**(-1*u*self.t)))
+        print(self.C*(1-math.e**(-1*u*self.t)))
 
     
     def evolve(self, seq):
