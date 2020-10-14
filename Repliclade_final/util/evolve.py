@@ -175,3 +175,93 @@ class Blaisdell(object):
 
     def __init__(self):
         pass
+
+
+class Felsenstein(object):
+
+
+    def __init__(self, A=None, G=None, T=None, C=None):
+        self.t = 0
+
+        if A is None and G is None and T is None and C is None:
+            self.prompt_rates()
+        else:
+            self.A = A
+            self.G = G
+            self.T = T
+            self.C = C
+
+        self.calculate_matrix(self.t)
+        self.seq_list = ['A', 'T', 'C', 'G']
+
+    
+    def prompt_rates(self):
+        self.A = float(input("Please enter the probability from 0 to 1 of a nucleotide mutating to base A: "))
+        self.G = float(input("Please enter the probability from 0 to 1 of a nucleotide mutating to base G: "))
+        self.T = float(input("Please enter the probability from 0 to 1 of a nucleotide mutating to base T: "))
+        self.C = float(input("Please enter the probability from 0 to 1 of a nucleotide mutating to base A: "))
+
+
+    def calculate_matrix(self, t):
+        '''
+        Markov model which defines the probability substitution matrix
+        in the current generation
+        '''
+        u = float(1 / (1 - self.A**2 - self.C**2 - self.G**2 - self.T**2))
+        
+        self.prb_matrix =  {
+            #     A    T    C    G
+            'A': [math.e**(-1*u*self.t) + self.A*(1 - math.e**(-1*u*self.t)), self.T*(1-math.e**(-1*u*self.t)), self.C*(1-math.e**(-1*u*self.t)), self.G*(1-math.e**(-1*u*self.t))],
+            'T': [self.A*(1-math.e**(-1*u*self.t)), math.e**(-1*u*self.t) + self.T*(1 - math.e**(-1*u*self.t)), self.C*(1-math.e**(-1*u*self.t)), self.G*(1-math.e**(-1*u*self.t))],
+            'C': [self.A*(1-math.e**(-1*u*self.t)), self.T*(1-math.e**(-1*u*self.t)), math.e**(-1*u*self.t) + self.C*(1 - math.e**(-1*u*self.t)), self.G*(1-math.e**(-1*u*self.t))],
+            'G': [self.A*(1-math.e**(-1*u*self.t)), self.T*(1-math.e**(-1*u*self.t)), self.C*(1-math.e**(-1*u*self.t)), math.e**(-1*u*self.t) + self.G*(1 - math.e**(-1*u*self.t))]
+        }
+
+    
+    def evolve(self, seq):
+        '''
+        Takes an input sequence and uses the Kimura model
+        to evolve the sequence
+        '''
+
+        ret_seq = ''
+        for i in range(len(seq)):
+            cur = seq[i]
+            if cur == '-':
+                ret_seq += cur
+                continue
+            for j in range(len(self.prb_matrix[cur])):
+                if self.prb_matrix[cur][j] != 0:
+                    roll = random.random()
+                    if roll <= self.prb_matrix[cur][j]:
+                        cur = self.seq_list[j]
+                        break
+            ret_seq += cur
+        self.t += 1
+        self.calculate_matrix(self.t)
+        return ret_seq
+
+
+    def evolve_cr(self, seq, c_regions):
+        '''
+        Evolves the sequence while considering conserved regions
+        '''
+        ret_seq = ''
+        for i in range(len(seq)):
+            cur = seq[i]
+            if seq_util.check_for_cr(i, c_regions):
+                ret_seq += cur
+                continue
+            if cur == '-':
+                ret_seq += cur
+                continue
+            for j in range(len(self.prb_matrix[cur])):
+                if self.prb_matrix[cur][j] != 0:
+                    roll = random.random()
+                    if roll <= self.prb_matrix[cur][j]:
+                        cur = self.seq_list[j]
+                        break
+            ret_seq += cur
+        self.t += 1
+        self.calculate_matrix(self.t)
+        return ret_seq

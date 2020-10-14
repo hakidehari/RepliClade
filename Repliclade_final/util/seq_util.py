@@ -169,6 +169,11 @@ class SequenceUtil(object):
 
     
     def calculate_divergence_jc(self, generation_dict, generations):
+        '''
+        Calculates the K value (divergence) of the sequences post evolution for the 
+        Jukes Cantor model
+        '''
+
         first_gen = generation_dict[0]
         final_gen = generation_dict[generations - 1]
 
@@ -186,6 +191,11 @@ class SequenceUtil(object):
 
         
     def calculate_divergence_k2p(self, generation_dict, generations):
+        '''
+        Calculates the K value (divergence) of the sequences post evolution for the 
+        Kimura 2P model
+        '''
+
         transversions = {
             "A": ["C", "T"],
             "G": ["C", "T"],

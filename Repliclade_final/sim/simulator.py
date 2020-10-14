@@ -3,7 +3,7 @@ from util.file_util import FileStream
 from DNA.genes import GENES
 from util.seq_util import SequenceUtil
 from util.motif_finding import MotifFinding
-from util.evolve import JukesCantor, Kimura
+from util.evolve import JukesCantor, Kimura, Felsenstein
 import os
 import json
 import re
@@ -162,7 +162,7 @@ class Simulator(object):
 
     
     def prompt_model(self):
-        evol_models = ["kimura", "jukescantor"]
+        evol_models = ["kimura", "jukescantor", "felsenstein"]
         for model in evol_models:
             print(model)
         model = input("Please specify the evolutionary model you would like to use from the ones given above: ")
@@ -176,7 +176,6 @@ class Simulator(object):
         while inp not in ['Y', 'y', 'N', 'n']:
             inp = input("Invalid Input.  Please specify Y or N")
         return inp
-
 
 
     def simulate(self, c_regions, filename):
@@ -194,7 +193,12 @@ class Simulator(object):
             obj_arr = [Kimura() for seq in seq_to_simulate]
         elif evol_model == 'jukescantor':
             obj_arr = [JukesCantor() for seq in seq_to_simulate]
+        elif evol_model == 'felsenstein':
+            prompt_obj = Felsenstein()
+            obj_arr = [Felsenstein(prompt_obj.A, prompt_obj.G, prompt_obj.T, prompt_obj.C) for seq in seq_to_simulate]
 
+        #begin simulation
+        print("Running Simulation...")
         for unit in range(generations):
             current_seqs = []
             for i in range(len(seq_to_simulate)):
@@ -206,10 +210,13 @@ class Simulator(object):
             generation_dict[unit] = current_seqs
             seq_to_simulate = current_seqs
 
-        #comment test
+        
         file_util.log_simulation_to_json(generation_dict)
         seq_util.estimate_substitutions_generations(generation_dict, generations)
-        seq_util.calculate_divergence_k2p(generation_dict, generations)
+        if evol_model == "jukescantor":
+            seq_util.calculate_divergence_jc(generation_dict, generations)
+        if evol_model == "kimura":
+            seq_util.calculate_divergence_k2p(generation_dict, generations)
         
 
 
@@ -239,9 +246,13 @@ class Simulator(object):
             #commented out to speed up testing
             #gen_con.run_ncbi_blast_input_file(filename)
             seqs_blast = file_util.read_from_blast(filename)
+
             file_util.write_to_fasta_blast(seqs_blast, filename)
+
             seq_util.align_sequences_w2_file(filename)
+
             conserved_regions = seq_util.calculate_conserved_regions()
+            
             print(filename)
 
             self.simulate(c_regions=conserved_regions, filename=filename)
