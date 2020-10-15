@@ -28,6 +28,26 @@ class FileStream(object):
         latest_file = max(list_of_files, key=os.path.getctime)
         return latest_file
 
+    
+    def most_recent_fasta_results(self):
+        '''
+        Gets the most recent results fasta file
+        '''
+        path_to_file = os.getcwd() + os.path.sep + 'sim' + os.path.sep + 'results' + os.path.sep + '*.fasta'
+        list_of_files = glob.glob(path_to_file)
+        latest_file = max(list_of_files, key=os.path.getctime)
+        return latest_file
+
+    
+    def most_recent_dnd_results(self):
+        '''
+        Gets the most recent results dnd file
+        '''
+        path_to_file = os.getcwd() + os.path.sep + 'sim' + os.path.sep + 'results' + os.path.sep + '*.dnd'
+        list_of_files = glob.glob(path_to_file)
+        latest_file = max(list_of_files, key=os.path.getctime)
+        return latest_file
+
 
     def read_from_alignment(self):
         '''
@@ -68,7 +88,7 @@ class FileStream(object):
 
         with open(fasta_file, "rU") as handle:
             for record in SeqIO.parse(handle, 'fasta'):
-                fasta_seqs.append(str(record.seq))
+                fasta_seqs.append((str(record.seq), record.id))
                 
         return fasta_seqs
 
@@ -111,6 +131,13 @@ class FileStream(object):
         with open(DNA_dir+'{}.fasta'.format(filename), 'w') as open_file:
             for seq in sequences:
                 open_file.write('>{0}\n{1}\n'.format(seq[0], seq[1]))
+
+    
+    def write_to_fasta_results(self, seq_id, sequences):
+        dest_dir = os.getcwd() + os.path.sep + 'sim' + os.path.sep + 'results' + os.path.sep
+        with open(dest_dir+'{}_results.fasta'.format(seq_id.replace("|", "")), "w") as open_file:
+            for i in range(len(sequences)):
+                open_file.write('>{0}Gen{1}\n{2}\n'.format(seq_id, i, sequences[i]))
 
     
     def log_simulation_to_json(self, generation_dict):

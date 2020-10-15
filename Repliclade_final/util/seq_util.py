@@ -65,6 +65,36 @@ class SequenceUtil(object):
 
         self.display_phylo_tree(filename)
 
+    
+    def align_results_w2_single(self, generation_dict, generations, index, seq_id):
+        sequences_gens = [generation_dict[i][index] for i in range(generations)]
+        file_tool.write_to_fasta_results(seq_id, sequences_gens)
+        time = self.get_time()
+        in_file = file_tool.most_recent_fasta_results()
+        out_file = os.getcwd() + os.path.sep + 'alignment' + os.path.sep + 'align' + os.path.sep + '{0}_{1}_aln'.format(seq_id.replace("|", ""), time)
+
+        if os.name == 'nt':
+            executable = os.getcwd() + os.path.sep + 'alignment' + os.path.sep + 'executables' + os.path.sep + 'clustalw2.exe'
+        else:
+            executable = os.getcwd() + os.path.sep + 'alignment' + os.path.sep + 'executables' + os.path.sep + 'clustalw2'
+
+        clustalw_cline = ClustalwCommandline(executable, infile=in_file, outfile=out_file)
+        stdout, stderr = clustalw_cline()
+        align = AlignIO.read(out_file, "clustal")
+
+        print("Finished aligning sequences.")
+        print(align)
+
+        self.display_phylo_tree_results()
+
+
+
+
+
+
+    def align_results_w2_multiple(self):
+        pass
+
 
     def display_phylo_tree(self, filename):
         '''
@@ -78,6 +108,13 @@ class SequenceUtil(object):
 
         print('Displaying Phylogenetic tree of sequences...')
         dnd_file = os.getcwd() + os.path.sep + 'DNA' + os.path.sep + '{}.dnd'.format(filename)
+        tree = Phylo.read(dnd_file, 'newick')
+        Phylo.draw(tree)
+
+    
+    def display_phylo_tree_results(self):
+        print('Displaying Phylogenetic tree of sequences...')
+        dnd_file = file_tool.most_recent_dnd_results()
         tree = Phylo.read(dnd_file, 'newick')
         Phylo.draw(tree)
 

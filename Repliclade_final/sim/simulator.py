@@ -6,7 +6,6 @@ from util.motif_finding import MotifFinding
 from util.evolve import JukesCantor, Kimura, Felsenstein
 import os
 import json
-import re
 
 
 GENE_NAME_LIST = [
@@ -177,10 +176,36 @@ class Simulator(object):
             inp = input("Invalid Input.  Please specify Y or N")
         return inp
 
+    
+    def align_results_prompt(self):
+        inp = input("Would you like to perform an alignment on the results for the sequence/sequences? Please input 'Y' or 'N': ")
+        while inp not in ['Y', 'y', 'N', 'n']:
+            inp = input("Invalid Input.  Please specify Y or N")
+        return inp
+
+    
+    def align_single_or_multiple_prompt(self):
+        inp = input("Would you like to align all of the sequences and their results or just a specific sequence? Please specify 'single' or multiple': ")
+        while inp.lower() not in ['single', 'multiple']:
+            inp = input("Invalid input.  Please specify single or multiple")
+        return inp
+
+    
+    def which_sequence_align_prompt(self, seq_ids):
+        [print(seq_id.lower()) for seq_id in seq_ids]
+        seq_ids = [seq.lower() for seq in seq_ids]
+        inp = input("Which sequence would you like to align for every iteration throughout the simulation?: ")
+        while inp.lower() not in seq_ids:
+            inp = input("Invalid input.  Please specify one of the sequence Id's: ")
+        return (inp, seq_ids.index(inp.lower()))
+
 
     def simulate(self, c_regions, filename):
         # read sequences from blast
-        seq_to_simulate = file_util.read_from_blast_fasta(filename)
+        blast_sequences = file_util.read_from_blast_fasta(filename)
+        seq_ids = [seq[1] for seq in blast_sequences]
+        seq_to_simulate = [seq[0] for seq in blast_sequences]
+        
         #have user input the generations
         generations = self.prompt_time()
         evol_model = self.prompt_model()
@@ -209,13 +234,21 @@ class Simulator(object):
             generation_dict[unit] = current_seqs
             seq_to_simulate = current_seqs
         print("Simulation Complete.")
-        
+
         file_util.log_simulation_to_json(generation_dict)
         seq_util.estimate_substitutions_generations(generation_dict, generations)
         if evol_model == "jukescantor":
             seq_util.calculate_divergence_jc(generation_dict, generations)
         if evol_model == "kimura":
             seq_util.calculate_divergence_k2p(generation_dict, generations)
+        
+        align_results = self.align_results_prompt()
+
+        if align_results.lower() == 'y':
+            single_or_multiple = self.align_single_or_multiple_prompt()
+            if single_or_multiple == 'single':
+                seq_id, index = self.which_sequence_align_prompt(seq_ids)
+                seq_util.align_results_w2_single(generation_dict, generations, index, seq_id)
         
 
 
