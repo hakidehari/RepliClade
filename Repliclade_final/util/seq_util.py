@@ -89,9 +89,6 @@ class SequenceUtil(object):
 
 
 
-
-
-
     def align_results_w2_multiple(self):
         pass
 
