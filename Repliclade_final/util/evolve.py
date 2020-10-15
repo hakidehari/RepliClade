@@ -180,28 +180,17 @@ class Blaisdell(object):
 class Felsenstein(object):
 
 
-    def __init__(self, A=None, G=None, T=None, C=None):
+    def __init__(self, seq):
+        frequencies = seq_util.get_nuc_count(seq)
+        self.A = float(frequencies['A'] / len(seq))
+        self.C = float(frequencies['C'] / len(seq))
+        self.G = float(frequencies['G'] / len(seq))
+        self.T = float(frequencies['T'] / len(seq))
         self.t = 0
-
-        if A is None and G is None and T is None and C is None:
-            self.prompt_rates()
-        else:
-            self.A = A
-            self.G = G
-            self.T = T
-            self.C = C
-
         self.calculate_matrix(self.t)
         self.seq_list = ['A', 'T', 'C', 'G']
-
-    
-    def prompt_rates(self):
-        self.A = float(input("Please enter the base frequency from 0 to 1 of a nucleotide mutating to base A: "))
-        self.G = float(input("Please enter the base frequency from 0 to 1 of a nucleotide mutating to base G: "))
-        self.T = float(input("Please enter the base frequency from 0 to 1 of a nucleotide mutating to base T: "))
-        self.C = float(input("Please enter the base frequency from 0 to 1 of a nucleotide mutating to base A: "))
-
-
+        
+        
     def calculate_matrix(self, t):
         '''
         Markov model which defines the probability substitution matrix
@@ -216,10 +205,7 @@ class Felsenstein(object):
             'C': [self.A*(1-math.e**(-1*u*self.t)), self.T*(1-math.e**(-1*u*self.t)), math.e**(-1*u*self.t) + self.C*(1 - math.e**(-1*u*self.t)), self.G*(1-math.e**(-1*u*self.t))],
             'G': [self.A*(1-math.e**(-1*u*self.t)), self.T*(1-math.e**(-1*u*self.t)), self.C*(1-math.e**(-1*u*self.t)), math.e**(-1*u*self.t) + self.G*(1 - math.e**(-1*u*self.t))]
         }
-        print(math.e**(-1*u*self.t) + self.A*(1 - math.e**(-1*u*self.t)))
-        print(self.T*(1-math.e**(-1*u*self.t)))
-        print(self.C*(1-math.e**(-1*u*self.t)))
-
+        
     
     def evolve(self, seq):
         '''

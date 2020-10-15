@@ -194,8 +194,7 @@ class Simulator(object):
         elif evol_model == 'jukescantor':
             obj_arr = [JukesCantor() for seq in seq_to_simulate]
         elif evol_model == 'felsenstein':
-            prompt_obj = Felsenstein()
-            obj_arr = [Felsenstein(prompt_obj.A, prompt_obj.G, prompt_obj.T, prompt_obj.C) for seq in seq_to_simulate]
+            obj_arr = [Felsenstein(seq) for seq in seq_to_simulate]
 
         #begin simulation
         print("Running Simulation...")
@@ -209,7 +208,7 @@ class Simulator(object):
                 current_seqs.append(new_seq)
             generation_dict[unit] = current_seqs
             seq_to_simulate = current_seqs
-
+        print("Simulation Complete.")
         
         file_util.log_simulation_to_json(generation_dict)
         seq_util.estimate_substitutions_generations(generation_dict, generations)
