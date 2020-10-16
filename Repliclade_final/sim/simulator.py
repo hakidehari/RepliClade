@@ -249,6 +249,8 @@ class Simulator(object):
             if single_or_multiple == 'single':
                 seq_id, index = self.which_sequence_align_prompt(seq_ids)
                 seq_util.align_results_w2_single(generation_dict, generations, index, seq_id)
+            if single_or_multiple == 'multiple':
+                seq_util.align_results_w2_multiple(generation_dict, generations, seq_ids)
         
 
 

@@ -140,6 +140,13 @@ class FileStream(object):
                 open_file.write('>{0}Gen{1}\n{2}\n'.format(seq_id, i, sequences[i]))
 
     
+    def write_to_fasta_results_multiple(self, seq_ids, sequences):
+        dest_dir = os.getcwd() + os.path.sep + 'sim' + os.path.sep + 'results' + os.path.sep
+        with open(dest_dir+'post_sim_results.fasta', 'w') as open_file:
+            for i in range(len(sequences)):
+                open_file.write('>{0}\n{1}\n'.format(seq_ids[i], sequences[i]))
+
+    
     def log_simulation_to_json(self, generation_dict):
         '''
         Save results from each generation into a json file

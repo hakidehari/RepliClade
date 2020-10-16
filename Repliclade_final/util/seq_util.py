@@ -89,8 +89,26 @@ class SequenceUtil(object):
 
 
 
-    def align_results_w2_multiple(self):
-        pass
+    def align_results_w2_multiple(self, generation_dict, generations, seq_ids):
+        sequences = generation_dict[generations - 1]
+        file_tool.write_to_fasta_results_multiple(seq_ids, sequences)
+        time = self.get_time()
+        in_file = file_tool.most_recent_fasta_results()
+        out_file = os.getcwd() + os.path.sep + 'alignment' + os.path.sep + 'align' + os.path.sep + 'post_sim_alignment_{}.aln'.format(time)
+
+        if os.name == 'nt':
+            executable = os.getcwd() + os.path.sep + 'alignment' + os.path.sep + 'executables' + os.path.sep + 'clustalw2.exe'
+        else:
+            executable = os.getcwd() + os.path.sep + 'alignment' + os.path.sep + 'executables' + os.path.sep + 'clustalw2'
+
+        clustalw_cline = ClustalwCommandline(executable, infile=in_file, outfile=out_file)
+        stdout, stderr = clustalw_cline()
+        align = AlignIO.read(out_file, "clustal")
+
+        print("Finished aligning sequences.")
+        print(align)
+
+        self.display_phylo_tree_results()
 
 
     def display_phylo_tree(self, filename):
