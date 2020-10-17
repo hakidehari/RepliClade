@@ -67,6 +67,7 @@ class SequenceUtil(object):
 
     
     def align_results_w2_single(self, generation_dict, generations, index, seq_id):
+        print("Aligning results...")
         sequences_gens = [generation_dict[i][index] for i in range(generations)]
         file_tool.write_to_fasta_results(seq_id, sequences_gens)
         time = self.get_time()
@@ -90,6 +91,7 @@ class SequenceUtil(object):
 
 
     def align_results_w2_multiple(self, generation_dict, generations, seq_ids):
+        print("Aligning results...")
         sequences = generation_dict[generations - 1]
         file_tool.write_to_fasta_results_multiple(seq_ids, sequences)
         time = self.get_time()
