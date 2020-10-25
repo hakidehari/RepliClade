@@ -7,6 +7,7 @@ from datetime import datetime
 from util.file_util import FileStream
 import numpy as np
 import os
+import random
 
 file_tool = FileStream()
 
@@ -221,7 +222,7 @@ class SequenceUtil(object):
                     score += 1
             print("Sequence {0} in the first and last generation are {1} percent similar".format(i, float(score/len(origin_seq)) * 100))
 
-    
+
     def calculate_divergence_jc(self, generation_dict, generations):
         '''
         Calculates the K value (divergence) of the sequences post evolution for the 
@@ -287,4 +288,55 @@ class SequenceUtil(object):
             k = -.5 * np.log(1-2*tp-tv) - .25 * np.log(1-2*tv)
             
             print("The K value for sequence {0} is {1}".format(i, k))
+
+
+    def coalesce(self, sequences):
+        '''
+        Infers the ancestral sequence of a group of sequences generated from BLAST
+        input:  array of DNA sequences
+        output:  inferred ancestral sequence
+        '''
+        Ne = 1000000
+
+        sample_size = len(sequences)
+
+        sequences = [seq[0] for seq in sequences]
+
+        while len(sequences) > 1:
+
+            rand1 = random.randint(0, len(sequences)-1)
+            rand2 = random.randint(0, len(sequences)-1)
+
+            print(rand1, rand2)
+
+            while rand1 == rand2:
+                rand1 = random.randint(0, len(sequences)-1)
+                rand2 = random.randint(0, len(sequences)-1)
+
+            temp1 = rand1 if rand1 < rand2 else rand2
+            temp2 = rand1 if rand1 > rand2 else rand2
+            
+            seq1 = sequences[rand1]
+            seq2 = sequences[rand2]
+
+            new_sequences = sequences[0:temp1] + sequences[temp1+1:temp2] + sequences[temp2+1:]
+
+            coal_seq = random.choice([seq1, seq2])
+
+            sequences = new_sequences
+
+            new_sequences.append(coal_seq)
+        
+        print(sequences[0])
+
+        total_time = sum((4*Ne) / (i*(i-1)) for i in range(2, sample_size+1))
+
+        print("TOTAL TIME: ", total_time)
+
+        return sequences[0]
+
+
+
+                
+
 

@@ -289,6 +289,10 @@ class Simulator(object):
             
             print(filename)
 
+            blast_sequences = file_util.read_from_blast_fasta(filename)
+
+            ancestral_seq = seq_util.coalesce(blast_sequences)
+
             self.simulate(c_regions=conserved_regions, filename=filename)
 
 
