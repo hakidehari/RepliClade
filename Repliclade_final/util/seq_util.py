@@ -296,44 +296,58 @@ class SequenceUtil(object):
         input:  array of DNA sequences
         output:  inferred ancestral sequence
         '''
-        Ne = 1000000
+        def merge(seq1, seq2):
+            ancestor = ''
+            for i in range(len(seq1)):
+                s1 = seq1[i]
+                s2 = seq2[i]
 
-        sample_size = len(sequences)
-
-        sequences = [seq[0] for seq in sequences]
+                if s1 == s2 and s1 != '-':
+                    ancestor += s1
+                elif s1 == '-' and s2 == '-':
+                    ancestor += random.choice(['A', 'G', 'T', 'C'])
+                elif s1 == '-' or s2 =='-':
+                    ancestor += s1 if s1 != '-' else s2
+                else:
+                    nuc = random.choice([s1, s2])
+                    ancestor += nuc
+            return ancestor
 
         while len(sequences) > 1:
 
             rand1 = random.randint(0, len(sequences)-1)
             rand2 = random.randint(0, len(sequences)-1)
 
-            print(rand1, rand2)
-
             while rand1 == rand2:
                 rand1 = random.randint(0, len(sequences)-1)
                 rand2 = random.randint(0, len(sequences)-1)
-
-            temp1 = rand1 if rand1 < rand2 else rand2
-            temp2 = rand1 if rand1 > rand2 else rand2
             
             seq1 = sequences[rand1]
             seq2 = sequences[rand2]
 
-            new_sequences = sequences[0:temp1] + sequences[temp1+1:temp2] + sequences[temp2+1:]
+            temp1 = rand1 if rand1 < rand2 else rand2
+            temp2 = rand2 if rand2 > rand1 else rand1
 
-            coal_seq = random.choice([seq1, seq2])
+            sequences = sequences[:temp1] + sequences[temp1+1:temp2] + sequences[temp2+1:]
 
-            sequences = new_sequences
+            new_seq = merge(seq1, seq2)
 
-            new_sequences.append(coal_seq)
-        
+            sequences.append(new_seq)
         print(sequences[0])
-
-        total_time = sum((4*Ne) / (i*(i-1)) for i in range(2, sample_size+1))
-
-        print("TOTAL TIME: ", total_time)
-
         return sequences[0]
+
+
+
+
+            
+
+
+
+        
+        
+
+                    
+
 
 
 

@@ -251,6 +251,21 @@ class Simulator(object):
                 seq_util.align_results_w2_single(generation_dict, generations, index, seq_id)
             if single_or_multiple == 'multiple':
                 seq_util.align_results_w2_multiple(generation_dict, generations, seq_ids)
+
+    
+    def simulate_ancestor(self, sequence):
+        generations = self.prompt_time()
+        evol_model = self.prompt_model()
+
+        if evol_model == 'kimura':
+            model = [Kimura()]
+        if evol_model == 'jukescantor':
+            model = [JukesCantor()]
+        if evol_model == 'felsenstein':
+            model = [Felsenstein()]
+
+        for i in range(generations):
+            model[0].evolve(sequence)
         
 
 
@@ -289,11 +304,11 @@ class Simulator(object):
             
             print(filename)
 
-            blast_sequences = file_util.read_from_blast_fasta(filename)
+            aligned_seqs = file_util.read_from_alignment()
 
-            ancestral_seq = seq_util.coalesce(blast_sequences)
+            ancestral_seq = seq_util.coalesce(aligned_seqs)
 
-            self.simulate(c_regions=conserved_regions, filename=filename)
+            self.simulate_ancestor(ancestral_seq)
 
 
 
