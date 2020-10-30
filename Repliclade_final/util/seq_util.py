@@ -195,6 +195,19 @@ class SequenceUtil(object):
         return datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
 
     
+    def roll_duplication(self, time_elapsed):
+       # alpha = .0000000000000001
+       # prb = alpha*time_elapsed
+       # roll = random.random()
+       # if roll < prb:
+        #    return True
+        return False
+
+    
+    def roll_extinction(self, time_elapsed):
+        pass
+
+    
     def get_gc_content(self, seq):
         if len(seq) == 0:
             return 0
@@ -333,7 +346,7 @@ class SequenceUtil(object):
             new_seq = merge(seq1, seq2)
 
             sequences.append(new_seq)
-        print(sequences[0])
+        print("Ancestral sequence inferred: ", sequences[0])
         return sequences[0]
 
 

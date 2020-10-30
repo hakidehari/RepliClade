@@ -6,6 +6,7 @@ from util.motif_finding import MotifFinding
 from util.evolve import JukesCantor, Kimura, Felsenstein
 import os
 import json
+import time
 
 
 GENE_NAME_LIST = [
@@ -254,8 +255,18 @@ class Simulator(object):
 
     
     def simulate_ancestor(self, sequence):
+        '''
+        Simulates using one ancestral sequence inferred
+        '''
+
         generations = self.prompt_time()
         evol_model = self.prompt_model()
+        cr_inp = self.cr_prompt()
+
+        print("Beginning simulation...")
+        start = time.time()
+
+        generation_dict = {}
 
         if evol_model == 'kimura':
             model = [Kimura()]
@@ -264,8 +275,31 @@ class Simulator(object):
         if evol_model == 'felsenstein':
             model = [Felsenstein()]
 
+        current_seqs = [sequence]
+        dup_event = False
+        new_gen = []
+
         for i in range(generations):
-            model[0].evolve(sequence)
+            for j in range(len(current_seqs)):
+                dup_event = seq_util.roll_duplication(i)
+                if dup_event:
+                    new_gen.append(current_seqs[j])
+                    dup_event = False
+                else:
+                    new_seq = model[j].evolve(current_seqs[j])
+                    new_gen.append(new_seq)
+
+            current_seqs = new_gen
+            new_gen = []
+            
+            generation_dict[i] = current_seqs
+        end = time.time()
+        print("Simulation Complete.")
+        print("Time elapsed: {} seconds".format(end - start))
+        print(len(current_seqs))
+        seq_util.estimate_substitutions_generations(generation_dict, generations)
+        if evol_model == "kimura":
+            seq_util.calculate_divergence_k2p(generation_dict, generations)
         
 
 
