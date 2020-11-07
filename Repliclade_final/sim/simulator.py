@@ -281,7 +281,7 @@ class Simulator(object):
 
         for i in range(generations):
             for j in range(len(current_seqs)):
-                dup_event = seq_util.roll_duplication(i)
+                dup_event = seq_util.roll_duplication()
                 if dup_event:
                     new_gen.append(current_seqs[j])
                     dup_event = False
@@ -293,6 +293,7 @@ class Simulator(object):
             new_gen = []
             
             generation_dict[i] = current_seqs
+            print(len(current_seqs))
         end = time.time()
         print("Simulation Complete.")
         print("Time elapsed: {} seconds".format(end - start))

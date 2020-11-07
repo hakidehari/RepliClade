@@ -17,6 +17,8 @@ class SequenceUtil(object):
     finding functions which are contained in their own files
     """
 
+    gens_passed = 1
+
     def align_sequences_w2_fasta(self, gene_name):
         '''
         Aligns sequences using the ClustalW2 executable
@@ -195,12 +197,14 @@ class SequenceUtil(object):
         return datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
 
     
-    def roll_duplication(self, time_elapsed):
-       # alpha = .0000000000000001
-       # prb = alpha*time_elapsed
-       # roll = random.random()
-       # if roll < prb:
-        #    return True
+    def roll_duplication(self):
+        alpha = .0000000000000001
+        prb = alpha*self.gens_passed
+        roll = random.random()
+        if roll < prb:
+            self.gens_passed = 1
+            return True
+        self.gens_passed += 1
         return False
 
     
@@ -309,6 +313,7 @@ class SequenceUtil(object):
         input:  array of DNA sequences
         output:  inferred ancestral sequence
         '''
+        total_seqs = len(sequences)
         def merge(seq1, seq2):
             ancestor = ''
             for i in range(len(seq1)):
@@ -347,7 +352,36 @@ class SequenceUtil(object):
 
             sequences.append(new_seq)
         print("Ancestral sequence inferred: ", sequences[0])
+        print("Estimating effective population size...")
+        eff_pop_size = self.estimate_eff_pop_size()
+        print(eff_pop_size)
+
+        time_to_coalescence = sum((4*eff_pop_size) / (i*(i-1)) for i in range(2, total_seqs + 1))
+
+        print("These sequences shared a common ancestor roughly {} years ago.".format(time_to_coalescence))
         return sequences[0]
+
+    
+    def estimate_eff_pop_size(self):
+        '''
+        Estimates effective population size
+        '''
+        census = ''
+        try:
+            census = int(input("Please enter a number for the census population size estimate:  "))
+        except:
+            while not isinstance(census, int):
+                census = input("invalid input.  Please enter a number for the census population size estimate:  ")
+                try:
+                    census = int(census)
+                except:
+                    continue
+        nf = int(census / 2)
+        nm = int(census / 2)
+        return (4*nm*nf) / (nm + nf)
+
+        
+
 
 
 
