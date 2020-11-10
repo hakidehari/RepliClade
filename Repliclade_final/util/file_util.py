@@ -132,7 +132,7 @@ class FileStream(object):
             seq_dict = {}
             for seq in sequences:
                 if seq[1] in seq_dict:
-                    open_file.write('>{0}2\n{1}\n'.format(seq[0], seq[1]))
+                    continue
                 else:
                     open_file.write('>{0}\n{1}\n'.format(seq[0], seq[1]))
                     seq_dict[seq[1]] = True
