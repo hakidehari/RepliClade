@@ -328,8 +328,11 @@ class Simulator(object):
         else:
             filename = file_bool[0]
             #commented out to speed up testing
-            #gen_con.run_ncbi_blast_input_file(filename)
+            gen_con.run_ncbi_blast_input_file(filename)
+
             seqs_blast = file_util.read_from_blast(filename)
+
+            print(len(seqs_blast))
 
             file_util.write_to_fasta_blast(seqs_blast, filename)
 
