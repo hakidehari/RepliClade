@@ -17,7 +17,8 @@ class SequenceUtil(object):
     finding functions which are contained in their own files
     """
 
-    gens_passed = 1
+    gens_passed_dup = 0
+    gens_passed_ext = 0
 
     def align_sequences_w2_fasta(self, gene_name):
         '''
@@ -198,18 +199,25 @@ class SequenceUtil(object):
 
     
     def roll_duplication(self):
-        alpha = .0000000000000001
-        prb = alpha*self.gens_passed
+        alpha = .000000001
+        prb = alpha*self.gens_passed_dup
         roll = random.random()
         if roll < prb:
-            self.gens_passed = 1
+            self.gens_passed_dup = 0
             return True
-        self.gens_passed += 1
+        self.gens_passed_dup += 1
         return False
 
     
-    def roll_extinction(self, time_elapsed):
-        pass
+    def roll_extinction(self):
+        alpha = .000000001
+        prb = alpha*self.gens_passed_ext
+        roll = random.random()
+        if roll < prb:
+            self.gens_passed_ext = 0
+            return True
+        self.gens_passed_ext += 1
+        return False
 
     
     def get_gc_content(self, seq):

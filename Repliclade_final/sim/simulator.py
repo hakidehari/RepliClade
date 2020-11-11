@@ -277,14 +277,18 @@ class Simulator(object):
 
         current_seqs = [sequence]
         dup_event = False
+        ext_event = False
         new_gen = []
 
         for i in range(generations):
             for j in range(len(current_seqs)):
                 dup_event = seq_util.roll_duplication()
+                ext_event = seq_util.roll_extinction()
                 if dup_event:
                     new_gen.append(current_seqs[j])
                     dup_event = False
+                elif ext_event:
+                    ext_event = False
                 else:
                     new_seq = model[j].evolve(current_seqs[j])
                     new_gen.append(new_seq)
@@ -293,7 +297,6 @@ class Simulator(object):
             new_gen = []
             
             generation_dict[i] = current_seqs
-            print(len(current_seqs))
         end = time.time()
         print("Simulation Complete.")
         print("Time elapsed: {} seconds".format(end - start))
@@ -301,6 +304,8 @@ class Simulator(object):
         seq_util.estimate_substitutions_generations(generation_dict, generations)
         if evol_model == "kimura":
             seq_util.calculate_divergence_k2p(generation_dict, generations)
+        if evol_model == 'jukescantor':
+            seq_util.calculate_divergence_jc(generation_dict, generations)
         
 
 
@@ -328,7 +333,7 @@ class Simulator(object):
         else:
             filename = file_bool[0]
             #commented out to speed up testing
-            gen_con.run_ncbi_blast_input_file(filename)
+            #gen_con.run_ncbi_blast_input_file(filename)
 
             seqs_blast = file_util.read_from_blast(filename)
 

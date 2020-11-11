@@ -127,15 +127,12 @@ class FileStream(object):
         '''
         writes blast sequences to fasta
         '''
+        seq_num = 1
         DNA_dir = os.getcwd() + os.path.sep + 'DNA' + os.path.sep
         with open(DNA_dir+'{}.fasta'.format(filename), 'w') as open_file:
-            seq_dict = {}
             for seq in sequences:
-                if seq[1] in seq_dict:
-                    continue
-                else:
-                    open_file.write('>{0}\n{1}\n'.format(seq[0], seq[1]))
-                    seq_dict[seq[1]] = True
+                open_file.write('>{0} - {1}\n{2}\n'.format(seq_num, seq[0], seq[1]))
+                seq_num += 1
 
     
     def write_to_fasta_results(self, seq_id, sequences):
