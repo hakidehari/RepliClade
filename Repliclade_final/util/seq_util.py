@@ -322,6 +322,8 @@ class SequenceUtil(object):
         output:  inferred ancestral sequence
         '''
         total_seqs = len(sequences)
+        sequences_clone = sequences
+
         def merge(seq1, seq2):
             ancestor = ''
             for i in range(len(seq1)):
@@ -361,8 +363,10 @@ class SequenceUtil(object):
             sequences.append(new_seq)
         print("Ancestral sequence inferred: ", sequences[0])
         print("Estimating effective population size...")
-        eff_pop_size = self.estimate_eff_pop_size()
+        eff_pop_size = self.estimate_eff_pop_size_using_N()
         print(eff_pop_size)
+
+        self.estimate_eff_pop_size_watterson(sequences_clone)
 
         time_to_coalescence = sum((4*eff_pop_size) / (i*(i-1)) for i in range(2, total_seqs + 1))
 
@@ -370,7 +374,7 @@ class SequenceUtil(object):
         return sequences[0]
 
     
-    def estimate_eff_pop_size(self):
+    def estimate_eff_pop_size_using_N(self):
         '''
         Estimates effective population size
         '''
@@ -387,6 +391,62 @@ class SequenceUtil(object):
         nf = int(census / 2)
         nm = int(census / 2)
         return (4*nm*nf) / (nm + nf)
+
+    
+    def estimate_eff_pop_size_watterson(self, sequences):
+        '''
+        Estimates the effective population size using the Watterson estimator
+
+        Input: array of sequences
+        Output: effective population size
+        '''
+
+        # number of segregating sites
+        K = 0
+        # harmonic number n-1
+        alpha_n = 0
+
+        for i in range(1, len(sequences)):
+            alpha_n += 1/i
+
+        threshold = .9
+        tracking_dict = {}
+
+        for i in range(len(sequences[0])):
+            for seq in sequences:
+                if seq[i] in tracking_dict:
+                    tracking_dict[seq[i]] += 1
+                else:
+                    tracking_dict[seq[i]] = 1
+            #determine if it is segregating site
+            highest_char_cnt = -1
+            conserved_nuc = ''
+            for key in tracking_dict:
+                if tracking_dict[key] > highest_char_cnt:
+                    highest_char_cnt = tracking_dict[key]
+                    conserved_nuc = (key, highest_char_cnt)
+            if highest_char_cnt / len(sequences) < threshold:
+                K += 1
+            tracking_dict = {}
+        
+        theta_w = K / alpha_n
+        print('K: ', K)
+        print('alpha_n: ', alpha_n)
+        print('theta_w: ', theta_w)
+
+        #now calculating mu (μ)
+        
+            
+
+            
+
+        
+
+
+        
+
+
+
 
         
 

@@ -286,13 +286,14 @@ class Simulator(object):
                 ext_event = seq_util.roll_extinction()
                 if dup_event:
                     new_gen.append(current_seqs[j])
+                    model.append(Kimura() if evol_model == 'kimura' else JukesCantor() if evol_model == 'jukescantor' else Felsenstein() if evol_model == 'felsenstein' else None)
                     dup_event = False
-                elif ext_event:
-                    ext_event = False
+                #elif ext_event:
+                    #ext_event = False
                 else:
                     new_seq = model[j].evolve(current_seqs[j])
                     new_gen.append(new_seq)
-
+            print(len(current_seqs))
             current_seqs = new_gen
             new_gen = []
             
