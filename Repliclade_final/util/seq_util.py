@@ -362,11 +362,11 @@ class SequenceUtil(object):
 
             sequences.append(new_seq)
         print("Ancestral sequence inferred: ", sequences[0])
-        print("Estimating effective population size...")
-        eff_pop_size = self.estimate_eff_pop_size_using_N()
-        print(eff_pop_size)
+        print("Estimating effective population size using the Watterson method...")
+        #eff_pop_size = self.estimate_eff_pop_size_using_N()
+        #print(eff_pop_size)
 
-        self.estimate_eff_pop_size_watterson(sequences_clone)
+        eff_pop_size = self.estimate_eff_pop_size_watterson(sequences_clone)
 
         time_to_coalescence = sum((4*eff_pop_size) / (i*(i-1)) for i in range(2, total_seqs + 1))
 
@@ -393,6 +393,14 @@ class SequenceUtil(object):
         return (4*nm*nf) / (nm + nf)
 
     
+    def estimate_eff_pop_size_jf_phylo(self, sequences):
+        '''
+        Estimates the effective population size using Joseph Felsenstein's method
+        of phylogenetic estimates
+        '''
+        pass
+
+    
     def estimate_eff_pop_size_watterson(self, sequences):
         '''
         Estimates the effective population size using the Watterson estimator
@@ -400,7 +408,8 @@ class SequenceUtil(object):
         Input: array of sequences
         Output: effective population size
         '''
-
+        #Mu - most often has the rate of 10e-4.  So we will use that value here    
+        mu = .00001
         # number of segregating sites
         K = 0
         # harmonic number n-1
@@ -433,8 +442,11 @@ class SequenceUtil(object):
         print('K: ', K)
         print('alpha_n: ', alpha_n)
         print('theta_w: ', theta_w)
+        print('μ: ', mu)
+        Ne = theta_w / (4*mu)
+        print('Effective Population size using Watterson estimator: ', Ne)
+        return Ne
 
-        #now calculating mu (μ)
         
             
 
