@@ -429,11 +429,9 @@ class SequenceUtil(object):
                     tracking_dict[seq[i]] = 1
             #determine if it is segregating site
             highest_char_cnt = -1
-            conserved_nuc = ''
             for key in tracking_dict:
                 if tracking_dict[key] > highest_char_cnt:
                     highest_char_cnt = tracking_dict[key]
-                    conserved_nuc = (key, highest_char_cnt)
             if highest_char_cnt / len(sequences) < threshold:
                 K += 1
             tracking_dict = {}
@@ -442,9 +440,15 @@ class SequenceUtil(object):
         print('K: ', K)
         print('alpha_n: ', alpha_n)
         print('theta_w: ', theta_w)
-        print('μ: ', mu)
+        print('Default μ: ', mu)
         Ne = theta_w / (4*mu)
-        print('Effective Population size using Watterson estimator: ', Ne)
+        print('Effective Population size using Watterson estimator with default μ: ', Ne)
+
+        #apply μ-Dehari correction
+        correction_coefficient = K / len(sequences[0])
+        print("Correction Coefficient ω: ", correction_coefficient)
+        Ne = theta_w / (4*(mu*correction_coefficient))
+        print('Effective Population size using Watterson estimator with corrected μ: ', Ne)
         return Ne
 
         
