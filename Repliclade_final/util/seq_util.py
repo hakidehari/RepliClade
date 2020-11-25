@@ -408,6 +408,7 @@ class SequenceUtil(object):
         Input: array of sequences
         Output: effective population size
         '''
+        total_seqs = len(sequences)
         #Mu - most often has the rate of 10e-4.  So we will use that value here    
         mu = .00001
         # number of segregating sites
@@ -444,9 +445,13 @@ class SequenceUtil(object):
         Ne = theta_w / (4*mu)
         print('Effective Population size using Watterson estimator with default μ: ', Ne)
 
+        time_to_coalescence = sum((4*Ne) / (i*(i-1)) for i in range(2, total_seqs + 1))
+        print("Coalescence time using Effective Population size from default μ: ", time_to_coalescence)
+        
         #apply μ-Dehari correction
-        correction_coefficient = K / len(sequences[0])
+        correction_coefficient = (K * len(sequences[0])) / time_to_coalescence
         print("Correction Coefficient ω: ", correction_coefficient)
+        
         Ne = theta_w / (4*(mu*correction_coefficient))
         print('Effective Population size using Watterson estimator with corrected μ: ', Ne)
         return Ne
