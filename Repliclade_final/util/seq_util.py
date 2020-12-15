@@ -199,7 +199,7 @@ class SequenceUtil(object):
 
     
     def roll_duplication(self):
-        alpha = .000000001
+        alpha = .00000001
         prb = alpha*self.gens_passed_dup
         roll = random.random()
         if roll < prb:
@@ -400,6 +400,29 @@ class SequenceUtil(object):
         '''
         pass
 
+
+    def promt_mutation_rate(self):
+        '''
+        Prompts the user for mutation rate
+        '''
+        inp = input("Would you like to estimate the effective pop size with our own input? Please enter y or n: ")
+        while inp.lower() not in ['y', 'n']:
+            inp = input("Invalid input.  Please enter y or n: ")
+        if inp.lower() == 'y':
+            mu = 0
+            try:
+                mu = float(input("Please enter a value for the mutation rate: "))
+            except:
+                while not isinstance(mu, float):
+                    mu = input("Invalid input.  Please enter a valid number for the mutation rate")
+                    try:
+                        mu = float(mu)
+                    except:
+                        continue
+            return mu
+        else:
+            return None
+
     
     def estimate_eff_pop_size_watterson(self, sequences):
         '''
@@ -447,13 +470,21 @@ class SequenceUtil(object):
 
         time_to_coalescence = sum((4*Ne) / (i*(i-1)) for i in range(2, total_seqs + 1))
         print("Coalescence time using Effective Population size from default μ: ", time_to_coalescence)
+
+        inp_mu = self.promt_mutation_rate()
         
-        #apply μ-Dehari correction
-        correction_coefficient = (K * len(sequences[0])) / time_to_coalescence
-        print("Correction Coefficient ω: ", correction_coefficient)
+        if inp_mu is not None:
+            Ne = theta_w / (4*inp_mu)
+            print('Effective Population size using Watterson estimator with input μ: ', Ne)
+            time_to_coalescence = sum((4*Ne) / (i*(i-1)) for i in range(2, total_seqs + 1))
+            print("Coalescence time using Effective Population size from default μ: ", time_to_coalescence)
+
+        #apply μ correction
+        #correction_coefficient = (K * len(sequences[0])) / time_to_coalescence
+        #print("Correction Coefficient ω: ", correction_coefficient)
         
-        Ne = theta_w / (4*(mu*correction_coefficient))
-        print('Effective Population size using Watterson estimator with corrected μ: ', Ne)
+        #Ne = theta_w / (4*(mu*correction_coefficient))
+        #print('Effective Population size using Watterson estimator with corrected μ: ', Ne)
         return Ne
 
         
