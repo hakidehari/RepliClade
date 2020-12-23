@@ -254,7 +254,7 @@ class Simulator(object):
                 seq_util.align_results_w2_multiple(generation_dict, generations, seq_ids)
 
     
-    def simulate_ancestor(self, sequence):
+    def simulate_ancestor(self, sequence, mu):
         '''
         Simulates using one ancestral sequence inferred
         '''
@@ -269,9 +269,9 @@ class Simulator(object):
         generation_dict = {}
 
         if evol_model == 'kimura':
-            model = [Kimura()]
+            model = [Kimura(mu)]
         if evol_model == 'jukescantor':
-            model = [JukesCantor()]
+            model = [JukesCantor(mu)]
         if evol_model == 'felsenstein':
             model = [Felsenstein()]
 
@@ -286,7 +286,7 @@ class Simulator(object):
                 ext_event = seq_util.roll_extinction()
                 if dup_event:
                     new_gen.append(current_seqs[j])
-                    model.append(Kimura() if evol_model == 'kimura' else JukesCantor() if evol_model == 'jukescantor' else Felsenstein() if evol_model == 'felsenstein' else None)
+                    model.append(Kimura(mu) if evol_model == 'kimura' else JukesCantor(mu) if evol_model == 'jukescantor' else Felsenstein() if evol_model == 'felsenstein' else None)
                     dup_event = False
                 #elif ext_event:
                     #ext_event = False
@@ -352,7 +352,7 @@ class Simulator(object):
 
             ancestral_seq = seq_util.coalesce(aligned_seqs)
 
-            self.simulate_ancestor(ancestral_seq)
+            self.simulate_ancestor(ancestral_seq, seq_util.mu)
 
 
 

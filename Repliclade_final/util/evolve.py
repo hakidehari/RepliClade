@@ -8,13 +8,13 @@ seq_util = SequenceUtil()
 class JukesCantor(object):
 
 
-    def __init__(self):
+    def __init__(self, mu):
         '''
         2D probability matrix for nucleotide substitutions
         in the Jukes and Cantor model, all of the probabilities from one nucleotide to the other
         are .25
         '''
-        self.alpha = .0000000001
+        self.alpha = mu
         self.t = 0
 
         self.calculate_matrix(self.alpha, self.t)
@@ -89,13 +89,13 @@ class JukesCantor(object):
 class Kimura(object):
 
     
-    def __init__(self):
+    def __init__(self, mu):
         '''
         2D probability matrix for nucleotide substitutions
         in the Jukes and Cantor model, all of the probabilities from one nucleotide to the other
         are .25
         '''
-        self.alpha = .0000000001
+        self.alpha = mu
         self.t = 0
         self.beta= self.alpha / 3
 

@@ -465,6 +465,7 @@ class SequenceUtil(object):
         print('alpha_n: ', alpha_n)
         print('theta_w: ', theta_w)
         print('Default μ: ', mu)
+        self.mu = mu
         Ne = theta_w / (4*mu)
         print('Effective Population size using Watterson estimator with default μ: ', Ne)
 
@@ -478,6 +479,7 @@ class SequenceUtil(object):
             print('Effective Population size using Watterson estimator with input μ: ', Ne)
             time_to_coalescence = sum((4*Ne) / (i*(i-1)) for i in range(2, total_seqs + 1))
             print("Coalescence time using Effective Population size from default μ: ", time_to_coalescence)
+            self.mu = inp_mu
 
         #apply μ correction
         #correction_coefficient = (K * len(sequences[0])) / time_to_coalescence
