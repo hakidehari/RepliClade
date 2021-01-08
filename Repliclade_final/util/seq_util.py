@@ -19,6 +19,7 @@ class SequenceUtil(object):
 
     gens_passed_dup = 0
     gens_passed_ext = 0
+    gens_passed_indel = 0
 
     def align_sequences_w2_fasta(self, gene_name):
         '''
@@ -199,14 +200,15 @@ class SequenceUtil(object):
 
     
     def roll_duplication(self):
-        alpha = .00000001
+        alpha = 1
         prb = alpha*self.gens_passed_dup
         roll = random.random()
         if roll < prb:
             self.gens_passed_dup = 0
             return True
-        self.gens_passed_dup += 1
-        return False
+        else:
+            self.gens_passed_dup += 1
+            return False
 
     
     def roll_extinction(self):
@@ -488,6 +490,18 @@ class SequenceUtil(object):
         #Ne = theta_w / (4*(mu*correction_coefficient))
         #print('Effective Population size using Watterson estimator with corrected μ: ', Ne)
         return Ne
+
+    
+    def roll_indel(self):
+        pass
+
+
+    def delete_indel(self, seq):
+        pass
+    
+
+    def insert_indel(self, seq):
+        pass
 
         
             

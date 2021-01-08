@@ -284,7 +284,7 @@ class Simulator(object):
             for j in range(len(current_seqs)):
                 dup_event = seq_util.roll_duplication()
                 ext_event = seq_util.roll_extinction()
-                if dup_event:
+                if dup_event is True:
                     new_gen.append(current_seqs[j])
                     model.append(Kimura(mu) if evol_model == 'kimura' else JukesCantor(mu) if evol_model == 'jukescantor' else Felsenstein() if evol_model == 'felsenstein' else None)
                     dup_event = False
@@ -342,7 +342,7 @@ class Simulator(object):
 
             file_util.write_to_fasta_blast(seqs_blast, filename)
 
-            seq_util.align_sequences_w2_file(filename)
+            #seq_util.align_sequences_w2_file(filename)
 
             conserved_regions = seq_util.calculate_conserved_regions()
             
