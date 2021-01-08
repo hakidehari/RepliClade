@@ -200,19 +200,18 @@ class SequenceUtil(object):
 
     
     def roll_duplication(self):
-        alpha = 1
+        alpha = .00000001
         prb = alpha*self.gens_passed_dup
         roll = random.random()
         if roll < prb:
             self.gens_passed_dup = 0
             return True
-        else:
-            self.gens_passed_dup += 1
-            return False
+        self.gens_passed_dup += 1
+        return False
 
     
     def roll_extinction(self):
-        alpha = .000000001
+        alpha = .00000001
         prb = alpha*self.gens_passed_ext
         roll = random.random()
         if roll < prb:

@@ -44,19 +44,25 @@ class JukesCantor(object):
         to evolve the sequence
         '''
 
+        nuc_pos = {'A': 0, 'T': 1, 'C': 2, 'G': 3}
+
         ret_seq = ''
         for i in range(len(seq)):
             cur = seq[i]
             if cur == '-':
                 ret_seq += cur
                 continue
-            for j in range(len(self.prb_matrix[cur])):
-                if self.prb_matrix[cur][j] != 0:
-                    roll = random.random()
-                    if roll <= self.prb_matrix[cur][j]:
-                        cur = self.seq_list[j]
-                        break
-            ret_seq += cur
+            first_roll = random.random()
+            if first_roll <= self.prb_matrix[cur][nuc_pos[cur]]:
+                ret_seq += cur
+            else:
+                for j in range(len(self.prb_matrix[cur])):
+                    if self.prb_matrix[cur][j] != 0:
+                        roll = random.random()
+                        if roll <= self.prb_matrix[cur][j] and self.prb_matrix[cur][j] != self.prb_matrix[cur][nuc_pos[cur]]:
+                            cur = self.seq_list[j]
+                            break
+                ret_seq += cur
         self.t += 1
         self.calculate_matrix(self.alpha, self.t)
         return ret_seq
@@ -127,19 +133,25 @@ class Kimura(object):
         to evolve the sequence
         '''
 
+        nuc_pos = {'A': 0, 'T': 1, 'C': 2, 'G': 3}
+
         ret_seq = ''
         for i in range(len(seq)):
             cur = seq[i]
             if cur == '-':
                 ret_seq += cur
                 continue
-            for j in range(len(self.prb_matrix[cur])):
-                if self.prb_matrix[cur][j] != 0:
-                    roll = random.random()
-                    if roll <= self.prb_matrix[cur][j]:
-                        cur = self.seq_list[j]
-                        break
-            ret_seq += cur
+            first_roll = random.random()
+            if first_roll <= self.prb_matrix[cur][nuc_pos[cur]]:
+                ret_seq += cur
+            else:
+                for j in range(len(self.prb_matrix[cur])):
+                    if self.prb_matrix[cur][j] != 0:
+                        roll = random.random()
+                        if roll <= self.prb_matrix[cur][j] and self.prb_matrix[cur][j] != self.prb_matrix[cur][nuc_pos[cur]]:
+                            cur = self.seq_list[j]
+                            break
+                ret_seq += cur
         self.t += 1
         self.calculate_matrix(self.alpha, self.beta, self.t)
         return ret_seq

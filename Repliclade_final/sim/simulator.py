@@ -276,37 +276,56 @@ class Simulator(object):
             model = [Felsenstein()]
 
         current_seqs = [sequence]
+        ext_dict = {}
+        dup_dict = {}
         dup_event = False
         ext_event = False
         new_gen = []
 
         for i in range(generations):
-            for j in range(len(current_seqs)):
+            seq_count = len(current_seqs)
+            for j in range(seq_count):
                 dup_event = seq_util.roll_duplication()
                 ext_event = seq_util.roll_extinction()
-                if dup_event is True:
+                indel_event = seq_util.roll_indel()
+                if dup_event:
                     new_gen.append(current_seqs[j])
+                    new_gen.append(current_seqs[j])
+                    dup_dict[i] = "Sequence \n{0}\n was duplicated at time generation {1}".format(current_seqs[j], i)
                     model.append(Kimura(mu) if evol_model == 'kimura' else JukesCantor(mu) if evol_model == 'jukescantor' else Felsenstein() if evol_model == 'felsenstein' else None)
                     dup_event = False
-                #elif ext_event:
-                    #ext_event = False
+                elif ext_event:
+                    ext_dict[i] = "Sequence \n{0}\n went extinct at time generation {1}".format(current_seqs[j], i)
+                    del model[j]
+                    del current_seqs[j]
+                    j-=1
+                    ext_event = False
                 else:
                     new_seq = model[j].evolve(current_seqs[j])
                     new_gen.append(new_seq)
             print(len(current_seqs))
             current_seqs = new_gen
             new_gen = []
+            #break out of simulation if all sequences go extinct
+            if len(current_seqs) == 0:
+                break
             
             generation_dict[i] = current_seqs
         end = time.time()
         print("Simulation Complete.")
         print("Time elapsed: {} seconds".format(end - start))
         print(len(current_seqs))
-        seq_util.estimate_substitutions_generations(generation_dict, generations)
-        if evol_model == "kimura":
-            seq_util.calculate_divergence_k2p(generation_dict, generations)
-        if evol_model == 'jukescantor':
-            seq_util.calculate_divergence_jc(generation_dict, generations)
+
+        if len(current_seqs) != 0:
+            seq_util.estimate_substitutions_generations(generation_dict, generations)
+            if evol_model == "kimura":
+                seq_util.calculate_divergence_k2p(generation_dict, generations)
+            if evol_model == 'jukescantor':
+                seq_util.calculate_divergence_jc(generation_dict, generations)
+        else:
+            print("All sequences went extinct")
+        [print(ext_dict[key]) for key in ext_dict]
+        [print(dup_dict[key]) for key in dup_dict]
         
 
 
