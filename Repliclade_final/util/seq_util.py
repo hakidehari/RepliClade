@@ -490,17 +490,6 @@ class SequenceUtil(object):
         #print('Effective Population size using Watterson estimator with corrected μ: ', Ne)
         return Ne
 
-    
-    def roll_indel(self):
-        pass
-
-
-    def delete_indel(self, seq):
-        pass
-    
-
-    def insert_indel(self, seq):
-        pass
 
         
             
