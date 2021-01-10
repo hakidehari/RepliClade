@@ -284,7 +284,8 @@ class Simulator(object):
 
         for i in range(generations):
             seq_count = len(current_seqs)
-            for j in range(seq_count):
+            j = 0
+            while j < seq_count:
                 dup_event = seq_util.roll_duplication()
                 ext_event = seq_util.roll_extinction()
                 indel_event = seq_util.roll_indel()
@@ -301,31 +302,35 @@ class Simulator(object):
                     del model[j]
                     del current_seqs[j]
                     j-=1
+                    seq_count -= 1
                     ext_event = False
                 else:
                     new_seq = model[j].evolve(current_seqs[j])
                     new_gen.append(new_seq)
+                j += 1
             #print(len(current_seqs))
             current_seqs = new_gen
             new_gen = []
+            
             #break out of simulation if all sequences go extinct
             if len(current_seqs) == 0:
                 break
-            
-            generation_dict[i] = current_seqs
+            else:
+                generation_dict[i] = current_seqs
         end = time.time()
         print("Simulation Complete.")
         print("Time elapsed: {} seconds".format(end - start))
         print(len(current_seqs))
 
-        if len(current_seqs) != 0:
-            seq_util.estimate_substitutions_generations(generation_dict, generations)
-            if evol_model == "kimura":
-                seq_util.calculate_divergence_k2p(generation_dict, generations)
-            if evol_model == 'jukescantor':
-                seq_util.calculate_divergence_jc(generation_dict, generations)
-        else:
-            print("All sequences went extinct")
+        if len(current_seqs) == 0:
+            print("All sequences went extinct.")
+         ######THESE NEED TO BE FIXED #######
+        #seq_util.estimate_substitutions_generations(generation_dict, generations)
+        #if evol_model == "kimura":
+            #seq_util.calculate_divergence_k2p(generation_dict, generations)
+        #if evol_model == 'jukescantor':
+            #seq_util.calculate_divergence_jc(generation_dict, generations)
+        #######################################
         [print(ext_dict[key]) for key in ext_dict]
         [print(dup_dict[key]) for key in dup_dict]
         
