@@ -289,12 +289,14 @@ class Simulator(object):
                 ext_event = seq_util.roll_extinction()
                 indel_event = seq_util.roll_indel()
                 if dup_event:
+                    print("Duplication event")
                     new_gen.append(current_seqs[j])
                     new_gen.append(current_seqs[j])
                     dup_dict[i] = "Sequence \n{0}\n was duplicated at time generation {1}".format(current_seqs[j], i)
                     model.append(Kimura(mu) if evol_model == 'kimura' else JukesCantor(mu) if evol_model == 'jukescantor' else Felsenstein() if evol_model == 'felsenstein' else None)
                     dup_event = False
                 elif ext_event:
+                    print("Extinction event")
                     ext_dict[i] = "Sequence \n{0}\n went extinct at time generation {1}".format(current_seqs[j], i)
                     del model[j]
                     del current_seqs[j]
@@ -303,7 +305,7 @@ class Simulator(object):
                 else:
                     new_seq = model[j].evolve(current_seqs[j])
                     new_gen.append(new_seq)
-            print(len(current_seqs))
+            #print(len(current_seqs))
             current_seqs = new_gen
             new_gen = []
             #break out of simulation if all sequences go extinct
