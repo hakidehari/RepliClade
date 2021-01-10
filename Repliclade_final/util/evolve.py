@@ -89,6 +89,18 @@ class JukesCantor(object):
         self.calculate_matrix(self.alpha, self.t)
         return ret_seq
 
+    
+    def roll_indel(self):
+        pass
+
+
+    def delete_indel(self):
+        pass
+
+
+    def insert_indel(self):
+        pass
+
 
 
 
@@ -181,6 +193,18 @@ class Kimura(object):
         self.calculate_matrix(self.alpha, self.beta, self.t)
         return ret_seq
 
+    
+    def roll_indel(self):
+        pass
+
+
+    def delete_indel(self):
+        pass
+
+
+    def insert_indel(self):
+        pass
+
 
 class Blaisdell(object):
 
@@ -266,3 +290,15 @@ class Felsenstein(object):
         self.t += 1
         self.calculate_matrix(self.t)
         return ret_seq
+
+
+    def roll_indel(self):
+        pass
+
+
+    def delete_indel(self):
+        pass
+
+
+    def insert_indel(self):
+        pass
