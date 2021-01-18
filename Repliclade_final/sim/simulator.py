@@ -288,7 +288,7 @@ class Simulator(object):
             while j < seq_count:
                 dup_event = seq_util.roll_duplication()
                 ext_event = seq_util.roll_extinction()
-                indel_event = seq_util.roll_indel()
+                indel_event = model[j].roll_indel()
                 if dup_event:
                     print("Duplication event")
                     new_gen.append(current_seqs[j])
