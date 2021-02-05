@@ -148,17 +148,37 @@ class Simulator(object):
 
     
     def prompt_time(self):
-        generations = input("Please specify the amount of generations you would like to run the simulation for: ")
-        try:
-            generations = int(generations)
-        except:
-            while not isinstance(generations, int):
-                generations = input("Invalid input.  Please input the amount of generations you would like to run the simulation for as an integer: ")
-                try:
-                    generations = int(generations)
-                except:
-                    continue
-        return generations
+        print("We have estimated earlier that the total ancestor coalescence time is {}".format(seq_util.coalescence_time))
+        print("We can provide an amount of generations for you to run the simulation.  Would you like to enter an amount in years for each generation for this specific sequence?")
+        yes_or_no = input("Y or N: ")
+        while yes_or_no not in ['N', 'n', 'Y', 'y']:
+            yes_or_no = input("Invalid input. Please enter Y or N: ")
+        if yes_or_no in ['Y', 'y']:
+            years_per_generation = input("Please enter the amount in years for each generation for this input sequence: ")
+            try:
+                years_per_generation = float(years_per_generation)
+            except:
+                while not isinstance(years_per_generation, float):
+                    years_per_generation = input("Invalid input. Please input a valid number: ")
+                    try:
+                        years_per_generation = float(years_per_generation)
+                    except:
+                        continue
+            generations = int(seq_util.coalescence_time / years_per_generation)
+            print("The simulation will run for {} generations".format(generations))
+            return generations
+        else:
+            generations = input("Please specify the amount of generations you would like to run the simulation for: ")
+            try:
+                generations = int(generations)
+            except:
+                while not isinstance(generations, int):
+                    generations = input("Invalid input.  Please input the amount of generations you would like to run the simulation for as an integer: ")
+                    try:
+                        generations = int(generations)
+                    except:
+                        continue
+            return generations
 
     
     def prompt_model(self):
@@ -368,7 +388,7 @@ class Simulator(object):
 
             file_util.write_to_fasta_blast(seqs_blast, filename)
 
-            seq_util.align_sequences_w2_file(filename)
+            #seq_util.align_sequences_w2_file(filename)
 
             conserved_regions = seq_util.calculate_conserved_regions()
             

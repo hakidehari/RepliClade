@@ -471,6 +471,7 @@ class SequenceUtil(object):
         print('Effective Population size using Watterson estimator with default μ: ', Ne)
 
         time_to_coalescence = sum((4*Ne) / (i*(i-1)) for i in range(2, total_seqs + 1))
+        self.coalescence_time = time_to_coalescence
         print("Coalescence time using Effective Population size from default μ: ", time_to_coalescence)
 
         inp_mu = self.promt_mutation_rate()
@@ -479,6 +480,7 @@ class SequenceUtil(object):
             Ne = theta_w / (4*inp_mu)
             print('Effective Population size using Watterson estimator with input μ: ', Ne)
             time_to_coalescence = sum((4*Ne) / (i*(i-1)) for i in range(2, total_seqs + 1))
+            self.coalescence_time = time_to_coalescence
             print("Coalescence time using Effective Population size from default μ: ", time_to_coalescence)
             self.mu = inp_mu
 
