@@ -388,7 +388,7 @@ class Simulator(object):
 
             file_util.write_to_fasta_blast(seqs_blast, filename)
 
-            #seq_util.align_sequences_w2_file(filename)
+            seq_util.align_sequences_w2_file(filename)
 
             conserved_regions = seq_util.calculate_conserved_regions()
             
