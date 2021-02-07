@@ -146,34 +146,35 @@ class SequenceUtil(object):
         Naively determines conserved regions based on the alignment of the sequences
 
         input: no input but takes the most recent alignment file
-        output: dictionary of each conserved region with the value consisting of a tuple with the start and end index, as well as the conserved DNA string
+        output: shannons entropy score for each column stored in a dictionary
         '''
         #fetch aligned sequences from most recent alignment
         aligned_seqs = file_tool.read_from_alignment()
-           
-        print("Classifying conserved regions in the alignment")
+        
+        #shannons entropy score for each col
+        shannon_entropy_dict = {}
+        seq_len = len(aligned_seqs[0])
+        frequency_dict = {}
+        potential_values = ['A', 'G', 'T', 'C', '-']
 
-        #declare tracking variables
-        cur = 0
-        start = 0
-        chunk = ''
-        chunks = {}
-        chunk_count = 1
+        #iterate over sequence length
+        for i in range(seq_len):
+            #initialize nuc count dict
+            nuc_count = {}
+            #iterate over sequences
+            for seq in aligned_seqs:
+                if seq[i] in nuc_count:
+                    nuc_count[seq[i]] += 1
+                else:
+                    nuc_count[seq[i]] = 1
+            #set default values for any nucs not counted to 1*10e-6
+            for nuc in potential_values:
+                if nuc not in nuc_count:
+                    nuc_count[nuc] = .000001
 
-        #loop through each char in the sequences to determine whether they are conserved or not
-        while cur < len(aligned_seqs[0]):
-            column = [row[cur] for row in aligned_seqs]
-            if self.all_same(column):
-                chunk += aligned_seqs[0][cur]
-            else:
-                if len(chunk) > 1:
-                    chunks[chunk_count] = (start, cur, chunk)
-                    chunk_count += 1
-                chunk = ''
-                start = cur+1
-            cur += 1
-        print("Done classifying conserved regions")
-        return chunks
+            shannon_entropy_dict[i] = -1 * sum((nuc_count[key] / seq_len) * np.log2(nuc_count[key] / seq_len) for key in nuc_count)
+
+        return shannon_entropy_dict
 
     
     def check_for_cr(self, index, c_regions):

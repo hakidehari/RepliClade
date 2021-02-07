@@ -274,7 +274,7 @@ class Simulator(object):
                 seq_util.align_results_w2_multiple(generation_dict, generations, seq_ids)
 
     
-    def simulate_ancestor(self, sequence, mu):
+    def simulate_ancestor(self, sequence, mu, entropy_scores):
         '''
         Simulates using one ancestral sequence inferred
         '''
@@ -316,7 +316,7 @@ class Simulator(object):
                     dup_dict[i] = "Sequence \n{0}\n was duplicated at time generation {1}".format(current_seqs[j], i)
                     model.append(Kimura(mu) if evol_model == 'kimura' else JukesCantor(mu) if evol_model == 'jukescantor' else Felsenstein() if evol_model == 'felsenstein' else None)
                     dup_event = False
-                elif ext_event:
+                elif ext_event and seq_count > 1:
                     print("Extinction event")
                     ext_dict[i] = "Sequence \n{0}\n went extinct at time generation {1}".format(current_seqs[j], i)
                     del model[j]
@@ -390,7 +390,7 @@ class Simulator(object):
 
             seq_util.align_sequences_w2_file(filename)
 
-            conserved_regions = seq_util.calculate_conserved_regions()
+            entropy_scores = seq_util.calculate_conserved_regions()
             
             print(filename)
 
@@ -398,7 +398,7 @@ class Simulator(object):
 
             ancestral_seq = seq_util.coalesce(aligned_seqs)
 
-            self.simulate_ancestor(ancestral_seq, seq_util.mu)
+            self.simulate_ancestor(ancestral_seq, seq_util.mu, entropy_scores)
 
 
 
