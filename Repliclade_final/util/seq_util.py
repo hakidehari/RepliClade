@@ -153,6 +153,7 @@ class SequenceUtil(object):
         
         #shannons entropy score for each col
         shannon_entropy_dict = {}
+
         seq_len = len(aligned_seqs[0])
         frequency_dict = {}
         potential_values = ['A', 'G', 'T', 'C', '-']
@@ -173,7 +174,7 @@ class SequenceUtil(object):
                     nuc_count[nuc] = .000001
 
             shannon_entropy_dict[i] = -1 * sum((nuc_count[key] / seq_len) * np.log2(nuc_count[key] / seq_len) for key in nuc_count)
-
+        
         return shannon_entropy_dict
 
     
