@@ -235,6 +235,13 @@ class SequenceUtil(object):
             count_dict[key] = seq.count(key)
         return count_dict
 
+    
+    def prompt_theta_method(self):
+        theta_method = input("Please enter a choice of method for estimation of θ (variation)\nYou can choose either the Watterson Method (watterson)(Watterson 1975) or the Fay and Wu Method (faywu)(Fay and Wu 2000) ")
+        while theta_method.lower() not in ['watterson', 'faywu']:
+            theta_method = input("Invalid input.  Please enter either watterson or faywu: ")
+        return theta_method
+            
 
     def estimate_substitutions_generations(self, generation_dict, generations):
         first_gen = generation_dict[0]
@@ -364,14 +371,23 @@ class SequenceUtil(object):
             new_seq = merge(seq1, seq2)
 
             sequences.append(new_seq)
+
         print("Ancestral sequence inferred: ", sequences[0])
-        print("Estimating effective population size using the Watterson method...")
-        #eff_pop_size = self.estimate_eff_pop_size_using_N()
-        #print(eff_pop_size)
 
-        eff_pop_size = self.estimate_eff_pop_size_watterson(sequences_clone)
+        theta_method = self.prompt_theta_method()
 
-        time_to_coalescence = sum((4*eff_pop_size) / (i*(i-1)) for i in range(2, total_seqs + 1))
+        if theta_method == 'watterson':
+            print("Estimating effective population size using the Watterson method...")
+
+            eff_pop_size = self.estimate_eff_pop_size_watterson(sequences_clone)
+
+            time_to_coalescence = sum((4*eff_pop_size) / (i*(i-1)) for i in range(2, total_seqs + 1))
+        else:
+            print("Estimating effective population size using the Fay and Wu method...")
+
+            eff_pop_size = self.estimate_eff_pop_size_faywu(sequences_clone)
+
+            time_to_coalescence = sum((4*eff_pop_size) / (i*(i-1)) for i in range(2, total_seqs + 1))
 
         print("These sequences shared a common ancestor roughly {} years ago.".format(time_to_coalescence))
         return sequences[0]
@@ -426,6 +442,68 @@ class SequenceUtil(object):
         else:
             return None
 
+
+    def estimate_eff_pop_size_faywu(self, sequences):
+        '''
+        Estimates the effective population size using the Fay and Wu estimator
+
+        Input: array of sequences
+        Output: effective population size
+        '''
+
+        total_seqs = len(sequences)
+        seq_len = len(sequences[0])
+        #Mu - most often has the rate of 10e-4.  So we will use that value here    
+        mu = .00001
+        # number of segregating sites
+        K = 0
+
+        threshold = .9
+        tracking_dict = {}
+        final_dict = {}
+
+        for k in range(total_seqs):
+            for i in range(seq_len):
+                for seq in sequences[:k+1]:
+                    if seq[i] in tracking_dict:
+                        tracking_dict[seq[i]] += 1
+                    else:
+                        tracking_dict[seq[i]] = 1
+                highest_char_cnt = -1
+                for key in tracking_dict:
+                    if tracking_dict[key] > highest_char_cnt:
+                        highest_char_cnt = tracking_dict[key]
+                if highest_char_cnt / (k+1) < threshold:
+                    K += 1
+                tracking_dict = {}
+            final_dict[k+1] = K
+            K = 0
+
+        theta_h = sum((i**2)*final_dict[i] / ((total_seqs*(total_seqs - 1)) / 2) for i in range(1, total_seqs))
+
+        print('theta_h: ', theta_h)
+        print('Default μ: ', mu)
+
+        self.mu = mu
+        Ne = theta_h / (4*mu)
+        print('Effective Population size using Fay and Wu estimator with default μ: ', Ne)
+
+        time_to_coalescence = sum((4*Ne) / (i*(i-1)) for i in range(2, total_seqs + 1))
+        self.coalescence_time = time_to_coalescence
+        print("Coalescence time using Effective Population size from default μ: ", time_to_coalescence)
+
+        inp_mu = self.promt_mutation_rate()
+        
+        if inp_mu is not None:
+            Ne = theta_h / (4*inp_mu)
+            print('Effective Population size using Fay and Wu estimator with input μ: ', Ne)
+            time_to_coalescence = sum((4*Ne) / (i*(i-1)) for i in range(2, total_seqs + 1))
+            self.coalescence_time = time_to_coalescence
+            print("Coalescence time using Effective Population size from input μ: ", time_to_coalescence)
+            self.mu = inp_mu
+        
+        return Ne
+                
     
     def estimate_eff_pop_size_watterson(self, sequences):
         '''
@@ -483,7 +561,7 @@ class SequenceUtil(object):
             print('Effective Population size using Watterson estimator with input μ: ', Ne)
             time_to_coalescence = sum((4*Ne) / (i*(i-1)) for i in range(2, total_seqs + 1))
             self.coalescence_time = time_to_coalescence
-            print("Coalescence time using Effective Population size from default μ: ", time_to_coalescence)
+            print("Coalescence time using Effective Population size from input μ: ", time_to_coalescence)
             self.mu = inp_mu
 
         #apply μ correction

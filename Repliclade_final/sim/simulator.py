@@ -379,6 +379,7 @@ class Simulator(object):
             print(conserved_regions)
         else:
             filename = file_bool[0]
+            
             #commented out to speed up testing
             #gen_con.run_ncbi_blast_input_file(filename)
 
