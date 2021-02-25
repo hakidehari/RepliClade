@@ -479,7 +479,7 @@ class SequenceUtil(object):
             final_dict[k+1] = K
             K = 0
 
-        theta_h = sum((i**2)*final_dict[i] / ((total_seqs*(total_seqs - 1)) / 2) for i in range(1, total_seqs))
+        theta_h = sum(((i**2)*final_dict[i]) / ((total_seqs*(total_seqs - 1)) / 2) for i in range(1, total_seqs))
 
         print('theta_h: ', theta_h)
         print('Default μ: ', mu)
