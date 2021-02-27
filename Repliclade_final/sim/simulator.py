@@ -293,7 +293,7 @@ class Simulator(object):
         if evol_model == 'jukescantor':
             model = [JukesCantor(mu)]
         if evol_model == 'felsenstein':
-            model = [Felsenstein()]
+            model = [Felsenstein(sequence)]
 
         current_seqs = [sequence]
         ext_dict = {}
@@ -314,7 +314,7 @@ class Simulator(object):
                     new_gen.append(current_seqs[j])
                     new_gen.append(current_seqs[j])
                     dup_dict[i] = "Sequence \n{0}\n was duplicated at time generation {1}".format(current_seqs[j], i)
-                    model.append(Kimura(mu) if evol_model == 'kimura' else JukesCantor(mu) if evol_model == 'jukescantor' else Felsenstein() if evol_model == 'felsenstein' else None)
+                    model.append(Kimura(mu) if evol_model == 'kimura' else JukesCantor(mu) if evol_model == 'jukescantor' else Felsenstein(current_seqs[j]) if evol_model == 'felsenstein' else None)
                     dup_event = False
                 elif ext_event and seq_count > 1:
                     print("Extinction event")
@@ -389,7 +389,7 @@ class Simulator(object):
 
             file_util.write_to_fasta_blast(seqs_blast, filename)
 
-            seq_util.align_sequences_w2_file(filename)
+            #seq_util.align_sequences_w2_file(filename)
 
             entropy_scores = seq_util.calculate_conserved_regions()
             
