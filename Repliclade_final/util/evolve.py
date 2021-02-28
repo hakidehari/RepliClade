@@ -418,3 +418,36 @@ class Kimura3P(object):
 
     def insert_indel(self):
         pass
+
+
+###############################################################
+
+class HKY85(object):
+
+    def __init__(self, seq):
+        frequencies = seq_util.get_nuc_count(seq)
+        self.A = float(frequencies['A'] / len(seq))
+        self.C = float(frequencies['C'] / len(seq))
+        self.G = float(frequencies['G'] / len(seq))
+        self.T = float(frequencies['T'] / len(seq))
+        self.t = 0
+        self.calculate_matrix()
+        self.seq_list = ['A', 'T', 'C', 'G']
+
+    
+    def calculate_matrix(self):
+        '''
+        Markov model which defines the probability substitution matrix
+        in the current generation
+        Defines transversion rate as 1/3 of transition rate
+        '''
+        k = .333
+        beta = 1.0 / ((2*(self.A+self.G)*(self.C+self.T)) + (2*k*((self.A*self.G)+(self.C*self.T))))
+        Paa = (self.A*(self.A + self.G + (self.C + self.T)*math.e**(-1*beta*self.t))+self.G*math.e**())
+        self.prb_matrix =  {
+            #     A    T    C    G
+            'A': [Paa, Pat, Pac, Pag],
+            'T': [Pta, Ptt, Ptc, Ptg],
+            'C': [Pca, Pct, Pcc, Pcg],
+            'G': [Pga, Pgt, Pgc, Pgg]
+        }
