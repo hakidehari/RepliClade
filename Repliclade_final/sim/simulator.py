@@ -3,7 +3,7 @@ from util.file_util import FileStream
 from DNA.genes import GENES
 from util.seq_util import SequenceUtil
 from util.motif_finding import MotifFinding
-from util.evolve import JukesCantor, Kimura, Felsenstein
+from util.evolve import JukesCantor, Kimura, Felsenstein, HKY85
 import os
 import json
 import time
@@ -182,7 +182,7 @@ class Simulator(object):
 
     
     def prompt_model(self):
-        evol_models = ["kimura", "jukescantor", "felsenstein"]
+        evol_models = ["kimura", "jukescantor", "felsenstein", "hasegawa"]
         for model in evol_models:
             print(model)
         model = input("Please specify the evolutionary model you would like to use from the ones given above: ")
@@ -294,6 +294,8 @@ class Simulator(object):
             model = [JukesCantor(mu)]
         if evol_model == 'felsenstein':
             model = [Felsenstein(sequence)]
+        if evol_model == 'hasegawa':
+            model = [HKY85(sequence)]
 
         current_seqs = [sequence]
         ext_dict = {}
@@ -314,7 +316,7 @@ class Simulator(object):
                     new_gen.append(current_seqs[j])
                     new_gen.append(current_seqs[j])
                     dup_dict[i] = "Sequence \n{0}\n was duplicated at time generation {1}".format(current_seqs[j], i)
-                    model.append(Kimura(mu) if evol_model == 'kimura' else JukesCantor(mu) if evol_model == 'jukescantor' else Felsenstein(current_seqs[j]) if evol_model == 'felsenstein' else None)
+                    model.append(Kimura(mu) if evol_model == 'kimura' else JukesCantor(mu) if evol_model == 'jukescantor' else Felsenstein(current_seqs[j]) if evol_model == 'felsenstein' else HKY85(current_seqs[j]) if evol_model == 'hasegawa' else None)
                     dup_event = False
                 elif ext_event and seq_count > 1:
                     print("Extinction event")

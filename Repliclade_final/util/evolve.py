@@ -423,6 +423,7 @@ class Kimura3P(object):
 ###############################################################
 
 class HKY85(object):
+    #########IN PROGRESS##############
 
     def __init__(self, seq):
         frequencies = seq_util.get_nuc_count(seq)
@@ -440,10 +441,27 @@ class HKY85(object):
         Markov model which defines the probability substitution matrix
         in the current generation
         Defines transversion rate as 1/3 of transition rate
+        purines = A,G
+        pyrimidines = T,C
         '''
         k = .333
         beta = 1.0 / ((2*(self.A+self.G)*(self.C+self.T)) + (2*k*((self.A*self.G)+(self.C*self.T))))
-        Paa = (self.A*(self.A + self.G + (self.C + self.T)*math.e**(-1*beta*self.t))+self.G*math.e**())
+        Paa = (self.A*(self.A + self.G + (self.C + self.T)*math.e**(-1*beta*self.t))+self.G*math.e**(-1*(1+(self.A+self.G)*(k-1))*beta*self.t)) / (self.A + self.G)
+        Pac = self.C*(1.0-math.e**(-1*beta*self.t))
+        Pag = (self.G*(self.A + self.G + (self.C + self.T)*math.e**(-1*beta*self.t))-self.G*math.e**(-1*(1+(self.A+self.G)*(k-1))*beta*self.t)) / (self.A + self.G)
+        Pat = self.T*(1.0-math.e**(-1*beta*self.t))
+        Pta = self.A*(1.0-math.e**(-1*beta*self.t))
+        Ptt = (self.T*(self.T + self.C + (self.A + self.G)*math.e**(-1*beta*self.t))+self.C*math.e**(-1*(1+(self.T+self.C)*(k-1))*beta*self.t)) / (self.C + self.T)
+        Ptc = (self.C*(self.T + self.C + (self.A + self.G)*math.e**(-1*beta*self.t))-self.C*math.e**(-1*(1+(self.T+self.C)*(k-1))*beta*self.t)) / (self.C + self.T)
+        Ptg = self.G*(1.0-math.e**(-1*beta*self.t))
+        Pca = self.A*(1.0-math.e**(-1*beta*self.t))
+        Pct = (self.T*(self.T + self.C + (self.A + self.G)*math.e**(-1*beta*self.t))-self.T*math.e**(-1*(1+(self.T+self.C)*(k-1))*beta*self.t)) / (self.C + self.T)
+        Pcc = (self.C*(self.T + self.C + (self.A + self.G)*math.e**(-1*beta*self.t))+self.T*math.e**(-1*(1+(self.T+self.C)*(k-1))*beta*self.t)) / (self.C + self.T)
+        Pcg = self.G*(1.0-math.e**(-1*beta*self.t))
+        Pga = (self.A*(self.A + self.G + (self.C + self.T)*math.e**(-1*beta*self.t))-self.A*math.e**(-1*(1+(self.A+self.G)*(k-1))*beta*self.t)) / (self.A + self.G)
+        Pgt = self.T*(1.0-math.e**(-1*beta*self.t))
+        Pgc = self.C*(1.0-math.e**(-1*beta*self.t))
+        Pgg = (self.G*(self.A + self.G + (self.C + self.T)*math.e**(-1*beta*self.t))+self.A*math.e**(-1*(1+(self.A+self.G)*(k-1))*beta*self.t)) / (self.A + self.G)
         self.prb_matrix =  {
             #     A    T    C    G
             'A': [Paa, Pat, Pac, Pag],
@@ -451,3 +469,37 @@ class HKY85(object):
             'C': [Pca, Pct, Pcc, Pcg],
             'G': [Pga, Pgt, Pgc, Pgg]
         }
+
+    
+    def evolve(self, seq):
+        '''
+        Takes an input sequence and uses the Kimura model
+        to evolve the sequence
+        '''
+
+        nuc_pos = {'A': 0, 'T': 1, 'C': 2, 'G': 3}
+
+        ret_seq = ''
+        for i in range(len(seq)):
+            cur = seq[i]
+            if cur == '-':
+                ret_seq += cur
+                continue
+            first_roll = random.random()
+            if first_roll <= self.prb_matrix[cur][nuc_pos[cur]]:
+                ret_seq += cur
+            else:
+                for j in range(len(self.prb_matrix[cur])):
+                    if self.prb_matrix[cur][j] != 0:
+                        roll = random.random()
+                        if roll <= self.prb_matrix[cur][j] and self.prb_matrix[cur][j] != self.prb_matrix[cur][nuc_pos[cur]]:
+                            cur = self.seq_list[j]
+                            break
+                ret_seq += cur
+        self.t += 1
+        self.calculate_matrix()
+        return ret_seq
+
+    
+    def roll_indel(self):
+        pass
