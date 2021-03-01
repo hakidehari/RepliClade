@@ -5,6 +5,8 @@ from Bio import AlignIO
 from Bio.Seq import Seq
 from datetime import datetime
 from util.file_util import FileStream
+from util.evolve import JukesCantor, Kimura, Felsenstein, HKY85
+from sim.simulator import Simulator
 import numpy as np
 import os
 import random
@@ -323,6 +325,60 @@ class SequenceUtil(object):
             k = -.5 * np.log(1-2*tp-tv) - .25 * np.log(1-2*tv)
             
             print("The K value for sequence {0} is {1}".format(i, k))
+
+
+    def coalesce_v2(self, sequences):
+        total_seqs = len(sequences)
+
+        theta_method = self.prompt_theta_method()
+
+        if theta_method == 'watterson':
+            print("Estimating effective population size using the Watterson method...")
+
+            eff_pop_size = self.estimate_eff_pop_size_watterson(sequences)
+
+            time_to_coalescence = sum((4*eff_pop_size) / (i*(i-1)) for i in range(2, total_seqs + 1))
+        else:
+            print("Estimating effective population size using the Fay and Wu method...")
+
+            eff_pop_size = self.estimate_eff_pop_size_faywu(sequences)
+
+            time_to_coalescence = sum((4*eff_pop_size) / (i*(i-1)) for i in range(2, total_seqs + 1))
+
+        prob_coalesce = 1/(2*eff_pop_size)
+
+        sim_obj = Simulator()
+
+        print("Please select an evolutionary model for the coalescent simulation.\n")
+
+        evol_model = sim_obj.prompt_model()
+        
+        while len(sequences) > 1:
+            rand1 = random.randint(0, len(sequences)-1)
+            rand2 = random.randint(0, len(sequences)-1)
+
+            while rand1 == rand2:
+                rand1 = random.randint(0, len(sequences)-1)
+                rand2 = random.randint(0, len(sequences)-1)
+            
+            seq1 = sequences[rand1]
+            seq2 = sequences[rand2]
+
+            temp1 = rand1 if rand1 < rand2 else rand2
+            temp2 = rand2 if rand2 > rand1 else rand1
+
+            sequences = sequences[:temp1] + sequences[temp1+1:temp2] + sequences[temp2+1:]
+
+            merge = False
+
+            while not merge:
+                coal_rand1 = random.random()
+                coal_rand2 = random.random()
+
+                if coal_rand1 > prob_coalesce or coal_rand2 > prob_coalesce:
+                    
+
+        
 
 
     def coalesce(self, sequences):
