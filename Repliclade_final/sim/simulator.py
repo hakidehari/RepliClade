@@ -399,7 +399,7 @@ class Simulator(object):
 
             aligned_seqs = file_util.read_from_alignment()
 
-            ancestral_seq = seq_util.coalesce(aligned_seqs)
+            ancestral_seq = seq_util.coalesce_v2(aligned_seqs)
 
             self.simulate_ancestor(ancestral_seq, seq_util.mu, entropy_scores)
 

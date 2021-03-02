@@ -5,11 +5,10 @@ from Bio import AlignIO
 from Bio.Seq import Seq
 from datetime import datetime
 from util.file_util import FileStream
-from util.evolve import JukesCantor, Kimura, Felsenstein, HKY85
-from sim.simulator import Simulator
 import numpy as np
 import os
 import random
+import time
 
 file_tool = FileStream()
 
@@ -328,6 +327,27 @@ class SequenceUtil(object):
 
 
     def coalesce_v2(self, sequences):
+
+        from util.evolve import JukesCantor, Kimura, Felsenstein, HKY85
+        from sim.simulator import Simulator
+
+        def merge_sequences(seq1, seq2):
+            ancestor = ''
+            for i in range(len(seq1)):
+                s1 = seq1[i]
+                s2 = seq2[i]
+
+                if s1 == s2 and s1 != '-':
+                    ancestor += s1
+                elif s1 == '-' and s2 == '-':
+                    ancestor += random.choice(['A', 'G', 'T', 'C'])
+                elif s1 == '-' or s2 =='-':
+                    ancestor += s1 if s1 != '-' else s2
+                else:
+                    nuc = random.choice([s1, s2])
+                    ancestor += nuc
+            return ancestor
+        
         total_seqs = len(sequences)
 
         theta_method = self.prompt_theta_method()
@@ -345,13 +365,16 @@ class SequenceUtil(object):
 
             time_to_coalescence = sum((4*eff_pop_size) / (i*(i-1)) for i in range(2, total_seqs + 1))
 
-        prob_coalesce = 1/(2*eff_pop_size)
 
         sim_obj = Simulator()
 
         print("Please select an evolutionary model for the coalescent simulation.\n")
 
         evol_model = sim_obj.prompt_model()
+
+        print("Simulating the Coalescent.  This may take a while...")
+
+        start = time.time()
         
         while len(sequences) > 1:
             rand1 = random.randint(0, len(sequences)-1)
@@ -370,13 +393,43 @@ class SequenceUtil(object):
             sequences = sequences[:temp1] + sequences[temp1+1:temp2] + sequences[temp2+1:]
 
             merge = False
+            ancestor = ''
+            i = 1
+            seq_len = len(sequences)
+            total_generations = 0
+
+            nc2 = (seq_len*(seq_len-1))/2
+
+            model1 = JukesCantor(self.mu) if evol_model == 'jukescantor' else Kimura(self.mu) if evol_model == 'kimura' else Felsenstein(seq1) if evol_model == 'felsenstein' else HKY85(seq1) if evol_model == 'hasegawa' else None
+            model2 = JukesCantor(self.mu) if evol_model == 'jukescantor' else Kimura(self.mu) if evol_model == 'kimura' else Felsenstein(seq2) if evol_model == 'felsenstein' else HKY85(seq2) if evol_model == 'hasegawa' else None
 
             while not merge:
-                coal_rand1 = random.random()
-                coal_rand2 = random.random()
+                prob_coalesce = ((1.0-(1.0/(nc2*(2*eff_pop_size))))**(i-1)) * (nc2*(1.0/(2*eff_pop_size)))
 
-                if coal_rand1 > prob_coalesce or coal_rand2 > prob_coalesce:
-                    
+                coal_rand = random.random()
+
+                if coal_rand > prob_coalesce:
+                    seq1 = model1.evolve(seq1)
+                    seq2 = model2.evolve(seq2)
+                #maximum value
+                if i == 200000:
+                    ancestor = merge_sequences(seq1, seq2)
+                    merge = True
+                    print("Common Ancestor found {} generations back. Forced merge.".format(i))
+                if coal_rand <= prob_coalesce:
+                    ancestor = merge_sequences(seq1, seq2)
+                    merge = True
+                    print("Common Ancestor found {} generations back.".format(i))
+                i += 1
+            total_generations += i-1
+            sequences.append(ancestor)
+            eff_pop_size = self.estimate_eff_pop_size_watterson_no_input_mu(sequences)
+        end = time.time()
+        print(end - start)
+        print("Coalescent Simulation Complete")
+        print('Ancestral Sequence Inferred:\n', sequences[0])
+        print('Took approximately {} generations for full coalescence of all sequences'.format(total_generations))
+        return sequences[0]
 
         
 
@@ -579,7 +632,7 @@ class SequenceUtil(object):
         for i in range(1, len(sequences)):
             alpha_n += 1/i
 
-        threshold = .9
+        threshold = .7
         tracking_dict = {}
 
         for i in range(len(sequences[0])):
@@ -619,6 +672,64 @@ class SequenceUtil(object):
             self.coalescence_time = time_to_coalescence
             print("Coalescence time using Effective Population size from input μ: ", time_to_coalescence)
             self.mu = inp_mu
+
+        #apply μ correction
+        #correction_coefficient = (K * len(sequences[0])) / time_to_coalescence
+        #print("Correction Coefficient ω: ", correction_coefficient)
+        
+        #Ne = theta_w / (4*(mu*correction_coefficient))
+        #print('Effective Population size using Watterson estimator with corrected μ: ', Ne)
+        return Ne
+
+
+
+
+    def estimate_eff_pop_size_watterson_no_input_mu(self, sequences):
+        '''
+        Estimates the effective population size using the Watterson estimator
+
+        Input: array of sequences
+        Output: effective population size
+        '''
+        total_seqs = len(sequences)
+        #Mu - most often has the rate of 10e-4.  So we will use that value here    
+        # number of segregating sites
+        K = 0
+        # harmonic number n-1
+        alpha_n = 0
+
+        for i in range(1, len(sequences)):
+            alpha_n += 1/i
+
+        threshold = .7
+        tracking_dict = {}
+
+        for i in range(len(sequences[0])):
+            for seq in sequences:
+                if seq[i] in tracking_dict:
+                    tracking_dict[seq[i]] += 1
+                else:
+                    tracking_dict[seq[i]] = 1
+            #determine if it is segregating site
+            highest_char_cnt = -1
+            for key in tracking_dict:
+                if tracking_dict[key] > highest_char_cnt:
+                    highest_char_cnt = tracking_dict[key]
+            if highest_char_cnt / len(sequences) < threshold:
+                K += 1
+            tracking_dict = {}
+        
+        theta_w = K / alpha_n
+        print('K: ', K)
+        print('alpha_n: ', alpha_n)
+        print('theta_w: ', theta_w)
+        print('Default μ: ', self.mu)
+        Ne = theta_w / (4*self.mu)
+        print('Effective Population size using Watterson estimator with default μ: ', Ne)
+
+        time_to_coalescence = sum((4*Ne) / (i*(i-1)) for i in range(2, total_seqs + 1))
+        self.coalescence_time = time_to_coalescence
+        print("Coalescence time using Effective Population size from default μ: ", time_to_coalescence)
 
         #apply μ correction
         #correction_coefficient = (K * len(sequences[0])) / time_to_coalescence

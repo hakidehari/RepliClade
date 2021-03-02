@@ -3,6 +3,8 @@ import numpy as np
 import math
 from util.seq_util import SequenceUtil
 
+
+
 seq_util = SequenceUtil()
 
 class JukesCantor(object):
