@@ -1,3 +1,4 @@
+from __future__ import division
 from Bio.Align.Applications import ClustalOmegaCommandline, ClustalwCommandline
 from Bio import SeqIO
 from Bio import Phylo
@@ -330,6 +331,7 @@ class SequenceUtil(object):
 
         from util.evolve import JukesCantor, Kimura, Felsenstein, HKY85
         from sim.simulator import Simulator
+        
 
         def merge_sequences(seq1, seq2):
             ancestor = ''
@@ -375,8 +377,12 @@ class SequenceUtil(object):
         print("Simulating the Coalescent.  This may take a while...")
 
         start = time.time()
+
+        seq_len = len(sequences)
+
+        total_generations = 0
         
-        while len(sequences) > 1:
+        while seq_len > 1:
             rand1 = random.randint(0, len(sequences)-1)
             rand2 = random.randint(0, len(sequences)-1)
 
@@ -394,17 +400,17 @@ class SequenceUtil(object):
 
             merge = False
             ancestor = ''
-            i = 1
-            seq_len = len(sequences)
-            total_generations = 0
+            i = 1.0
+            
+            scaled_factor = 100.0
 
-            nc2 = (seq_len*(seq_len-1))/2
+            nc2 = float((seq_len*(seq_len-1))/2)
 
             model1 = JukesCantor(self.mu) if evol_model == 'jukescantor' else Kimura(self.mu) if evol_model == 'kimura' else Felsenstein(seq1) if evol_model == 'felsenstein' else HKY85(seq1) if evol_model == 'hasegawa' else None
             model2 = JukesCantor(self.mu) if evol_model == 'jukescantor' else Kimura(self.mu) if evol_model == 'kimura' else Felsenstein(seq2) if evol_model == 'felsenstein' else HKY85(seq2) if evol_model == 'hasegawa' else None
 
             while not merge:
-                prob_coalesce = ((1.0-(1.0/(nc2*(2*eff_pop_size))))**(i-1)) * (nc2*(1.0/(2*eff_pop_size)))
+                prob_coalesce = ((1.0-(1.0/(nc2*(2.0*eff_pop_size))))**(i-1)) * (nc2*(1.0/(2.0*eff_pop_size))) * scaled_factor # 1000 is correction factor to speed up coalescent simulation
 
                 coal_rand = random.random()
 
@@ -412,21 +418,18 @@ class SequenceUtil(object):
                     seq1 = model1.evolve(seq1)
                     seq2 = model2.evolve(seq2)
                 #maximum value
-                if i == 200000:
+                else:
                     ancestor = merge_sequences(seq1, seq2)
                     merge = True
-                    print("Common Ancestor found {} generations back. Forced merge.".format(i))
-                if coal_rand <= prob_coalesce:
-                    ancestor = merge_sequences(seq1, seq2)
-                    merge = True
-                    print("Common Ancestor found {} generations back.".format(i))
-                i += 1
-            total_generations += i-1
+                    print("Common Ancestor found {} generations back.".format(i*scaled_factor))
+                i += 1.0
+            total_generations += (i-1) * scaled_factor
             sequences.append(ancestor)
-            eff_pop_size = self.estimate_eff_pop_size_watterson_no_input_mu(sequences)
+            #eff_pop_size = self.estimate_eff_pop_size_watterson_no_input_mu(sequences)
+            seq_len -= 1
         end = time.time()
-        print(end - start)
-        print("Coalescent Simulation Complete")
+        
+        print("Coalescent Simulation Complete.  The simulation took {} seconds".format(end - start))
         print('Ancestral Sequence Inferred:\n', sequences[0])
         print('Took approximately {} generations for full coalescence of all sequences'.format(total_generations))
         return sequences[0]
@@ -724,19 +727,13 @@ class SequenceUtil(object):
         print('alpha_n: ', alpha_n)
         print('theta_w: ', theta_w)
         print('Default μ: ', self.mu)
-        Ne = theta_w / (4*self.mu)
+        Ne = float(theta_w / (4*self.mu))
         print('Effective Population size using Watterson estimator with default μ: ', Ne)
 
         time_to_coalescence = sum((4*Ne) / (i*(i-1)) for i in range(2, total_seqs + 1))
         self.coalescence_time = time_to_coalescence
         print("Coalescence time using Effective Population size from default μ: ", time_to_coalescence)
 
-        #apply μ correction
-        #correction_coefficient = (K * len(sequences[0])) / time_to_coalescence
-        #print("Correction Coefficient ω: ", correction_coefficient)
-        
-        #Ne = theta_w / (4*(mu*correction_coefficient))
-        #print('Effective Population size using Watterson estimator with corrected μ: ', Ne)
         return Ne
 
 
