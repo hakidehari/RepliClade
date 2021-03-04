@@ -102,27 +102,17 @@ class FileStream(object):
         result_handle = open(blast_file_path)
         blast_records = NCBIXML.read(result_handle)
         for alignment in blast_records.alignments:
-            if len(alignment.hsps) > 1:
-                seq = self.merge_hsps(alignment.hsps)
-                blast_seqs.append((alignment.title, seq))
-            else:
-                for hsp in alignment.hsps:
-                    print("****Alignment****")
-                    print("sequence:", alignment.title)
-                    print("length:", alignment.length)
-                    print("e value:", hsp.expect)
-                    print(hsp.query[0:75] + "...")
-                    print(hsp.match[0:75] + "...")
-                    print(hsp.sbjct[0:75] + "...")
-                    blast_seqs.append((alignment.title, hsp.sbjct))
+            for hsp in alignment.hsps:
+                print("****Alignment****")
+                print("sequence:", alignment.title)
+                print("length:", alignment.length)
+                print("e value:", hsp.expect)
+                print(hsp.query[0:75] + "...")
+                print(hsp.match[0:75] + "...")
+                print(hsp.sbjct[0:75] + "...")
+                blast_seqs.append((alignment.title, hsp.sbjct))
         return blast_seqs
 
-    
-    def merge_hsps(self, hsps):
-        seq = ''
-        for hsp in hsps:
-            seq += hsp.sbjct
-        return seq
 
     
     def write_to_fasta(self, sequences, gene_name):
