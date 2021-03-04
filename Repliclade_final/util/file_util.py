@@ -102,16 +102,27 @@ class FileStream(object):
         result_handle = open(blast_file_path)
         blast_records = NCBIXML.read(result_handle)
         for alignment in blast_records.alignments:
-            for hsp in alignment.hsps:
-                print("****Alignment****")
-                print("sequence:", alignment.title)
-                print("length:", alignment.length)
-                print("e value:", hsp.expect)
-                print(hsp.query[0:75] + "...")
-                print(hsp.match[0:75] + "...")
-                print(hsp.sbjct[0:75] + "...")
-                blast_seqs.append((alignment.title, hsp.sbjct))
+            if len(alignment.hsps) > 1:
+                seq = self.merge_hsps(alignment.hsps)
+                blast_seqs.append((alignment.title, seq))
+            else:
+                for hsp in alignment.hsps:
+                    print("****Alignment****")
+                    print("sequence:", alignment.title)
+                    print("length:", alignment.length)
+                    print("e value:", hsp.expect)
+                    print(hsp.query[0:75] + "...")
+                    print(hsp.match[0:75] + "...")
+                    print(hsp.sbjct[0:75] + "...")
+                    blast_seqs.append((alignment.title, hsp.sbjct))
         return blast_seqs
+
+    
+    def merge_hsps(self, hsps):
+        seq = ''
+        for hsp in hsps:
+            seq += hsp.sbjct
+        return seq
 
     
     def write_to_fasta(self, sequences, gene_name):
@@ -158,6 +169,15 @@ class FileStream(object):
         filename = 'sim_results_{}.json'.format(date_time)
         with open(path_to_file + filename, 'w') as open_file:
             open_file.write(json.dumps(generation_dict))
+        print("Results written to {}".format(path_to_file + filename))
+
+    
+    def log_simulation_output_to_json(self, output_dict):
+        date_time = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+        path_to_file = os.getcwd() + os.path.sep + 'sim' + os.path.sep + 'results' + os.path.sep
+        filename = 'sim_output_{}.json'.format(date_time)
+        with open(path_to_file + filename, 'w') as open_file:
+            open_file.write(json.dumps(output_dict))
         print("Results written to {}".format(path_to_file + filename))
 
 

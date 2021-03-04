@@ -157,6 +157,7 @@ class SequenceUtil(object):
         shannon_entropy_dict = {}
 
         seq_len = len(aligned_seqs[0])
+        total_seqs = len(aligned_seqs)
         frequency_dict = {}
         potential_values = ['A', 'G', 'T', 'C', '-']
 
@@ -175,7 +176,7 @@ class SequenceUtil(object):
                 if nuc not in nuc_count:
                     nuc_count[nuc] = .000001
 
-            shannon_entropy_dict[i] = -1 * sum((nuc_count[key] / seq_len) * np.log2(nuc_count[key] / seq_len) for key in nuc_count)
+            shannon_entropy_dict[i] = -1 * sum((nuc_count[key] / total_seqs) * np.log2(nuc_count[key] / total_seqs) for key in nuc_count)
         
         return shannon_entropy_dict
 

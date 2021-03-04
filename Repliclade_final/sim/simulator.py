@@ -355,6 +355,10 @@ class Simulator(object):
         #######################################
         [print(ext_dict[key]) for key in ext_dict]
         [print(dup_dict[key]) for key in dup_dict]
+
+        full_output = {**ext_dict, **dup_dict}
+
+        file_util.log_simulation_output_to_json(full_output)
         
 
 
@@ -383,7 +387,7 @@ class Simulator(object):
             filename = file_bool[0]
             
             #commented out to speed up testing
-            gen_con.run_ncbi_blast_input_file(filename)
+            #gen_con.run_ncbi_blast_input_file(filename)
 
             seqs_blast = file_util.read_from_blast(filename)
 
@@ -391,9 +395,11 @@ class Simulator(object):
 
             file_util.write_to_fasta_blast(seqs_blast, filename)
 
-            seq_util.align_sequences_w2_file(filename)
+            #seq_util.align_sequences_w2_file(filename)
 
             entropy_scores = seq_util.calculate_conserved_regions()
+
+            print(entropy_scores)
             
             print(filename)
 
