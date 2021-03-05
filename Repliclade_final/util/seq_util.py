@@ -332,6 +332,7 @@ class SequenceUtil(object):
 
         from util.evolve import JukesCantor, Kimura, Felsenstein, HKY85
         from sim.simulator import Simulator
+        import math
         
 
         def merge_sequences(seq1, seq2):
@@ -411,8 +412,9 @@ class SequenceUtil(object):
             model2 = JukesCantor(self.mu) if evol_model == 'jukescantor' else Kimura(self.mu) if evol_model == 'kimura' else Felsenstein(seq2) if evol_model == 'felsenstein' else HKY85(seq2) if evol_model == 'hasegawa' else None
 
             while not merge:
-                prob_coalesce = ((1.0-(1.0/(nc2*(2.0*eff_pop_size))))**(i-1)) * (nc2*(1.0/(2.0*eff_pop_size))) * scaled_factor # 1000 is correction factor to speed up coalescent simulation
-
+                prob_coalesce = ((1.0-(1.0/(nc2*(2.0*eff_pop_size))))**(i-1)) * (nc2*(1.0/(2.0*eff_pop_size))) * scaled_factor # scaled factor is correction factor to speed up coalescent simulation
+                #prob_coalesce = (1/(2*eff_pop_size)) * math.e**((-1*(i-1))/(2*eff_pop_size))
+                
                 coal_rand = random.random()
 
                 if coal_rand > prob_coalesce:
