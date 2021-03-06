@@ -303,6 +303,7 @@ class Simulator(object):
         dup_event = False
         ext_event = False
         new_gen = []
+        all_seqs = []
 
         for i in range(generations):
             seq_count = len(current_seqs)
@@ -321,6 +322,7 @@ class Simulator(object):
                 elif ext_event and seq_count > 1:
                     print("Extinction event")
                     ext_dict[i] = "Sequence \n{0}\n went extinct at time generation {1}".format(current_seqs[j], i)
+                    all_seqs.append(current_seqs[j])
                     del model[j]
                     del current_seqs[j]
                     j-=1
@@ -339,6 +341,8 @@ class Simulator(object):
                 break
             else:
                 generation_dict[i] = current_seqs
+
+        all_seqs.extend(current_seqs)
         end = time.time()
         print("Simulation Complete.")
         print("Time elapsed: {} seconds".format(end - start))
