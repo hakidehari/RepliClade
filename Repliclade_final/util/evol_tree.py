@@ -61,6 +61,12 @@ class TreeNode(object):
         print("Sequence {0}\n{1}".format(self.num, self.__sequence))
 
 
+class Phylogenize(object):
+
+    def __init__(self, seq):
+        self.__sequences = seq
+
+
 
 
         

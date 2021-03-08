@@ -379,7 +379,11 @@ class Simulator(object):
 
         all_nodes.sort(key=lambda x: x.num)
 
-        print_tree(all_nodes[0])
+        for node in all_nodes:
+            print("Here is the tree for node {0}:\n".format(node.num))
+            print_tree(node)
+
+        return all_nodes, all_seqs
         
 
 
@@ -428,7 +432,7 @@ class Simulator(object):
 
             ancestral_seq = seq_util.coalesce_v2(aligned_seqs)
 
-            self.simulate_ancestor(ancestral_seq, seq_util.mu, entropy_scores)
+            tree, post_sim_seqs = self.simulate_ancestor(ancestral_seq, seq_util.mu, entropy_scores)
 
 
 
