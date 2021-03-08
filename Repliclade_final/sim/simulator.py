@@ -4,6 +4,7 @@ from DNA.genes import GENES
 from util.seq_util import SequenceUtil
 from util.motif_finding import MotifFinding
 from util.evolve import JukesCantor, Kimura, Felsenstein, HKY85
+from util.evol_tree import TreeNode, print_tree
 import os
 import json
 import time
@@ -297,6 +298,8 @@ class Simulator(object):
         if evol_model == 'hasegawa':
             model = [HKY85(sequence)]
 
+        node_num = 1
+        tree = [TreeNode(sequence, root=True, num=node_num)]
         current_seqs = [sequence]
         ext_dict = {}
         dup_dict = {}
@@ -304,6 +307,8 @@ class Simulator(object):
         ext_event = False
         new_gen = []
         all_seqs = []
+        all_nodes = []
+        
 
         for i in range(generations):
             seq_count = len(current_seqs)
@@ -314,8 +319,12 @@ class Simulator(object):
                 indel_event = model[j].roll_indel()
                 if dup_event:
                     print("Duplication event")
+                    node_num += 1
                     new_gen.append(current_seqs[j])
                     new_gen.append(current_seqs[j])
+                    child = TreeNode(current_seqs[j], num=node_num)
+                    tree.append(child)
+                    tree[j].add_child(child)
                     dup_dict[i] = "Sequence \n{0}\n was duplicated at time generation {1}".format(current_seqs[j], i)
                     model.append(Kimura(mu) if evol_model == 'kimura' else JukesCantor(mu) if evol_model == 'jukescantor' else Felsenstein(current_seqs[j]) if evol_model == 'felsenstein' else HKY85(current_seqs[j]) if evol_model == 'hasegawa' else None)
                     dup_event = False
@@ -323,13 +332,16 @@ class Simulator(object):
                     print("Extinction event")
                     ext_dict[i] = "Sequence \n{0}\n went extinct at time generation {1}".format(current_seqs[j], i)
                     all_seqs.append(current_seqs[j])
+                    all_nodes.append(tree[j])
                     del model[j]
                     del current_seqs[j]
+                    del tree[j]
                     j-=1
                     seq_count -= 1
                     ext_event = False
                 else:
                     new_seq = model[j].evolve(current_seqs[j])
+                    tree[j].set_sequence(new_seq)
                     new_gen.append(new_seq)
                 j += 1
             #print(len(current_seqs))
@@ -343,6 +355,7 @@ class Simulator(object):
                 generation_dict[i] = current_seqs
 
         all_seqs.extend(current_seqs)
+        all_nodes.extend(tree)
         end = time.time()
         print("Simulation Complete.")
         print("Time elapsed: {} seconds".format(end - start))
@@ -363,6 +376,10 @@ class Simulator(object):
         full_output = {**ext_dict, **dup_dict}
 
         file_util.log_simulation_output_to_json(full_output)
+
+        all_nodes.sort(key=lambda x: x.num)
+
+        print_tree(all_nodes[0])
         
 
 
