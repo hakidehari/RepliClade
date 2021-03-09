@@ -4,7 +4,7 @@ from DNA.genes import GENES
 from util.seq_util import SequenceUtil
 from util.motif_finding import MotifFinding
 from util.evolve import JukesCantor, Kimura, Felsenstein, HKY85
-from util.evol_tree import TreeNode, print_tree
+from util.evol_tree import TreeNode, print_tree, Phylogenize
 import os
 import json
 import time
@@ -363,13 +363,7 @@ class Simulator(object):
 
         if len(current_seqs) == 0:
             print("All sequences went extinct.")
-         ######THESE NEED TO BE FIXED #######
-        #seq_util.estimate_substitutions_generations(generation_dict, generations)
-        #if evol_model == "kimura":
-            #seq_util.calculate_divergence_k2p(generation_dict, generations)
-        #if evol_model == 'jukescantor':
-            #seq_util.calculate_divergence_jc(generation_dict, generations)
-        #######################################
+        
         [print(ext_dict[key]) for key in ext_dict]
         [print(dup_dict[key]) for key in dup_dict]
 
@@ -420,7 +414,7 @@ class Simulator(object):
 
             file_util.write_to_fasta_blast(seqs_blast, filename)
 
-            seq_util.align_sequences_w2_file(filename)
+            #seq_util.align_sequences_w2_file(filename)
 
             entropy_scores = seq_util.calculate_conserved_regions()
 
@@ -434,6 +428,9 @@ class Simulator(object):
 
             tree, post_sim_seqs = self.simulate_ancestor(ancestral_seq, seq_util.mu, entropy_scores)
 
+            filename_results = file_util.write_to_fasta_sim_results(post_sim_seqs, tree)
+
+            seq_util.align_sequences_w2_file(filename_results)
 
 
 

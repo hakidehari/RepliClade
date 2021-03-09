@@ -27,6 +27,7 @@ def print_tree(root):
    
         print()
 
+
 class TreeNode(object):
 
 
@@ -65,6 +66,80 @@ class Phylogenize(object):
 
     def __init__(self, seq):
         self.__sequences = seq
+
+    
+    def calculate_distance_jc(self):
+        '''
+        Calculates pairwise distances for the Jukes Cantor Model
+        '''
+
+        import numpy as np
+
+        dist_matrix = [[0] * len(self.__sequences) for seq in self.__sequences]
+        for i in range(len(self.__sequences)):
+            for j in range(len(self.__sequences)):
+                if i == j:
+                    dist_matrix[i][j] = 0
+                else:
+                    differences = 0
+                    seq1 = self.__sequences[i]
+                    seq2 = self.__sequences[j]
+                    for k in range(seq1):
+                        if seq1[k] != seq2[k]:
+                            differences += 1
+                    p = float(differences / len(seq1))
+                    k = -.75 * np.log(1-1.25*p)
+                    dist_matrix[i][j] = k
+
+        return dist_matrix
+
+    
+    def calculate_distance_k2p(self):
+        '''
+        Calculates pairwise distances for the Kimura 2P Model
+        '''
+
+        import numpy as np
+
+        transversions = {
+            "A": ["C", "T"],
+            "G": ["C", "T"],
+            "C": ["A", "G"],
+            "T": ["A", "G"],
+            "-": []
+        }
+
+        transitions = {
+            "A": ["G"],
+            "G": ["A"],
+            "C": ["T"],
+            "T": ["C"],
+            "-": []
+        }
+
+        dist_matrix = [[0] * len(self.__sequences) for seq in self.__sequences]
+        for i in range(len(self.__sequences)):
+            for j in range(len(self.__sequences)):
+                if i == j:
+                    dist_matrix[i][j] = 0
+                else:
+                    seq1 = self.__sequences[i]
+                    seq2 = self.__sequences[j]
+                    q = 0
+                    p = 0
+                    for k in range(seq1):
+                        char1 = seq1[k]
+                        char2 = seq2[k]
+                        if char2 in transversions[char1] or char1 in transversions[char2]:
+                            q += 1
+                        if char2 in transitions[char1] or char1 in transitions[char2]:
+                            p += 1
+                    tp = float(p / len(seq1))
+                    tv = float(q / len(seq1))
+                    k = -.5 * np.log(1-2*tp-tv) - .25 * np.log(1-2*tv)
+                    dist_matrix[i][j] = k
+        
+        return dist_matrix
 
 
 

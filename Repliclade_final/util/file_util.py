@@ -114,14 +114,18 @@ class FileStream(object):
         return blast_seqs
 
 
-    
-    def write_to_fasta(self, sequences, gene_name):
-        '''
-        writes sequences to fasta
-        '''
-        DNA_dir = os.getcwd() + os.path.sep + 'alignment' + os.path.sep + 'fastas' + os.path.sep + gene_name
-        with open(DNA_dir+'.fasta', 'w') as open_file:
-            SeqIO.write(sequences, open_file, "fasta")
+    def write_to_fasta_sim_results(self, sequences, nodes):
+        from util.seq_util import SequenceUtil
+        seq_obj = SequenceUtil()
+
+        filename = 'simulation_results_{}'.format(seq_obj.get_time())
+        DNA_dir = os.getcwd() + os.path.sep + 'DNA' + os.path.sep
+        with open(DNA_dir+'{}.fasta'.format(filename), 'w') as open_file:
+            for seq in sequences:
+                for node in nodes:
+                    if node.get_sequence() == seq:
+                        open_file.write('>{0}\n{1}\n'.format(node.num, seq))
+        return filename
 
     
     def write_to_fasta_blast(self, sequences, filename):
