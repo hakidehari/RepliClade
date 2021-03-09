@@ -65,6 +65,22 @@ class FileStream(object):
         return aligned_seqs
 
     
+    def read_from_alignment_results(self):
+        '''
+        Reads sequences from the most recent alignment file
+
+        Outputs an array of aligned sequences
+        '''
+        alignment_file = self.most_recent_file()
+        aligned_seqs = []
+        
+        with open(alignment_file, "rU") as handle:
+            for record in SeqIO.parse(handle, 'clustal'):
+                aligned_seqs.append((str(record.seq), str(record.id)))
+        
+        return aligned_seqs
+
+    
     def read_from_fasta(self, gene_name):
         '''
         reads from input fasta file before running the sequence against the BLAST algorithm

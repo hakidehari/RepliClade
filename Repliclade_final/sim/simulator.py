@@ -414,7 +414,7 @@ class Simulator(object):
 
             file_util.write_to_fasta_blast(seqs_blast, filename)
 
-            #seq_util.align_sequences_w2_file(filename)
+            seq_util.align_sequences_w2_file(filename)
 
             entropy_scores = seq_util.calculate_conserved_regions()
 
@@ -431,6 +431,20 @@ class Simulator(object):
             filename_results = file_util.write_to_fasta_sim_results(post_sim_seqs, tree)
 
             seq_util.align_sequences_w2_file(filename_results)
+
+            sim_aligned_seqs = file_util.read_from_alignment_results()
+
+            sim_aligned_seqs.sort(key=lambda x: int(x[1]))
+
+            #print(sim_aligned_seqs)
+
+            phylo = Phylogenize([seq[0] for seq in sim_aligned_seqs])
+
+            #print(phylo.calculate_distance_k2p())
+
+            calculator, dm = phylo.biopython_calc_distances_upgma_nj()
+
+            phylo.build_tree_upgma_nj(calculator, dm)
 
 
 

@@ -79,12 +79,12 @@ class Phylogenize(object):
         for i in range(len(self.__sequences)):
             for j in range(len(self.__sequences)):
                 if i == j:
-                    dist_matrix[i][j] = 0
+                    pass
                 else:
                     differences = 0
                     seq1 = self.__sequences[i]
                     seq2 = self.__sequences[j]
-                    for k in range(seq1):
+                    for k in range(len(seq1)):
                         if seq1[k] != seq2[k]:
                             differences += 1
                     p = float(differences / len(seq1))
@@ -121,13 +121,13 @@ class Phylogenize(object):
         for i in range(len(self.__sequences)):
             for j in range(len(self.__sequences)):
                 if i == j:
-                    dist_matrix[i][j] = 0
+                    pass
                 else:
                     seq1 = self.__sequences[i]
                     seq2 = self.__sequences[j]
                     q = 0
                     p = 0
-                    for k in range(seq1):
+                    for k in range(len(seq1)):
                         char1 = seq1[k]
                         char2 = seq2[k]
                         if char2 in transversions[char1] or char1 in transversions[char2]:
@@ -140,6 +140,37 @@ class Phylogenize(object):
                     dist_matrix[i][j] = k
         
         return dist_matrix
+
+    
+    def biopython_calc_distances_upgma_nj(self):
+        from Bio.Phylo.TreeConstruction import DistanceCalculator
+        from Bio import AlignIO
+        from util.file_util import FileStream
+
+        file_tool = FileStream()
+
+        alignment_file = file_tool.most_recent_file()
+
+        aln = AlignIO.read(alignment_file, 'clustal')
+
+        calculator = DistanceCalculator('identity')
+
+        dm = calculator.get_distance(aln)
+
+        return calculator, dm
+
+    
+    def build_tree_upgma_nj(self, calculator, dm):
+        from Bio.Phylo.TreeConstruction import DistanceTreeConstructor
+        #neighbor joining = 'nj', UPGMA = 'upgma'
+        constructor = DistanceTreeConstructor()
+
+        tree = constructor.nj(dm)
+
+        print(tree)
+
+
+
 
 
 
