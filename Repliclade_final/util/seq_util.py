@@ -1,5 +1,5 @@
 from __future__ import division
-from Bio.Align.Applications import ClustalOmegaCommandline, ClustalwCommandline
+from Bio.Align.Applications import ClustalOmegaCommandline, ClustalwCommandline, MuscleCommandline
 from Bio import SeqIO
 from Bio import Phylo
 from Bio import AlignIO
@@ -72,6 +72,28 @@ class SequenceUtil(object):
         print(align)
 
         self.display_phylo_tree(filename)
+
+    
+    def align_sequences_muscle_file(self, filename):
+        print("Aligning sequences using Muscle...")
+        print("file name:", filename)
+        time = self.get_time()
+        in_file = os.getcwd() + os.path.sep + 'DNA' + os.path.sep + '{}.fasta'.format(filename)
+        out_file = os.getcwd() + os.path.sep + 'alignment' + os.path.sep + 'align' + os.path.sep + '{0}_out_{1}.aln'.format(filename, time)
+
+        if os.name == 'nt':
+            executable = os.getcwd() + os.path.sep + 'alignment' + os.path.sep + 'executables' + os.path.sep + 'muscle.exe'
+        else:
+            executable = os.getcwd() + os.path.sep + 'alignment' + os.path.sep + 'executables' + os.path.sep + 'muscle'
+
+        muscle_cline = MuscleCommandline(executable, input=in_file, out=out_file, clw=True)
+        stdout, stderr = muscle_cline()
+        align = AlignIO.read(out_file, "clustal")
+
+        print("Finished aligning sequences.")
+        print(align)
+
+        #self.display_phylo_tree(filename)
 
     
     def align_results_w2_single(self, generation_dict, generations, index, seq_id):
