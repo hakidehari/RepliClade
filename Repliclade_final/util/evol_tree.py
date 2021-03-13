@@ -169,6 +169,10 @@ class Phylogenize(object):
 
         print(tree)
 
+    
+    def prompt_tree_builder(self):
+        pass
+
 
 
 
