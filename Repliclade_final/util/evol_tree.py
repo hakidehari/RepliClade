@@ -162,6 +162,7 @@ class Phylogenize(object):
     
     def build_tree_upgma_nj(self, calculator, dm, method):
         from Bio.Phylo.TreeConstruction import DistanceTreeConstructor
+        from Bio import Phylo
         #neighbor joining = 'nj', UPGMA = 'upgma'
         constructor = DistanceTreeConstructor()
         if method == 'nj':
@@ -170,7 +171,9 @@ class Phylogenize(object):
             tree = constructor.upgma(dm)
 
         print(tree)
+        Phylo.draw(tree)
 
+        
     
     def prompt_tree_builder(self):
         choices = ['upgma', 'parsimony', 'nj']
@@ -179,6 +182,29 @@ class Phylogenize(object):
         while method not in choices:
             method = input("Invalid choice, please choose one of the options above (nj, upgma, or parsimony): ")
         return method
+
+    
+    def build_tree_parsimony(self):
+        from Bio import AlignIO
+        from Bio.Phylo.TreeConstruction import ParsimonyScorer, NNITreeSearcher, ParsimonyTreeConstructor
+        from util.file_util import FileStream
+        from Bio import Phylo
+
+
+        file_tool = FileStream()
+        alignment_file = file_tool.most_recent_file()
+        aln = AlignIO.read(alignment_file, 'clustal')
+        scorer = ParsimonyScorer()
+        searcher = NNITreeSearcher(scorer)
+        constructor = ParsimonyTreeConstructor(searcher)
+        pars_tree = constructor.build_tree(aln)
+        print(pars_tree)
+
+        Phylo.draw(pars_tree)
+
+
+
+
 
 
 

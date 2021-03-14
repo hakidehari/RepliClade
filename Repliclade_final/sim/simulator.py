@@ -320,7 +320,7 @@ class Simulator(object):
                 current_seqs[j] = model[j].evolve(current_seqs[j])
                 tree[j].set_sequence(current_seqs[j])
                 if dup_event:
-                    print("Duplication event")
+                    print(f"Duplication event at time generation {i}")
                     node_num += 1
                     new_gen.append(current_seqs[j])
                     new_gen.append(current_seqs[j])
@@ -331,7 +331,7 @@ class Simulator(object):
                     model.append(Kimura(mu) if evol_model == 'kimura' else JukesCantor(mu) if evol_model == 'jukescantor' else Felsenstein(current_seqs[j]) if evol_model == 'felsenstein' else HKY85(current_seqs[j]) if evol_model == 'hasegawa' else None)
                     dup_event = False
                 elif ext_event and seq_count > 1:
-                    print("Extinction event")
+                    print(f"Extinction event at time generation {i}")
                     ext_dict[i] = "Sequence \n{0}\n went extinct at time generation {1}".format(current_seqs[j], i)
                     all_seqs.append(current_seqs[j])
                     all_nodes.append(tree[j])
@@ -451,7 +451,7 @@ class Simulator(object):
                 calculator, dm = phylo.biopython_calc_distances_upgma_nj()
                 phylo.build_tree_upgma_nj(calculator, dm, tree_prompt)
             if tree_prompt == 'parsimony':
-                pass
+                phylo.build_tree_parsimony()
 
 
 
