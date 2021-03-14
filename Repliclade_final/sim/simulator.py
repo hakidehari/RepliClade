@@ -317,6 +317,8 @@ class Simulator(object):
                 dup_event = seq_util.roll_duplication()
                 ext_event = seq_util.roll_extinction()
                 indel_event = model[j].roll_indel()
+                current_seqs[j] = model[j].evolve(current_seqs[j])
+                tree[j].set_sequence(current_seqs[j])
                 if dup_event:
                     print("Duplication event")
                     node_num += 1
@@ -340,9 +342,9 @@ class Simulator(object):
                     seq_count -= 1
                     ext_event = False
                 else:
-                    new_seq = model[j].evolve(current_seqs[j])
-                    tree[j].set_sequence(new_seq)
-                    new_gen.append(new_seq)
+                    new_gen.append(current_seqs[j])
+                
+                    
                 j += 1
             #print(len(current_seqs))
             current_seqs = new_gen
@@ -436,11 +438,14 @@ class Simulator(object):
 
             sim_aligned_seqs.sort(key=lambda x: int(x[1]))
 
+            print(sim_aligned_seqs)
+
             #print(sim_aligned_seqs)
 
             phylo = Phylogenize([seq[0] for seq in sim_aligned_seqs])
 
             #print(phylo.calculate_distance_k2p())
+            tree_prompt = phylo.prompt_tree_builder()
 
             calculator, dm = phylo.biopython_calc_distances_upgma_nj()
 
