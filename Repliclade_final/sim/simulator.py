@@ -438,7 +438,7 @@ class Simulator(object):
 
             sim_aligned_seqs.sort(key=lambda x: int(x[1]))
 
-            print(sim_aligned_seqs)
+            print([seq[1] for seq in sim_aligned_seqs])
 
             #print(sim_aligned_seqs)
 
@@ -447,9 +447,11 @@ class Simulator(object):
             #print(phylo.calculate_distance_k2p())
             tree_prompt = phylo.prompt_tree_builder()
 
-            calculator, dm = phylo.biopython_calc_distances_upgma_nj()
-
-            phylo.build_tree_upgma_nj(calculator, dm)
+            if tree_prompt == 'upgma' or tree_prompt == 'nj':
+                calculator, dm = phylo.biopython_calc_distances_upgma_nj()
+                phylo.build_tree_upgma_nj(calculator, dm, tree_prompt)
+            if tree_prompt == 'parsimony':
+                pass
 
 
 

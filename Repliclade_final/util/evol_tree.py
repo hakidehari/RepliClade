@@ -160,18 +160,25 @@ class Phylogenize(object):
         return calculator, dm
 
     
-    def build_tree_upgma_nj(self, calculator, dm):
+    def build_tree_upgma_nj(self, calculator, dm, method):
         from Bio.Phylo.TreeConstruction import DistanceTreeConstructor
         #neighbor joining = 'nj', UPGMA = 'upgma'
         constructor = DistanceTreeConstructor()
-
-        tree = constructor.nj(dm)
+        if method == 'nj':
+            tree = constructor.nj(dm)
+        else:
+            tree = constructor.upgma(dm)
 
         print(tree)
 
     
     def prompt_tree_builder(self):
-        pass
+        choices = ['upgma', 'parsimony', 'nj']
+        print("How would you like to build the phylogenetic tree of the simulation?")
+        method = input("You can select nj=neighbor joining, upgma=UPGMA, parsimony=Maximum Parsimony: ")
+        while method not in choices:
+            method = input("Invalid choice, please choose one of the options above (nj, upgma, or parsimony): ")
+        return method
 
 
 
