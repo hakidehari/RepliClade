@@ -456,6 +456,7 @@ class Simulator(object):
 
 
 
+
         '''
         #prompt motif finding alg
         self.prompt_motif_alg()
