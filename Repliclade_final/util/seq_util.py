@@ -1,5 +1,6 @@
 from __future__ import division
 from Bio.Align.Applications import ClustalOmegaCommandline, ClustalwCommandline, MuscleCommandline
+from Bio.Phylo.TreeConstruction import ParsimonyScorer, NNITreeSearcher, ParsimonyTreeConstructor
 from Bio import SeqIO
 from Bio import Phylo
 from Bio import AlignIO
@@ -93,7 +94,7 @@ class SequenceUtil(object):
         print("Finished aligning sequences.")
         print(align)
 
-        #self.display_phylo_tree(filename)
+        self.display_phylo_tree(align)
 
     
     def align_results_w2_single(self, generation_dict, generations, index, seq_id):
@@ -143,7 +144,7 @@ class SequenceUtil(object):
         self.display_phylo_tree_results()
 
 
-    def display_phylo_tree(self, filename):
+    def display_phylo_tree(self, alignment):
         '''
         Reads from the dnd file produced by the ClustalW2 alignment
         and displays the phylogenetic tree based on the results of the alignment
@@ -154,9 +155,12 @@ class SequenceUtil(object):
         '''
 
         print('Displaying Phylogenetic tree of sequences...')
-        dnd_file = os.getcwd() + os.path.sep + 'DNA' + os.path.sep + '{}.dnd'.format(filename)
-        tree = Phylo.read(dnd_file, 'newick')
-        Phylo.draw(tree)
+        scorer = ParsimonyScorer()
+        searcher = NNITreeSearcher(scorer)
+        constructor = ParsimonyTreeConstructor(searcher)
+        pars_tree = constructor.build_tree(alignment)
+        
+        Phylo.draw(pars_tree)
 
     
     def display_phylo_tree_results(self):
