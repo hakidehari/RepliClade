@@ -118,16 +118,40 @@ class FileStream(object):
         result_handle = open(blast_file_path)
         blast_records = NCBIXML.read(result_handle)
         for alignment in blast_records.alignments:
-            for hsp in alignment.hsps:
+            if len(alignment.hsps) > 1:
+                best_hsp = self.find_best_hsp(alignment.hsps)
                 print("****Alignment****")
                 print("sequence:", alignment.title)
                 print("length:", alignment.length)
-                print("e value:", hsp.expect)
-                print(hsp.query[0:75] + "...")
-                print(hsp.match[0:75] + "...")
-                print(hsp.sbjct[0:75] + "...")
-                blast_seqs.append((alignment.title, hsp.sbjct))
+                print("e value:", best_hsp.expect)
+                print(best_hsp.query[0:75] + "...")
+                print(best_hsp.match[0:75] + "...")
+                print(best_hsp.sbjct[0:75] + "...")
+                blast_seqs.append((alignment.title, best_hsp.sbjct))
+            else:
+                for hsp in alignment.hsps:
+                    print("****Alignment****")
+                    print("sequence:", alignment.title)
+                    print("length:", alignment.length)
+                    print("e value:", hsp.expect)
+                    print(hsp.query[0:75] + "...")
+                    print(hsp.match[0:75] + "...")
+                    print(hsp.sbjct[0:75] + "...")
+                    blast_seqs.append((alignment.title, hsp.sbjct))
         return blast_seqs
+
+
+    def find_best_hsp(self, hsps):
+        '''
+        Finds best matching hsp's for hsp's in a multiple hsp hit from BLAST
+        '''
+        max_score = -9999999
+        best_hsp = None
+        for hsp in hsps:
+            if hsp.score > max_score:
+                max_score = hsp.score
+                best_hsp = hsp
+        return best_hsp
 
 
     def write_to_fasta_sim_results(self, sequences, nodes):

@@ -148,13 +148,12 @@ class Phylogenize(object):
         from util.file_util import FileStream
 
         file_tool = FileStream()
-
+        #read most recent alignment file
         alignment_file = file_tool.most_recent_file()
-
         aln = AlignIO.read(alignment_file, 'clustal')
-
+        #calculator
         calculator = DistanceCalculator('identity')
-
+        #calculate distance matrix
         dm = calculator.get_distance(aln)
 
         return calculator, dm
@@ -192,11 +191,14 @@ class Phylogenize(object):
 
 
         file_tool = FileStream()
+        #read from most recent alignment file
         alignment_file = file_tool.most_recent_file()
         aln = AlignIO.read(alignment_file, 'clustal')
+        #instantiate parsimony scorer and NNI Tree Searcher
         scorer = ParsimonyScorer()
         searcher = NNITreeSearcher(scorer)
         constructor = ParsimonyTreeConstructor(searcher)
+        #build parsimony tree
         pars_tree = constructor.build_tree(aln)
         print(pars_tree)
 

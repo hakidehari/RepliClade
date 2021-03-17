@@ -419,10 +419,11 @@ class Simulator(object):
             seq_util.align_sequences_muscle_file(filename)
 
             entropy_scores = seq_util.calculate_conserved_regions()
-
-            print(entropy_scores)
             
             print(filename)
+
+            average_entropy = sum(entropy_scores[key] for key in entropy_scores) / len(entropy_scores)
+            print(f"Average entropy over all of the sequences: {average_entropy}")
 
             aligned_seqs = file_util.read_from_alignment()
 
