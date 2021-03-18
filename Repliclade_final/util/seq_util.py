@@ -153,15 +153,23 @@ class SequenceUtil(object):
                filename  --> specifies the path to the file
         output: Diplays phylogenetic tree using the Phylo biopython module
         '''
-
+        from util.evol_tree import Phylogenize
+        #MP
         print('Displaying Phylogenetic tree of sequences...')
-        scorer = ParsimonyScorer()
+        '''scorer = ParsimonyScorer()
         searcher = NNITreeSearcher(scorer)
         constructor = ParsimonyTreeConstructor(searcher)
-        pars_tree = constructor.build_tree(alignment)
-        
-        Phylo.draw(pars_tree)
+        pars_tree = constructor.build_tree(alignment)'''
 
+        #UPGMA
+        '''phylo = Phylogenize()
+        calc, dm = phylo.biopython_calc_distances_upgma_nj()
+        phylo.build_tree_upgma_nj(calc, dm, 'upgma')'''
+
+        #NJ
+        phylo = Phylogenize()
+        calc, dm = phylo.biopython_calc_distances_upgma_nj()
+        phylo.build_tree_upgma_nj(calc, dm, 'nj')
     
     def display_phylo_tree_results(self):
         print('Displaying Phylogenetic tree of sequences...')

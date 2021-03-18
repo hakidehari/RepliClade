@@ -64,7 +64,7 @@ class TreeNode(object):
 
 class Phylogenize(object):
 
-    def __init__(self, seq):
+    def __init__(self, seq=None):
         self.__sequences = seq
 
     
