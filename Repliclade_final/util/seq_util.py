@@ -170,6 +170,7 @@ class SequenceUtil(object):
         phylo = Phylogenize()
         calc, dm = phylo.biopython_calc_distances_upgma_nj()
         phylo.build_tree_upgma_nj(calc, dm, 'nj')
+        
     
     def display_phylo_tree_results(self):
         print('Displaying Phylogenetic tree of sequences...')
