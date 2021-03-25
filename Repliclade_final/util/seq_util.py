@@ -275,6 +275,14 @@ class SequenceUtil(object):
         return count_dict
 
     
+    def get_nuc_count_multiple(self, seqs):
+        count_dict = {"A":0, "G":0, "T":0, "C": 0}
+        for seq in seqs:
+            for key in count_dict:
+                count_dict[key] += seq.count(key)
+            return count_dict
+
+    
     def prompt_theta_method(self):
         theta_method = input("Please enter a choice of method for estimation of θ (variation)\nYou can choose either the Watterson Method (watterson)(Watterson 1975) or the Fay and Wu Method (faywu)(Fay and Wu 2000) ")
         while theta_method.lower() not in ['watterson', 'faywu']:
@@ -655,8 +663,6 @@ class SequenceUtil(object):
         #Ne = theta_w / (4*(mu*correction_coefficient))
         #print('Effective Population size using Watterson estimator with corrected μ: ', Ne)
         return Ne
-
-
 
 
     def estimate_eff_pop_size_watterson_no_input_mu(self, sequences):

@@ -506,3 +506,14 @@ class HKY85(object):
     
     def roll_indel(self):
         pass
+
+
+class Tamura92(object):
+
+
+    def __init__(self):
+        self.t = 0
+
+
+    def generate_transition_matrix(self):
+        pass
