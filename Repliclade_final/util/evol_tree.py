@@ -163,6 +163,10 @@ class Phylogenize(object):
         from Bio.Phylo.TreeConstruction import DistanceTreeConstructor
         from Bio import Phylo
         #neighbor joining = 'nj', UPGMA = 'upgma'
+        TREE_LIMIT = 500
+        trees = []
+
+        
         constructor = DistanceTreeConstructor()
         if method == 'nj':
             tree = constructor.nj(dm)
@@ -170,6 +174,8 @@ class Phylogenize(object):
             tree = constructor.upgma(dm)
 
         print(tree)
+            
+
         Phylo.draw(tree)
 
         
@@ -195,6 +201,11 @@ class Phylogenize(object):
         alignment_file = file_tool.most_recent_file()
         aln = AlignIO.read(alignment_file, 'clustal')
         #instantiate parsimony scorer and NNI Tree Searcher
+
+        TREE_LIMIT = 500
+        trees = []
+
+        
         scorer = ParsimonyScorer()
         searcher = NNITreeSearcher(scorer)
         constructor = ParsimonyTreeConstructor(searcher)
