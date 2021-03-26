@@ -426,7 +426,7 @@ class Kimura3P(object):
 ###############################################################
 
 class HKY85(object):
-    #########IN PROGRESS##############
+    
 
     def __init__(self, seq):
         frequencies = seq_util.get_nuc_count(seq)
@@ -511,9 +511,22 @@ class HKY85(object):
 class Tamura92(object):
 
 
-    def __init__(self):
+    def __init__(self, frequences):
         self.t = 0
+        self.K = .25
+        self.frequencies = frequencies
 
 
     def generate_transition_matrix(self):
         pass
+
+
+    def generate_rate_matrix(self):
+        return np.array([
+            [
+                
+            ], 
+            [
+                
+            ]   
+        ])
