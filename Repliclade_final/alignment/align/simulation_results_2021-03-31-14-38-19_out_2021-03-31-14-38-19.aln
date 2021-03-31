@@ -1,0 +1,263 @@
+MUSCLE (3.8) multiple sequence alignment
+
+
+simulation_results_2021-03-31-14      --AAAACGTGAACATATCAACGAAGGTTGCTGAT-------AACGATTTATACCC-AATA
+simulation_results_2021-03-31-14      --CAAACCCGACCAGTCCGGTCTGGGACATGCCGTTGGGTTGTCGAAGCATATCTCACGA
+simulation_results_2021-03-31-14      GCGATGTCCGTACAG-------GAATTATTTTGTGCGTCTGCACGGAATTTACGC-AGAA
+simulation_results_2021-03-31-14      --GGCACATGGAGAG-----------TCGCTAAT-------ACCGGGGCGCATAA-----
+simulation_results_2021-03-31-14      --ACTACCATAGTGTACGTCCGATGGCCAACACT-------GGTGAATTGAATACAAAGC
+simulation_results_2021-03-31-14      -------TCACACAC-----------TCGATGGT-------CTTAGGAGAAATGC----T
+simulation_results_2021-03-31-14      --GGCGTTCTAACGGCACCTTCATGATTGGTCAAGCGG---ACCGAATTGTAT-------
+                                                                                         *        
+
+simulation_results_2021-03-31-14      T-------GGTTCTCTGCTAGAGAAGA---GTGAGTATATGTTGT-TCGAAATCGCTGTC
+simulation_results_2021-03-31-14      TGAACCTAGGTACCACATAAATTAA-----------CCTCATTTT-TAACGGTCTAAAAT
+simulation_results_2021-03-31-14      T-------GTTACCACGCAAAAGAAAGCGTACATCGGCGAATTCCGTATACTTATGCGCT
+simulation_results_2021-03-31-14      ---------GCACTGTTTGGAGTGAGG---GTACTAACACACCTAGTGCAAATCTACGTT
+simulation_results_2021-03-31-14      G-------TCTTGCATTCGGATGAA-----GGAGGAAGTAGTTACCTGAGTGACCCTGCT
+simulation_results_2021-03-31-14      G-------GATTCCTTGCTAGTAAT------------CTCGTATC-TGCGAGTGTACCTC
+simulation_results_2021-03-31-14      --------GGCTTGATGTAAGCTAA----------TACTAATTCTTCCACAAGGCACGTT
+                                                                                                  
+
+simulation_results_2021-03-31-14      ATGCG----ACCCCAGCCTACTGTCGTATCTTCCGCAGAAACGATCATTGAGCCAGTGAT
+simulation_results_2021-03-31-14      ACACG----TTCATTGACCCGG--CCTTATTATTGCA---------AGAGGTTAGCTGCT
+simulation_results_2021-03-31-14      GGGAT----TACGATACCTTCG--CATAGTTTGAACG---------TTACAAACGTTACT
+simulation_results_2021-03-31-14      GGTGC----TTCACCAACTGT---TGTAGAATCGGCA---------TTTTGCCTTACGAT
+simulation_results_2021-03-31-14      GTGTC----------------GCCCTTAATCTGCGTC---------TACAACGCAGTCCT
+simulation_results_2021-03-31-14      GGGTA----TGATACAAT------CGTAATCCGTTTC---------AGGAGAGTGACATT
+simulation_results_2021-03-31-14      GCGCCTGGTTTTATTGATGCCG--CATAATATCTACA----------------------T
+                                                                *                                *
+
+simulation_results_2021-03-31-14      GCGCGTGAGCCGACA----TGATTTAT--------TACCGCTCTAAGCTATTTAGGGAAA
+simulation_results_2021-03-31-14      GTGCAGTATAAGCCACT--TGTATCACCA------AGCTTCGCCAAGCCCCCAGCAGCGG
+simulation_results_2021-03-31-14      TTGCGATCAGATGT-----CGGTCCAC--------AGGTGATTTGAGCAACCTGAAAAGC
+simulation_results_2021-03-31-14      TACTACCCGGCGATAGGGTTGGAGTATTTGGTGCGGTGTGTTCCAGCGGGCCTTGCTCGG
+simulation_results_2021-03-31-14      GTGGGCCAAAAGACAATCGCGAAACAT--------TGGAAAGCCGCAGTTGCTAGCTTGC
+simulation_results_2021-03-31-14      CTATACCGA--------------------------GGAGAAATCACGTGTCCCAGGTAG-
+simulation_results_2021-03-31-14      TTCGGACTAGCGGCAC---TGGACCA---------GGCCACTCCAGGCATGCCAGACCGC
+                                                                                                  
+
+simulation_results_2021-03-31-14      GGCGTGCCTACCAGC-----GCACGGTTGTAACGCA-----CGAGCGTTAGCCCTCTCGG
+simulation_results_2021-03-31-14      TTAGTGCCTACAT-------TCGCCGTCGCGACATA-TCACCGATCCACTAACAGGC---
+simulation_results_2021-03-31-14      GA------------------ACCAGCATAAAGTAAATCCACCGGG-----AAAGACACCT
+simulation_results_2021-03-31-14      CAAAACTCCCCGAAAATTTGCCTACTTTGTAGAACA-TCAGCTATTTCGTTGCAGCACGG
+simulation_results_2021-03-31-14      GTAG----------------GCGCCCAAGAGGGAGAGTAATCGCTTGCGCAGGAGTCAAA
+simulation_results_2021-03-31-14      --------------------CCAACGTTGTGGTACA---CCCCAATCCGTGATAGCAAAG
+simulation_results_2021-03-31-14      GCCTCTTCCTTGCGATCGCCTCTTTTTTCTAAGATA-TGGTCTGGGCTTTGTCTAGATCA
+                                                           *             *     *                  
+
+simulation_results_2021-03-31-14      GGTGCAACAATTGTGCCA---CCACTCAGAGTCCGTACGAGTAACTTATCTATT------
+simulation_results_2021-03-31-14      ------GAGCTCGGGTTTGGCATCGACTGAGTTCGCACACGTGCGCTAACAGCAAGTCTC
+simulation_results_2021-03-31-14      CGATCCGATGTTAAGTCTCGTCCATATCTAGTTCTTTCCAAGATGACAGTTAAATGCC--
+simulation_results_2021-03-31-14      GTGGCGCTGCTTGTTACAGGTCTGCTCTTAGTCCATT-----------------------
+simulation_results_2021-03-31-14      TGTGTAGATGTTG--------CCCTTATTCGTCTGATTGAGTAGCTCCACCATCAG----
+simulation_results_2021-03-31-14      TGTTTAGGAGCTACGC---ATTCTTCTCGTGCCCATTAGGCCACCTTGGT----------
+simulation_results_2021-03-31-14      TGGTGAGAGATCG-------------TCGAGTCTGTTGAAAGGCCCTAACGGAGTGTT--
+                                                                    *                             
+
+simulation_results_2021-03-31-14      ---------------------GCGGTCCATTTAGTGTCCTTAAGATTTATCAGCAACTCT
+simulation_results_2021-03-31-14      CAAAAGCCCAACGAGGTGGCGGCTTGCAACAATCAAACGTTCA-------CAACACCCTG
+simulation_results_2021-03-31-14      -----------CTACATGCCAATCAGGTCTTAACTCGTGTC---------TAACTCAGAG
+simulation_results_2021-03-31-14      -----------CAGAGCGTCCGCCCCCTTACAACCCGTCTTCAGC-----CATCATCTAT
+simulation_results_2021-03-31-14      -----------CCCTATGTGGGCCCGCCATATGCCTAACATCCTATTTGTTGTCATATAG
+simulation_results_2021-03-31-14      -----------ATAATCGCGTGTCTCCTGCCAGTTTGTCTTGATA-----TGGCACA---
+simulation_results_2021-03-31-14      -----------CCGGGCGCGTATC---------CCATCCTTCATA-----GATCACCGGG
+                                                                                           *      
+
+simulation_results_2021-03-31-14      TATGAACTATCGCTGATGAGTTGGACGGTAGC----------------------------
+simulation_results_2021-03-31-14      CCCAGGGGGCGTATAGGCCGTTAAAGAGAAACTGGCTCCAGCATGGGC------------
+simulation_results_2021-03-31-14      ACAGAACAAGAGCAGAGGCCCTG-------ATACTGTGAGGCAGAGCCGTTCACATTGTC
+simulation_results_2021-03-31-14      TCTGGTCCTCC---------TTACAAAGCCGTGCTCAGAGGCC---CCATAGGCCTATCC
+simulation_results_2021-03-31-14      AT-------------ATGGACTATAAAAGCGAACGCGGGAGCGAAGCCGTTTCATTCCGT
+simulation_results_2021-03-31-14      ---GGGCATAAGTAAAAGGATTACAAAGAGAGACACTGCAG-------GTTTCCTCGTTT
+simulation_results_2021-03-31-14      ATCGGGTCTCTATCGAAGCACAATGCAGTGGCGTTCAGCGCCCAAGGTTTT----TTTTA
+                                                                                                  
+
+simulation_results_2021-03-31-14      ---------------CGCTATGTTGCCAGAGTTTCTCCCAT-------------------
+simulation_results_2021-03-31-14      ------------AGTCATTGCTTGTATCAAATTCGCCCTGT-------------------
+simulation_results_2021-03-31-14      TAACAA------AATAGCAGCATT-----AGCTAGCCTTTTTGCAGATAGATAGGCGGAG
+simulation_results_2021-03-31-14      TCCAGCCTTGTTGCGCATCGCACCAGGACACCCTGCATTTTGGAAACAGCAAGACTGGAA
+simulation_results_2021-03-31-14      TCTGAGCACTTTGGGCGCGACGCCAATGCGATTCTCCAGAC-----------------GA
+simulation_results_2021-03-31-14      TCTTGATTCCCCGATAGTTACGTCTAGTCAGCGCGTCTTGT-------------------
+simulation_results_2021-03-31-14      TATAGGTACCCGAATTGGTTCG-------AACTCTTCTTCT-------------------
+                                                                                                  
+
+simulation_results_2021-03-31-14      -CAGGTAACTTTGG----CAATCAGAAGC---GCAAGTTGGCGAA---------------
+simulation_results_2021-03-31-14      --AGCTTTCTTGAGGTAACCAGCGGAGCTTATATCCGTTCGCTATGATCGTACAAGTGGG
+simulation_results_2021-03-31-14      CCGGAGCGTTCGAGCTA-CGCCTAAAACGCATGCTCTCTAAGAAC---------------
+simulation_results_2021-03-31-14      GCGGACTCCACCGG----CATCTGGCGTCTGTATTGAATCATCGGTCTCACGTCGCTTCT
+simulation_results_2021-03-31-14      CTAGGCTTCCA-------TATGTGAGACACCTTCGTGTTGACAGTTTACTTCAAAGTTCC
+simulation_results_2021-03-31-14      -CAGACTTCTGTCGCTAAAAACT-----CCATCTCGGATTACAAGCAAACCACTACGTTT
+simulation_results_2021-03-31-14      ------CCCCACGGCTGATAACTGAGAACGAAACAAGGTTGTGGATGATTCACTGTTGGG
+                                                                            *                     
+
+simulation_results_2021-03-31-14      ----------------GCCTGTTTGACGACAACGAACAACAACGGGGCATTATTGCT---
+simulation_results_2021-03-31-14      T---GCAAGTGCCAGGTTTTGTTC--TTCAAACGGCCGCGTACGTGATGGTCATGCTAGC
+simulation_results_2021-03-31-14      -GCGGTGAATACGACATCCCGTTCGAT--------ACCAGAACCCAAAAGTTTCTT----
+simulation_results_2021-03-31-14      ----------------TTCTGGTTAAAGCGGACCGACT-TCACCTCTTAACTTCGCT---
+simulation_results_2021-03-31-14      GTCGTCCGGTACAACATTCCCTGCCAGTCAAAGAA----TAACGAGGTGAACTCCTA---
+simulation_results_2021-03-31-14      T--------CATAAGATCCCAACCCGCGAACACGCGCCGGAACACGCTGATCTTGCA---
+simulation_results_2021-03-31-14      AT--------------TCCCGGTACACACGAATGAACTATGACTCGA-AACCTCGCT---
+                                                                               **                 
+
+simulation_results_2021-03-31-14      TCTTTCTT---GCCTGGACAGATAATGAAGTGGTCAAGCGACCA----GAAGTAGC----
+simulation_results_2021-03-31-14      ACCTGCCCTGAA-------------------------GGCGCTACGTGGATGTTGT----
+simulation_results_2021-03-31-14      ---------------------------------------------GTGGACGGTGTAAAG
+simulation_results_2021-03-31-14      TCAGTCGCTAGCTCTTATTGAGTAGTAAAGAAGTGCAGTGGTTAGGATGACGTTTT----
+simulation_results_2021-03-31-14      ACAGTCCCTGGACTTAATTTAATTG------------ACGACTGAACCGCCCTTCT----
+simulation_results_2021-03-31-14      GCTTTGTCCTAG-------------------------ATACCTAGGCGGACGGGAT----
+simulation_results_2021-03-31-14      AATTCTCCTTAG----------------------------GATGGGAAGATGGACT----
+                                                                                      *           
+
+simulation_results_2021-03-31-14      -TGCAAAAGTTGACCCATAGAGCGTCTGCGTC-------ACTT-------------TACC
+simulation_results_2021-03-31-14      -TGGGCAAATCAATCCAGACTGCGGTCTC----------ACGCACGTAACGGGCTTTGTT
+simulation_results_2021-03-31-14      CCCGCAGCACTCACCCCGAC----------TCAGGAAAAAGCCAATTCAC------TCCA
+simulation_results_2021-03-31-14      -CAGCAAAGCAGCCGCCAGGGGAGTTAACGAC-GAATGAACGCATCTCAGGGC-------
+simulation_results_2021-03-31-14      -TCTGAGTAACCTTCCCGGTTGGGATAGCCCCGGCACACAGGCA-GTCAAGTCCTAAATT
+simulation_results_2021-03-31-14      -TCGCATAGT--ATTCAGAATATGCTACAGGCGGGATAAACTCATCGAGAG-----TAGA
+simulation_results_2021-03-31-14      -CTGCCTGGTGGTCTCGTAACTCGGT----TCAGGCTACACTTCTATCACGGAATCTAAA
+                                                     *                       *                    
+
+simulation_results_2021-03-31-14      GCCGGTGGAGCTCTGGGATAGCAT-------------------------TAAT-ATTGAA
+simulation_results_2021-03-31-14      GCTTTTCAAGCCTCGAGTTCACAGATCTGGTCACAAT-------TCGATGAAC-TGTAAA
+simulation_results_2021-03-31-14      ATACTTTGAACTACAAGCCAACACCGTTGAACGGA---------CCGCGGTAC-ATGCAT
+simulation_results_2021-03-31-14      ----ATGGAACGATAAGGCAGCTGAGCTGGTATGAGTAGATGTGTCAGTCACT-CTAGAC
+simulation_results_2021-03-31-14      ACCGATGGGCCAATCAGGCAACATGGCTCACAC-----------CGGGTCAGAAAATTAA
+simulation_results_2021-03-31-14      ACCGTTTGAGCCTGGGGACCAGATGACCCGAGCGCA--------CCA--CAAC-GTAGCA
+simulation_results_2021-03-31-14      ATATT-----------GCCGTCAGATGTGGACTGCGTACGTCGGGAATTCACCTCCTGGG
+                                                      *                                           
+
+simulation_results_2021-03-31-14      GTCAAGCATAACTAAT----------------CCTCAACA--------------------
+simulation_results_2021-03-31-14      ATCACCAGCAATTCGTAACAGCAGAGAAGCCACATGCATT-----------GGCGCGGCG
+simulation_results_2021-03-31-14      ATTACCAGCATTTTTCTTCGATTGCCAAAACGCTTCCGTA--------------------
+simulation_results_2021-03-31-14      ATTACCCTCATTCAAGACAGGTGGGGGCGAGGCTTCGCCA--------------------
+simulation_results_2021-03-31-14      GCCAACCACGTTTTACG-----AGGGACTGGACTTCAGTAACAGCCCTAATGCCGACATA
+simulation_results_2021-03-31-14      CCTGCCATTTTTCGAGACAA--GGGGCAAGGGCCGTATCA-----------GAGGAGATA
+simulation_results_2021-03-31-14      ACGTTCACTTCTTAAATTCGTTCGCTA--GCACCGCAGCA--------------------
+                                                                      *                           
+
+simulation_results_2021-03-31-14      --------AATGATGCGCTCCTCTCGACCCTGAATC----------------GTTGCTGC
+simulation_results_2021-03-31-14      TGCTTATAGTTGGGACTCGACTGAAAAGACTGAATT----------------GTTGGTAT
+simulation_results_2021-03-31-14      ------AGTAAAATCAATTCATAGCGAGCTCGA-------------------GCTGATGC
+simulation_results_2021-03-31-14      --------------------TCTGCCAGGTCGAATTT---------------GCTGGTAG
+simulation_results_2021-03-31-14      TGATGTCACATGCGCTGTCATTCTACAGTCCGAATGTCTTTGGATCTTAGTTGTTGATGA
+simulation_results_2021-03-31-14      CGACTTCATTTTGAAAGTTGTTGAGTGCGGCGGACGGCCGTGG---------GGTGATAA
+simulation_results_2021-03-31-14      --------GTCAGCGTGTTACTCACAAGCGAGAACGCCTGC-----------GTCGATAA
+                                                                     *                    *  * *  
+
+simulation_results_2021-03-31-14      GGTAGCACA--------------------------------ACCAAGACGGTAAAACTGA
+simulation_results_2021-03-31-14      AATATTGAGC---------------------------CTGGATTTATAATTGTATGCTGT
+simulation_results_2021-03-31-14      ATCAATCCCA--------CTACTG-----------------TTCTAAACTTGTTAACTCT
+simulation_results_2021-03-31-14      CTAAGCAGTCCGAGAATTCCACCT-----TCAGATGGTCGCATTCTCATATTCGAACAAT
+simulation_results_2021-03-31-14      ACTGACACTTAGGCGTCGTCACGGGTTTCGTCAATATCAGGACAAACAACCGT-------
+simulation_results_2021-03-31-14      AGGAACGAAT--------TTGGTTGATGCGCAGTTGGCCTGACTAGCGTCCTACTGCGTC
+simulation_results_2021-03-31-14      GAATGTGCTT---------------------------TCGGTTACACACATCTGATCTGA
+                                                                                                  
+
+simulation_results_2021-03-31-14      G--------------CTCCAACCTTGCTTCGTCGTCATGGTATGTTCAGGAGTCGGTCGC
+simulation_results_2021-03-31-14      A-----------TATCTCTAACGCAGCTACCACGGTGGGCTATTTC-----TCTCGCGGG
+simulation_results_2021-03-31-14      A-----------CGCTTAGAGGGGGACAGCCATGTTATTCTCTT-------TTGCGCAGC
+simulation_results_2021-03-31-14      AGGAATAAGTCCTTTGTCTAATTCCATTTCCTACATATATCTATGCTGGATGAGTGCCGC
+simulation_results_2021-03-31-14      ------------CGTGTGCAGCGATATTACCCCGG-AGGCCCATGTGGGTATTCAACTGT
+simulation_results_2021-03-31-14      G-----------TCTACTCAAAGTAATC-CCCCGGAGTGCCCTTGT-----TTGAGCCGA
+simulation_results_2021-03-31-14      TTG---------TTAGTCAAAATTTGTCACCAT------TTCCTGTTGGGACTTCGCTTC
+                                                         *         *                              
+
+simulation_results_2021-03-31-14      AAAGTCCCTTAGACAC------ACAAGTCTCTGAGGCCCCAGAAGCTTAGCAATAGACCG
+simulation_results_2021-03-31-14      CCAGAACCAGGACCAC----------------------------CTTTAGAAACTTTACG
+simulation_results_2021-03-31-14      CCAGTTTGAGGAGCAACTTGGTAACCACCCAAATATCAATGTTGCACTTGAAAAGTAAAG
+simulation_results_2021-03-31-14      CACCGTCTCGGGTCTC-------ACTCCGAGTGCATCCATAGCAATTCCGGACCCGCTTG
+simulation_results_2021-03-31-14      AAATGTCTCAGCATAC--------------------------------------------
+simulation_results_2021-03-31-14      GAACACCGATAGTCAC-----AGCCGGCTGCGACAGTCTTGTCGTCTCTGGAATAGTAGG
+simulation_results_2021-03-31-14      TCAGGCTCAGGGACGA-------------TCCACTTCCTTGTGTCTTTACAAGTCGTACG
+                                                                                                  
+
+simulation_results_2021-03-31-14      TTCCTCACCGGTGGACGT-----ACACTCGTACAAGATGATTCTGGGTGTGATTCCTTAC
+simulation_results_2021-03-31-14      ------------------------CGCTTGCGAATT------------ACTTCCGCTTAT
+simulation_results_2021-03-31-14      ACTGTATACCCAAAGTGCATAAAACACTGAATATTACCGCAGCAATACAACAGCGCCTAT
+simulation_results_2021-03-31-14      AGGCCAACCCAGACTCGC-----ACGCTGGGGAGTA-------------CGATCGTTTAT
+simulation_results_2021-03-31-14      -----GGGCGAGTAGCGTATGAGCCGGTTATGGAAA------CCATGATTTGTCCCTTCT
+simulation_results_2021-03-31-14      --CTCATCCTAAAATCGC-----ACCGTTACCCGCA----GTTACCTTGCTTTCCCTGAT
+simulation_results_2021-03-31-14      -------TTATAACTCGC-----CGCCTTATGGGCA------------GGAGGTATTTCT
+                                                                 *                                
+
+simulation_results_2021-03-31-14      -----GACGTATGGTTTTGACAACAAACGTTGGAGTCTCCGCTAAATCA---GAAACTAC
+simulation_results_2021-03-31-14      -----AGAAGAAAGA------------GCCCCGATCGACGTGTGCACCTGACTCGGCTTC
+simulation_results_2021-03-31-14      -----AGTACACGGATC-----AATATTCCGTGATTCCTTATTGTATTT---TCGTGGTG
+simulation_results_2021-03-31-14      -----GATCAACCAA-------ACGTGTTCCCGA-----------ACTT---TTATTCGT
+simulation_results_2021-03-31-14      ACAAAGACCGCCGAAGGCCAGCCATTGCCTTCGGTCCCCGGTGATGCCC---TTACGCTT
+simulation_results_2021-03-31-14      -----GGTTAAAGGC--------------CTCAAGTACGATGGGGTCTT---TCACCTTC
+simulation_results_2021-03-31-14      -----GCTGTAAGGGGTTGCGCAATTCACACCAATCTCAATTGACACTA---CTAGATTC
+                                                                                                  
+
+simulation_results_2021-03-31-14      AGGGTTTAAGCGCCTATAAAGCACCCTTAAGCGTTCAAATCTCTGAAATGTGACCTCCTC
+simulation_results_2021-03-31-14      ACCAACAACGGGTGTA--------------------------------------------
+simulation_results_2021-03-31-14      TGGGTCCCGGAGCCAATGATAAATTACAATGC------ATAAGTGGGATACCGC------
+simulation_results_2021-03-31-14      TCCATCGGTGGACA----------------------------------------------
+simulation_results_2021-03-31-14      GTCGACGGAGACCAAA--------------------------------------------
+simulation_results_2021-03-31-14      CTTAT--AAGGACAAA--------------------GCACTTGTAAGAAGTCTC------
+simulation_results_2021-03-31-14      CGCGTATAACATCGAA--------------------------------------------
+                                                                                                  
+
+simulation_results_2021-03-31-14      TGGGTTCTCTAAATACCTTGCATT-ACGAAAGATGACAGCACTTACCATAAGGACCTGCC
+simulation_results_2021-03-31-14      -------------TTGCTTACTTT---GAA----AGCAGCGCTGTGCATGGTCCCTCGCA
+simulation_results_2021-03-31-14      ---AGGATCAAAATTCCCCATCCC-GCGGC----CCAAAAATACAACAATTGAACATTCA
+simulation_results_2021-03-31-14      ----------------------TC-ATGGA----GACACAGGTGATGATGTAGCCATTCA
+simulation_results_2021-03-31-14      ------------GCATTGCGCCTG----------GCTATCGTTCTATAAC-AGATGTTTG
+simulation_results_2021-03-31-14      ------------GCCTGTTGTTCG-GCGCA----GGTAACTAATACCAGCAAAATACGTA
+simulation_results_2021-03-31-14      ------------ATGTCTTGCCTTAATGTACCACGCTTAATGTTTACATCTAGGCATGCG
+                                                                                     *            
+
+simulation_results_2021-03-31-14      ACCG--TATTTAGTGTTTCATGGAACTGCGTCGCCGTACCCCGGGAAGTGGACTTTAGAG
+simulation_results_2021-03-31-14      GTTCCTAGCC------------AAGCGTCGGTACGTTATCCCAGCACCGAGTCTATGCCG
+simulation_results_2021-03-31-14      ATTGAGTGACGAAAACACTTGAATGATCAAGCGCGTCTCACCCACACGCACGAATTAACG
+simulation_results_2021-03-31-14      CACGCTTGTCTTTTACTACCACGAACATCGCTCTAGATCCCAAGCCCCTTTTCGTCATTG
+simulation_results_2021-03-31-14      CCCAAGGGGT------------AAGGAACCGAGCGGCTTCTCTGCAC-------------
+simulation_results_2021-03-31-14      GCGAGGAT--------------AAGGAATCTCCCACCTCCCCGGCCC----ACAGTAACG
+simulation_results_2021-03-31-14      GCCGTTTCGTGGGCACCCTTCGAGG-----TTCCATCTCCTAGGGTCTCTAAGAGTAATA
+                                                                                                  
+
+simulation_results_2021-03-31-14      CGAGGGAGATG--TCGTTGATCGTGTGTATCCTCATCGCGTTTTTACTG---CTAACTCT
+simulation_results_2021-03-31-14      CACTATACTTGACACGCTACTGTGTCCACCTAGATCTATGGCTTATCTC---CGACACTT
+simulation_results_2021-03-31-14      AGGTAGTGATA---------------TCCCTGCAATCGGAATCTATCTA---TTTCCTAC
+simulation_results_2021-03-31-14      CGGCCGAGCTA-------TACCGTACGGCGACCAGTCAGAAGTTGGTGG---GTTAACGT
+simulation_results_2021-03-31-14      ------------------------AGTTTTTCCACTTGTCCACTATCTC-------GTCT
+simulation_results_2021-03-31-14      CCGTCTGGACGCTCACCTACACGAATTTCGTCGAATAGCTGAATAGCTG---TTAAATAC
+simulation_results_2021-03-31-14      TATTATAAATA------------AATTTCCGCAAGCCACGCCTAAACCAGATGCGCAGGC
+                                                                                                  
+
+simulation_results_2021-03-31-14      TGAAGCATGGATATTCACTGCCTGCGGCTAGCCAAAATGA----TTAGGGGTGACAGTCT
+simulation_results_2021-03-31-14      AGCTACCTGGACTTCCCCTCTAATAGTTTTCATAGGAAAA----CTGCCGTTTGTATTGA
+simulation_results_2021-03-31-14      TAGAATGTGGAAGGCATCTGTGCACGTCCGCCTCAACGGAAACCTTAACGCTTAGTCCGA
+simulation_results_2021-03-31-14      CGACAC-CGGACCCCGATTAGAGGAGTATGCCCCCAGTAT----TTAACCTTTAATGTCC
+simulation_results_2021-03-31-14      AGGCGTGTGGACTTTAAGCTTCTGATCTTGCCGTCGGAA-----CCGAGACTTGTAGTGG
+simulation_results_2021-03-31-14      TTA----TTGCCAGCCGCTGGGGGGGATAGAACCATTGAA----GTAGGCATAACGGCGC
+simulation_results_2021-03-31-14      CAATACCTGGTCGGTGACCGAGGAACTTTA-TTCAGGGAC----TTAGGAACTACACTAC
+                                               *                                                  
+
+simulation_results_2021-03-31-14      ATA-------------ATCCCGGGCAGCA-----------------GCGCCTGTCACGAC
+simulation_results_2021-03-31-14      CTAACCTATTTTGCAGAGACAAAGCGATACACTCGAT-GTATCAATGTACTTGCAACAGT
+simulation_results_2021-03-31-14      CTA------------------------------------------------TAGAATCTC
+simulation_results_2021-03-31-14      TCA--------------------------------------------CGTGTGATAGTGT
+simulation_results_2021-03-31-14      CAG-----TCATAAACGCTCCAACCCTCGTTGTTGTCGGCCAAGGGGTAGTCGACAACGC
+simulation_results_2021-03-31-14      CTGCAAGTAGTTACATATGCCTTCAATCG--GGCGACGGTAATAGACCATTTCATAATAT
+simulation_results_2021-03-31-14      CTG-------------ACTACTTCCGGCC-----------GAGCTTACGTTTCCTAACTC
+                                                                                             *    
+
+simulation_results_2021-03-31-14      A-----------------AGCGGCCTAGACATAATCTGCCTAACTAGGTGCCTGAGGGCT
+simulation_results_2021-03-31-14      G-----------------TTATTAGTGAACTTGACCCACGTATCCCGGA-----------
+simulation_results_2021-03-31-14      G-----------------AAAATCTGGTACTCGATACCCTGATATTCA------------
+simulation_results_2021-03-31-14      A-----------------CAATAACAATACACATCACCCCGAAAC---------------
+simulation_results_2021-03-31-14      A------------------------AGGAAGTGAATTTTGTGCA----------------
+simulation_results_2021-03-31-14      G-----------------AAGACATCGGATATA---TTCACAGACTCTAGTTGAATGACG
+simulation_results_2021-03-31-14      GCACGGCCGATCCCCCCTATACTATGAGATATGACCTACGTATACTCCTATGGAGAGACA
+                                                                  *                               
+
+simulation_results_2021-03-31-14      A----------------
+simulation_results_2021-03-31-14      -----------------
+simulation_results_2021-03-31-14      -----------------
+simulation_results_2021-03-31-14      -----------------
+simulation_results_2021-03-31-14      -----------------
+simulation_results_2021-03-31-14      GAG--------------
+simulation_results_2021-03-31-14      GCCGACGGTAATGAGTA
+                                                       

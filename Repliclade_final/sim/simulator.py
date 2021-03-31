@@ -431,7 +431,7 @@ class Simulator(object):
 
             tree, post_sim_seqs = self.simulate_ancestor(ancestral_seq, seq_util.mu, entropy_scores)
 
-            filename_results = file_util.write_to_fasta_sim_results(post_sim_seqs, tree)
+            filename_results = file_util.write_to_fasta_sim_results(post_sim_seqs, tree, filename)
 
             seq_util.align_sequences_muscle_file(filename_results)
 

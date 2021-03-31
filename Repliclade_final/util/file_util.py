@@ -154,17 +154,17 @@ class FileStream(object):
         return best_hsp
 
 
-    def write_to_fasta_sim_results(self, sequences, nodes):
+    def write_to_fasta_sim_results(self, sequences, nodes, filename_original):
         from util.seq_util import SequenceUtil
         seq_obj = SequenceUtil()
-
+        filename_original = filename_original.replace(".fasta", "").replace(".FASTA", "")
         filename = 'simulation_results_{}'.format(seq_obj.get_time())
         DNA_dir = os.getcwd() + os.path.sep + 'DNA' + os.path.sep
         with open(DNA_dir+'{}.fasta'.format(filename), 'w') as open_file:
             for seq in sequences:
                 for node in nodes:
                     if node.get_sequence() == seq:
-                        open_file.write('>{0}\n{1}\n'.format(node.num, seq))
+                        open_file.write('>{0}\n{1}\n'.format(filename_original + "_sim_" + str(node.num), seq))
         return filename
 
     
