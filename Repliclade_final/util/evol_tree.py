@@ -181,7 +181,7 @@ class Phylogenize(object):
         
     
     def prompt_tree_builder(self):
-        choices = ['upgma', 'parsimony', 'nj']
+        choices = ['upgma', 'parsimony', 'nj', 'ml']
         print("How would you like to build the phylogenetic tree of the simulation?")
         method = input("You can select nj=neighbor joining, upgma=UPGMA, parsimony=Maximum Parsimony: ")
         while method not in choices:
@@ -194,6 +194,7 @@ class Phylogenize(object):
         from Bio.Phylo.TreeConstruction import ParsimonyScorer, NNITreeSearcher, ParsimonyTreeConstructor
         from util.file_util import FileStream
         from Bio import Phylo
+        
 
 
         file_tool = FileStream()
@@ -214,6 +215,34 @@ class Phylogenize(object):
         print(pars_tree)
 
         Phylo.draw(pars_tree)
+
+    
+    def maximum_likelihood(self):
+        ############IN PROGRESS###############
+        import os
+        from Bio import AlignIO
+        from util.file_util import FileStream
+        from Bio import Phylo
+        from Bio.Phylo.Applications import PhymlCommandline
+
+        print(os.getcwd())
+
+        phyml_ex_path = os.getcwd() + os.sep + 'alignment' + os.sep + 'executables' + os.sep
+        if os.name == 'nt':
+            phyml_ex_path = phyml_ex_path + 'PhyML-3.1_win32.exe'
+        else:
+            phyml_ex_path = phyml_ex_path + 'PhyML-3.1_macOS-MountainLion'
+        
+
+
+        file_tool = FileStream()
+        alignment_file = file_tool.most_recent_file()
+        aln = AlignIO.read(alignment_file, 'clustal')
+
+        phyml = PhymlCommandline(cmd=phyml_ex_path, input=alignment_file)
+        out_log, err_log = phyml()
+
+
 
 
 

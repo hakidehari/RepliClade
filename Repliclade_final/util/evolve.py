@@ -128,7 +128,7 @@ class Kimura(object):
     def calculate_matrix(self, alpha, beta, t):
         '''
         Markov model which defines the probability substitution matrix
-        in the current generation
+        in the given unit of time
         '''
         transition = .25 + .25*(math.e**(-4*beta*t)) - .5*(math.e**(-2*(alpha + beta)*t))
         transversion = .25 - .25*(math.e**(-4*beta*t))
