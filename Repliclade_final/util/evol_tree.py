@@ -237,10 +237,19 @@ class Phylogenize(object):
 
         file_tool = FileStream()
         alignment_file = file_tool.most_recent_file()
-        aln = AlignIO.read(alignment_file, 'clustal')
+        converted_file = os.getcwd()+os.sep+'alignment'+os.sep+'align'+os.sep+'converted_phyl.phy'
+        aln = AlignIO.convert(alignment_file,
+                             'clustal',
+                             converted_file,
+                             'phylip-relaxed')
+        for _ in range(500):
+            phyml = PhymlCommandline(cmd=phyml_ex_path, input=converted_file)
+            out_log, err_log = phyml()
+            dnd_file = converted_file + '_phyml_tree.txt'
+            tree = Phylo.read(dnd_file, 'newick')
+            Phylo.draw(tree)
 
-        phyml = PhymlCommandline(cmd=phyml_ex_path, input=alignment_file)
-        out_log, err_log = phyml()
+
 
 
 
