@@ -93,16 +93,30 @@ class JukesCantor(object):
         return ret_seq
 
     
-    def roll_indel(self):
-        pass
+    def insert_indel(self, seq):
+        roll = random.randint(1, 3)
+        indel_len = roll * 3
+        pos = random.randint(0, len(seq) - 1)
+        indel = ''.join([random.choice(self.seq_list) for _ in range(indel_len)])
+        return seq[:pos] + indel + seq[pos:]
 
 
-    def delete_indel(self):
-        pass
+    def delete_indel(self, seq):
+        roll = random.randint(1, 3)
+        indel_len = roll * 3
+        region = random.randint(0, len(seq) - indel_len + 1)
+        return seq[:region] + seq[region+indel_len:]
 
+    
+    def execute_indel(self, seq):
+        self.t += 1
+        self.calculate_matrix(self.alpha, self.t)
+        roll = random.random()
+        if roll <= .5:
+            return self.delete_indel(seq)
+        else:
+            return self.insert_indel(seq)
 
-    def insert_indel(self):
-        pass
 
 
 ###########################################################################################
@@ -197,16 +211,30 @@ class Kimura(object):
         return ret_seq
 
     
-    def roll_indel(self):
-        pass
+    def insert_indel(self, seq):
+        roll = random.randint(1, 3)
+        indel_len = roll * 3
+        pos = random.randint(0, len(seq) - 1)
+        indel = ''.join([random.choice(self.seq_list) for _ in range(indel_len)])
+        return seq[:pos] + indel + seq[pos:]
 
 
-    def delete_indel(self):
-        pass
+    def delete_indel(self, seq):
+        roll = random.randint(1, 3)
+        indel_len = roll * 3
+        region = random.randint(0, len(seq) - indel_len + 1)
+        return seq[:region] + seq[region+indel_len:]
 
+    
+    def execute_indel(self, seq):
+        self.t += 1
+        self.calculate_matrix(self.alpha, self.beta, self.t)
+        roll = random.random()
+        if roll <= .5:
+            return self.delete_indel(seq)
+        else:
+            return self.insert_indel(seq)
 
-    def insert_indel(self):
-        pass
 
 ###############################################################################
 
@@ -304,17 +332,30 @@ class Felsenstein(object):
         self.calculate_matrix(self.t)
         return ret_seq
 
+    
+    def insert_indel(self, seq):
+        roll = random.randint(1, 3)
+        indel_len = roll * 3
+        pos = random.randint(0, len(seq) - 1)
+        indel = ''.join([random.choice(self.seq_list) for _ in range(indel_len)])
+        return seq[:pos] + indel + seq[pos:]
 
-    def roll_indel(self):
-        pass
 
+    def delete_indel(self, seq):
+        roll = random.randint(1, 3)
+        indel_len = roll * 3
+        region = random.randint(0, len(seq) - indel_len + 1)
+        return seq[:region] + seq[region+indel_len:]
 
-    def delete_indel(self):
-        pass
-
-
-    def insert_indel(self):
-        pass
+    
+    def execute_indel(self, seq):
+        self.t += 1
+        self.calculate_matrix()
+        roll = random.random()
+        if roll <= .5:
+            return self.delete_indel(seq)
+        else:
+            return self.insert_indel(seq)
 
 
 
@@ -411,16 +452,30 @@ class Kimura3P(object):
         return ret_seq
 
     
-    def roll_indel(self):
-        pass
+    def insert_indel(self, seq):
+        roll = random.randint(1, 3)
+        indel_len = roll * 3
+        pos = random.randint(0, len(seq) - 1)
+        indel = ''.join([random.choice(self.seq_list) for _ in range(indel_len)])
+        return seq[:pos] + indel + seq[pos:]
 
 
-    def delete_indel(self):
-        pass
+    def delete_indel(self, seq):
+        roll = random.randint(1, 3)
+        indel_len = roll * 3
+        region = random.randint(0, len(seq) - indel_len + 1)
+        return seq[:region] + seq[region+indel_len:]
 
+    
+    def execute_indel(self, seq):
+        self.t += 1
+        self.calculate_matrix(self.alpha, self.beta, self.t)
+        roll = random.random()
+        if roll <= .5:
+            return self.delete_indel(seq)
+        else:
+            return self.insert_indel(seq)
 
-    def insert_indel(self):
-        pass
 
 
 ###############################################################
@@ -504,8 +559,29 @@ class HKY85(object):
         return ret_seq
 
     
-    def roll_indel(self):
-        pass
+    def insert_indel(self, seq):
+        roll = random.randint(1, 3)
+        indel_len = roll * 3
+        pos = random.randint(0, len(seq) - 1)
+        indel = ''.join([random.choice(self.seq_list) for _ in range(indel_len)])
+        return seq[:pos] + indel + seq[pos:]
+
+
+    def delete_indel(self, seq):
+        roll = random.randint(1, 3)
+        indel_len = roll * 3
+        region = random.randint(0, len(seq) - indel_len + 1)
+        return seq[:region] + seq[region+indel_len:]
+
+    
+    def execute_indel(self, seq):
+        self.t += 1
+        self.calculate_matrix()
+        roll = random.random()
+        if roll <= .5:
+            return self.delete_indel(seq)
+        else:
+            return self.insert_indel(seq)
 
 
 class Tamura92(object):

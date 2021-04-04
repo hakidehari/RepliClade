@@ -262,6 +262,16 @@ class SequenceUtil(object):
         return False
 
     
+    def roll_indel(self):
+        # Julienne M. Mullaney1,2, Ryan E. Mills4, W. Stephen Pittard5 and Scott E. Devine1,2,3,∗
+        THRESHOLD = .2
+        roll = random.random()
+        if roll < THRESHOLD:
+            return True
+        return False
+
+
+    
     def get_gc_content(self, seq):
         if len(seq) == 0:
             return 0

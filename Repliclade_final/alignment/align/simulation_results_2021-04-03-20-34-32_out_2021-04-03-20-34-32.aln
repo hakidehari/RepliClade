@@ -1,0 +1,212 @@
+MUSCLE (3.8) multiple sequence alignment
+
+
+cytochrome_b_1_sim_1      -----------------------AAAAAAACAAAAATAAAAAATACATATAAAAATAACC
+cytochrome_b_1_sim_2      ----------------------AAAAAAAAAAAAAAAATAAAAAAAAAAAAAAAAAAACA
+cytochrome_b_1_sim_4      ---------------AAAAATAAAAAATATTAAAAATAAAAAAAAATAAGAAAAAAAAAA
+cytochrome_b_1_sim_5      AAAAAAAAAAATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAACAAAAAAATTA
+cytochrome_b_1_sim_3      -------------------------------AAAAATAAAAAAACTAAATAAAAATAATA
+cytochrome_b_1_sim_6      ---------------------AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+cytochrome_b_1_sim_7      -----AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+cytochrome_b_1_sim_8      ----AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                                                         ***** * ****     * ***** *   
+
+cytochrome_b_1_sim_1      TATAT-----ATATAATTATATAATAAAAATTACATACCTTTAATATAAAAACAATTT--
+cytochrome_b_1_sim_2      AAAAAATTATAATAAAAAAAACAAAAAAAAAAATAAATAAAAAAAAAAAATATAATAA--
+cytochrome_b_1_sim_4      AAAAAAAAATAAAAAAAAAAAAAACAAAAAAAAAAAAATAACAAAAAAAAAAAAA-----
+cytochrome_b_1_sim_5      AATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATACTAAAAAAAAAAATAAAATAAAA
+cytochrome_b_1_sim_3      TAA---------------------------------------------------------
+cytochrome_b_1_sim_6      AAAAAAAAAAAAAAAAAAAAAAAATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATAAA
+cytochrome_b_1_sim_7      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATAAAA
+cytochrome_b_1_sim_8      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                           *                                                          
+
+cytochrome_b_1_sim_1      -ATAAGCTAAAAAATTAAAAAAAATACAACAAATATAAATAATATTAATTTTATAAAATC
+cytochrome_b_1_sim_2      -ATAAACCAAAAAAATTAACACAAAAAAAAAAATAAAAAAAATAAAAATATAAAGAAAAA
+cytochrome_b_1_sim_4      ---AAAATAAAAAACTAAAAAAAAAAAAAAAAAAAAAAAAAATA------------AAAT
+cytochrome_b_1_sim_5      TAAAAAATAAATAAATAAAAAAAAAAAAAAAAATAAAAAACATAAATAAAATAAAAAAAC
+cytochrome_b_1_sim_3      --------AAAAAAAAAAAAAAAAAAAAAAAAATAAAAAAAAAAA---------------
+cytochrome_b_1_sim_6      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+cytochrome_b_1_sim_7      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAT
+cytochrome_b_1_sim_8      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                                  *** **   ** * ** * ** *** * ***  * *                
+
+cytochrome_b_1_sim_1      ATAAATTATTTAAAATAATAAAA-------------TATAAACTATTAAAAAACAAAATA
+cytochrome_b_1_sim_2      ATAAAAAAAAAAATAAAAAAAAA-------------AAAAAATAAAAAAAAAAAAAAAAA
+cytochrome_b_1_sim_4      AAAAAAAAAAAAAAACATAAAAT-------------TAAAAATAATATAAAAAAAAAAAA
+cytochrome_b_1_sim_5      AAAATAAAAAAAAAAAAAGGAAAATAAAAATAAAATAAAAAAAAATAAAAAAAAATATAA
+cytochrome_b_1_sim_3      ------------------------------------TATAAAAATATAAAAAAAAAAAAA
+cytochrome_b_1_sim_6      AAAAAAAAAAAAAAAAAAAAAAA-------------AAATAAAAAAAAAAAAAAAAAAAA
+cytochrome_b_1_sim_7      AAAAAAAAAAAAATAAAAAAAAA-------------AAAAAAAAAAAAAAAAAAAAAAAA
+cytochrome_b_1_sim_8      AAAAAAAAAAAAAAAAAAAAAAA-------------AAAAAAAAAAAAAAAAAAAAAAAA
+                                                               *  **      ***** * *  *
+
+cytochrome_b_1_sim_1      ATTATAAAAAATTATTAA--AAATAAAAAAATAATATAATTAAAAAAAAAAATAAAAAAA
+cytochrome_b_1_sim_2      AAAAAATATAATAAAAAAATAAAAAAAAAAATAAAAAAAAATAAAAAAAAAATAAAAATA
+cytochrome_b_1_sim_4      ATAAAATAATACAAAAAA--AAAAAAAAAAATAAAAAAAAAAAAAAAAAAAATAAAAAAA
+cytochrome_b_1_sim_5      AATAAAAAAAACATACAA--AAAAAAAAAAATAAAAAAAACTAAATAAAAAAAAAAAAAA
+cytochrome_b_1_sim_3      ATTAAAAA------------AAAAAAAAAAATAAAAAAAATAAAAAAAAAAATAAAAAAA
+cytochrome_b_1_sim_6      AAAAAAAAAAAAAAAAAA--AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+cytochrome_b_1_sim_7      AAAAAAAAAAAAAAAAAA--AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+cytochrome_b_1_sim_8      AAAAAAAAAAAAAAAAAA--AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                          *  * * *            *** ******* ** * **   *** ****** ***** *
+
+cytochrome_b_1_sim_1      AACCTACAAAAAAATATCAACTAAAAATTATATTAATAAAATAAAATATAAAATATAATA
+cytochrome_b_1_sim_2      AAAATATAAAAAAA-------AAAAAAAAAAATAAACAAAAAAAAAAATTAAATATAATA
+cytochrome_b_1_sim_4      AA-----AAAACAAATATAAAATATTAAAAAATAAATAAATAAAAAAAAAAAAAATTTAA
+cytochrome_b_1_sim_5      AAAATAAAAAAAAAAAAAAAAATAATAAAACTAAAAACGAAAAAAAAAAAAAAAATAAAA
+cytochrome_b_1_sim_3      A------AAAAAAACAAAAAATTATAAATAAAAAAAAAAAATAAAAAAAAAAATATTATA
+cytochrome_b_1_sim_6      AAAAAATAAAAAAAAAAAAAAAAAAAAATAAAAAAAAAAAAAAAAATAAAAAAAAAAAAA
+cytochrome_b_1_sim_7      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+cytochrome_b_1_sim_8      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                          *      **** **         *  *  *    **   *  **** *  *** *    *
+
+cytochrome_b_1_sim_1      TAAAATTCAAAAATTATAAATTAAACAAAAAAATAAAAAA---------------AATAT
+cytochrome_b_1_sim_2      AAAAAAAAAAAAA---------AAAAAAAAATATAAAA-----------------AAAAT
+cytochrome_b_1_sim_4      AAAAAAAAAAAAAACATAAAAAAATAAAAAATAAA--------------------AAAAA
+cytochrome_b_1_sim_5      AAAAAAAAAAAAAAAATAAATAAAAAAAAAAAAAATAAATACAATAAAATAAAAAAAAAT
+cytochrome_b_1_sim_3      AAAAAATAAAAAA---------AAAAAAAAAAAAA--------------------TAAAT
+cytochrome_b_1_sim_6      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+cytochrome_b_1_sim_7      AAAAAAAAAAAAAAAAATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+cytochrome_b_1_sim_8      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                           ****   *****         **  ***** * *                     * * 
+
+cytochrome_b_1_sim_1      AAAAAAAAAATTCAAAAAATACTCAAACAATAAAAATCAAATA-----------------
+cytochrome_b_1_sim_2      AAAAAAAAAA---AAAAAATAAGCAAAAAAAAAAAATAAACAATAAAA------------
+cytochrome_b_1_sim_4      AAAAATAATATACAAAAAATAAACAAAAAAAAAAAAAAA---------------------
+cytochrome_b_1_sim_5      AAAAAAAATATAAAAAAAAAAAAAACAAAAAAAAAATAAAAAAAAAAAAAAAAATAAATA
+cytochrome_b_1_sim_3      AAAAAATAAAATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAT-----------------
+cytochrome_b_1_sim_6      AAAAAAAAAAATTAAAAAAAAATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+cytochrome_b_1_sim_7      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATAAAAAAAAAAAAAAA
+cytochrome_b_1_sim_8      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                          *****  * *   ****** *   * * ** *****  *                     
+
+cytochrome_b_1_sim_1      ------------------------------------------------------------
+cytochrome_b_1_sim_2      ------------------------------------------------------------
+cytochrome_b_1_sim_4      ------------------------------------------------------------
+cytochrome_b_1_sim_5      AAAAACAGCAAAAAAAAAAAAATAAAAAAAAAAAAATAAAATAAAAAAAAAATAAAAAAT
+cytochrome_b_1_sim_3      ------------------------------------------------------------
+cytochrome_b_1_sim_6      ATATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAATAAAAA
+cytochrome_b_1_sim_7      AAATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATAAA
+cytochrome_b_1_sim_8      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                                                                                      
+
+cytochrome_b_1_sim_1      ------------------------------------------------------------
+cytochrome_b_1_sim_2      ------------------------------------------------------------
+cytochrome_b_1_sim_4      ------------------------------------------------------------
+cytochrome_b_1_sim_5      ACAAATAAAAAATAAAAAAAAAAATCAAATAAAAAAAAAAAAACAAAAAAAAAAAAAAAA
+cytochrome_b_1_sim_3      ------------------------------------------------------------
+cytochrome_b_1_sim_6      AAAAAATAAAAAAAAAAAAAAAAAAAAAATAAAAAAAAAAAAAAAAAAAAAAAAA-----
+cytochrome_b_1_sim_7      AAAAAATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATAAA
+cytochrome_b_1_sim_8      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                                                                                      
+
+cytochrome_b_1_sim_1      ------------------------------------------------------------
+cytochrome_b_1_sim_2      ------------------------------------------------------------
+cytochrome_b_1_sim_4      ------------------------------------------------------------
+cytochrome_b_1_sim_5      AAAAAAATAAAATAAAATAAAAAAAAAAAAAAAACAATAAAAAAAAAAAAAATTAAATTA
+cytochrome_b_1_sim_3      ------------------------------------------------------------
+cytochrome_b_1_sim_6      ---------------AAAAAAAAAAGAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA
+cytochrome_b_1_sim_7      AAAAAAAAAATAAATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+cytochrome_b_1_sim_8      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                                                                                      
+
+cytochrome_b_1_sim_1      ------------------------------------------------------------
+cytochrome_b_1_sim_2      ------------------------------------------------------------
+cytochrome_b_1_sim_4      ------------------------------------------------------------
+cytochrome_b_1_sim_5      AAAAATAAATAACAAAAAAAAAAAATAAATAAAAAAAAAAAAATAAAAAAAATAAAAAAA
+cytochrome_b_1_sim_3      ------------------------------------------------------------
+cytochrome_b_1_sim_6      AAAAAAAAATAAAAAAAAAAATAAAAAAAAAAAAAAAAAAAAATAAAAAAAAAAAAAAAA
+cytochrome_b_1_sim_7      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATAGAAAAAAAAAAAAAA
+cytochrome_b_1_sim_8      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATAAAAAAAAAAAAAAAA
+                                                                                      
+
+cytochrome_b_1_sim_1      ------------------------------------------------------------
+cytochrome_b_1_sim_2      ------------------------------------------------------------
+cytochrome_b_1_sim_4      ------------------------------------------------------------
+cytochrome_b_1_sim_5      AAAATTAAAAAAAAAAAAAATAAATAAAACAATAAAAAAAA-------------------
+cytochrome_b_1_sim_3      ------------------------------------------------------------
+cytochrome_b_1_sim_6      AAAAAAAAAAAAAAAAAAAA----------------------------------------
+cytochrome_b_1_sim_7      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATA-----------------------
+cytochrome_b_1_sim_8      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                                                                                      
+
+cytochrome_b_1_sim_1      --------AAAAAAATAACAA---AAAAACAAAAAAATAAATATCTTTAAATAATACATA
+cytochrome_b_1_sim_2      --------AAAAAAAAAAAAA---AAAAAAAAAAAAATAAA-------AAAAAAAATATT
+cytochrome_b_1_sim_4      --------AAAAAAAACAAAA---AAAAAAAAAAAAATAAATAAAAATAAAAACAACAAA
+cytochrome_b_1_sim_5      ------AAAAAAAAATTAAAATTTAAAAAAAAACAAATAAATAAAA--AAAAAAAAAATA
+cytochrome_b_1_sim_3      --------AAAAAAATTAAAA---AAAAAAAAAAAAATAAA-------AAAAAAAACATA
+cytochrome_b_1_sim_6      ------AAAAAAAAAATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATAAA
+cytochrome_b_1_sim_7      ------AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATAAAAAAAAAAAAAAAAAA
+cytochrome_b_1_sim_8      AAAAATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                                  *******  * **   ***** *** *** ***       *** *  * *  
+
+cytochrome_b_1_sim_1      ACTATCATCAAAATAAAACTTATAAATAAAAAAAAAA---ATAAAAAAATAAAAAACATT
+cytochrome_b_1_sim_2      A-----AAAAAAACAAAAAATATAAAAAAAAAAAAAA---AATAAAAAAAAAAAAA----
+cytochrome_b_1_sim_4      A-------------------AAAAATTAAAAAAAATA---ATAAAAAAATAAAAAATA--
+cytochrome_b_1_sim_5      AAAAAAAAAAAAATAAAAAAAAAATATAAAAAAAAAATATATAACAAAATAAAAAAAAAT
+cytochrome_b_1_sim_3      AATAT---------------AAAAAATAAAAAAAAAA---ATAAAAAAAAAAAAAA----
+cytochrome_b_1_sim_6      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATAAAAAAAAAAAAAAA
+cytochrome_b_1_sim_7      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+cytochrome_b_1_sim_8      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                          *                    * *   ******** *   *  * **** ******    
+
+cytochrome_b_1_sim_1      TTATACACGAAATACAA------AAAAATAAAAAAAAAAATTAATAAATAATAAAAAAAA
+cytochrome_b_1_sim_2      --------AAAAAACAA------AAAAATTATAAAAAATAAATAAAAATAAAAAAAAAAA
+cytochrome_b_1_sim_4      -----------------------AAAAAAAAAAAAAAAATAAAAAAAAAACAAAAAAAAA
+cytochrome_b_1_sim_5      TATAAAATAAAAAATAAAAATTTAAAAAATAAAAAAAAAAAAAAAAAATAAAAAAAAAAA
+cytochrome_b_1_sim_3      ----------ATAATAA------AAAAAAAAAACAAAATAAAAAAAAATATAAAAAAAAA
+cytochrome_b_1_sim_6      AAAAAAAAAAAAAATAA------AAAAAAAAAAAAAAAAAAAAAATAAAAAAAAAAAAAA
+cytochrome_b_1_sim_7      AAAAAAAAAAAAAAAAA------AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+cytochrome_b_1_sim_8      AAAAAAAAAAAAAAAAA------AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                                                 *****  * * ****     *  ** *  ********
+
+cytochrome_b_1_sim_1      AATAATAAATAATAAAAACTAAAAAAAAAATAATAACAAAAAATAAAAAATCAAATTCAC
+cytochrome_b_1_sim_2      TAAAAAAAAAAAAAAAAACTAAAAAAAAATTAAATAAATAAAAAACAATA---------A
+cytochrome_b_1_sim_4      AAAAAAAAAAAAAAAATAATAAAATAAAAACAAAAATAAAAAAAAAAAAT-----TTATA
+cytochrome_b_1_sim_5      AAAAATAAAAACTAAAAAATAAAAAAAAAATAAAAAAAAAAAATAAAAAA--AAATAAAA
+cytochrome_b_1_sim_3      TAAAAAAAA----AAAAAATAAAAAAAAAATAAAAAAAAAAAAAAAAAAT---AATTAAA
+cytochrome_b_1_sim_6      AAAAAAAAAAAAAAAAATATAAAAAAAAAAAAAAAAAAATAAAAAAAAAAAAAAAAAAAA
+cytochrome_b_1_sim_7      AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+cytochrome_b_1_sim_8      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                           * ** ***    ***     *** ****  **  * *  *** * **            
+
+cytochrome_b_1_sim_1      ATAAA-------------AATAAAAAAAAAAAACACCAAAAAAT----TAAAAATTAAAA
+cytochrome_b_1_sim_2      ATATA-------------AATAAAAAAAAATAAAAAATAAAAATACTAAAAAAATAAAAA
+cytochrome_b_1_sim_4      AAATA-------------ATTAAAAAAAAAAAAAAAAAAATAATAATAAAAAAAAAAATA
+cytochrome_b_1_sim_5      AAAAAAATTAAAAATAATAATAAAAAAAAAAAAAAAAAAAAAAAATTAAAAAAAAAAAAA
+cytochrome_b_1_sim_3      AGAAA-------------AATAAAATAAAAAAATCAAAAAATAA---AAAAACATCAAAA
+cytochrome_b_1_sim_6      AAAAA-------------AACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+cytochrome_b_1_sim_7      AAAAA-------------AATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+cytochrome_b_1_sim_8      AAAAA-------------AATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                          * * *             *  **** **** **     **  *      *** *  ** *
+
+cytochrome_b_1_sim_1      ATATAAAATCATAAATAAAAAAAAAAAATAATTTAAAAATACAAA---------------
+cytochrome_b_1_sim_2      AAAAAAAATAATAAATAAAAAAAAAAAAAATATAAAAAAAAA------------------
+cytochrome_b_1_sim_4      AAAAAAAAAAAAAAAATAATAAAAAAAATAAAAATAAAAAA-------------------
+cytochrome_b_1_sim_5      AAAAAAATAAAAATAAAAACAAAAAAAATAAAAAAAAAATAAATAAAAAAAAAAAAAAAA
+cytochrome_b_1_sim_3      AAAAAAAAAAAAACATAAAAAAAAAAAAAAAATAAAAA----------------------
+cytochrome_b_1_sim_6      AAAAAAATAAATAAAAAAAAAAAAAAAAAAAAAAAAAAAA--------------------
+cytochrome_b_1_sim_7      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATAAAAAATAAAAAAAA
+cytochrome_b_1_sim_8      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                          * * ***   * * *  ** ******** *     ***                      
+
+cytochrome_b_1_sim_1      ------------------------------------------------------------
+cytochrome_b_1_sim_2      ------------------------------------------------------------
+cytochrome_b_1_sim_4      ------------------------------------------------------------
+cytochrome_b_1_sim_5      AAAAAACATAAAAAAAAAAATAAATAAAAAAAAAAAAATAAAAA----------------
+cytochrome_b_1_sim_3      ------------------------------------------------------------
+cytochrome_b_1_sim_6      ------------------------------------------------------------
+cytochrome_b_1_sim_7      AAA---------------------------------------------------------
+cytochrome_b_1_sim_8      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                                                                                      
+
+cytochrome_b_1_sim_1      ------------
+cytochrome_b_1_sim_2      ------------
+cytochrome_b_1_sim_4      ------------
+cytochrome_b_1_sim_5      ------------
+cytochrome_b_1_sim_3      ------------
+cytochrome_b_1_sim_6      ------------
+cytochrome_b_1_sim_7      ------------
+cytochrome_b_1_sim_8      AAAAAAAAAAAA
+                                      

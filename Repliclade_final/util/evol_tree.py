@@ -183,9 +183,9 @@ class Phylogenize(object):
     def prompt_tree_builder(self):
         choices = ['upgma', 'parsimony', 'nj', 'ml']
         print("How would you like to build the phylogenetic tree of the simulation?")
-        method = input("You can select nj=neighbor joining, upgma=UPGMA, parsimony=Maximum Parsimony: ")
+        method = input("You can select nj=neighbor joining, upgma=UPGMA, parsimony=Maximum Parsimony, ml=Maximum Likelihood: ")
         while method not in choices:
-            method = input("Invalid choice, please choose one of the options above (nj, upgma, or parsimony): ")
+            method = input("Invalid choice, please choose one of the options above (nj, upgma, parsimony, or ml): ")
         return method
 
     
@@ -203,9 +203,7 @@ class Phylogenize(object):
         aln = AlignIO.read(alignment_file, 'clustal')
         #instantiate parsimony scorer and NNI Tree Searcher
 
-        TREE_LIMIT = 500
         trees = []
-
         
         scorer = ParsimonyScorer()
         searcher = NNITreeSearcher(scorer)
@@ -242,12 +240,12 @@ class Phylogenize(object):
                              'clustal',
                              converted_file,
                              'phylip-relaxed')
-        for _ in range(500):
-            phyml = PhymlCommandline(cmd=phyml_ex_path, input=converted_file)
-            out_log, err_log = phyml()
-            dnd_file = converted_file + '_phyml_tree.txt'
-            tree = Phylo.read(dnd_file, 'newick')
-            Phylo.draw(tree)
+    
+        phyml = PhymlCommandline(cmd=phyml_ex_path, input=converted_file)
+        out_log, err_log = phyml()
+        dnd_file = converted_file + '_phyml_tree.txt'
+        tree = Phylo.read(dnd_file, 'newick')
+        Phylo.draw(tree)
 
 
 

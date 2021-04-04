@@ -8,6 +8,7 @@ from util.evol_tree import TreeNode, print_tree, Phylogenize
 import os
 import json
 import time
+import random
 
 
 GENE_NAME_LIST = [
@@ -316,7 +317,7 @@ class Simulator(object):
             while j < seq_count:
                 dup_event = seq_util.roll_duplication()
                 ext_event = seq_util.roll_extinction()
-                indel_event = model[j].roll_indel()
+                indel_event = seq_util.roll_indel()
                 current_seqs[j] = model[j].evolve(current_seqs[j])
                 tree[j].set_sequence(current_seqs[j])
                 if dup_event:
@@ -341,6 +342,10 @@ class Simulator(object):
                     j-=1
                     seq_count -= 1
                     ext_event = False
+                elif indel_event:
+                    current_seqs[j] = model[j].execute_indel(current_seqs[j])
+                    tree[j].set_sequence(current_seqs[j])
+                    new_gen.append(current_seqs[j])
                 else:
                     new_gen.append(current_seqs[j])
                 
@@ -458,6 +463,8 @@ class Simulator(object):
             if tree_prompt.lower() == "ml":
                 phylo.maximum_likelihood()
 
+            self.thesis_results_sim(ancestral_seq, entropy_scores, filename)
+
 
 
 
@@ -478,4 +485,31 @@ class Simulator(object):
     
     def fetch_gene_sequence_from_genbank(self, genes):
         return gen_con.fetch_sequences(genes)
+
+    
+    def thesis_results_sim(self, ancestral_seq, entropy_scores, filename):
+        #############special function used for masters thesis testing#############
+        global seq_util
+        for _ in range(100):
+            col_time = seq_util.coalescence_time
+            mu = seq_util.mu
+            seq_util = SequenceUtil()
+            seq_util.mu = mu
+            seq_util.coalescence_time = col_time
+            tree, post_sim_seqs = self.simulate_ancestor(ancestral_seq, seq_util.mu, entropy_scores)
+            filename_results = file_util.write_to_fasta_sim_results(post_sim_seqs, tree, filename)
+            seq_util.align_sequences_muscle_file(filename_results)
+            sim_aligned_seqs = file_util.read_from_alignment_results()
+            print([seq[1] for seq in sim_aligned_seqs])
+            #print(sim_aligned_seqs)
+            phylo = Phylogenize([seq[0] for seq in sim_aligned_seqs])
+            #print(phylo.calculate_distance_k2p())
+            tree_prompt = phylo.prompt_tree_builder()
+            if tree_prompt.lower() == 'upgma' or tree_prompt == 'nj':
+                calculator, dm = phylo.biopython_calc_distances_upgma_nj()
+                phylo.build_tree_upgma_nj(calculator, dm, tree_prompt)
+            if tree_prompt.lower() == 'parsimony':
+                phylo.build_tree_parsimony()
+            if tree_prompt.lower() == "ml":
+                phylo.maximum_likelihood()
 
