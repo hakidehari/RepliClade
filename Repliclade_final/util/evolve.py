@@ -577,11 +577,10 @@ class HKY85(object):
     def execute_indel(self, seq):
         self.t += 1
         self.calculate_matrix()
-        roll = random.random()
-        if roll <= .5:
-            return self.delete_indel(seq)
-        else:
-            return self.insert_indel(seq)
+        #if roll <= .5:
+           # return self.delete_indel(seq)
+        #else:
+        return self.insert_indel(seq)
 
 
 class Tamura92(object):

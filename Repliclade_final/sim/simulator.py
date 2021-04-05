@@ -281,9 +281,12 @@ class Simulator(object):
         Simulates using one ancestral sequence inferred
         '''
 
-        generations = self.prompt_time()
-        evol_model = self.prompt_model()
-        cr_inp = self.cr_prompt()
+        generations = 50000
+        evol_model = 'hasegawa'
+        cr_inp = 'N'
+        #generations = self.prompt_time()
+        #evol_model = self.prompt_model()
+        #cr_inp = self.cr_prompt()
 
         print("Beginning simulation...")
         start = time.time()
@@ -433,7 +436,8 @@ class Simulator(object):
             aligned_seqs = file_util.read_from_alignment()
 
             ancestral_seq = seq_util.coalesce_v2(aligned_seqs)
-
+            self.thesis_results_sim(ancestral_seq, entropy_scores, filename)
+            '''
             tree, post_sim_seqs = self.simulate_ancestor(ancestral_seq, seq_util.mu, entropy_scores)
 
             filename_results = file_util.write_to_fasta_sim_results(post_sim_seqs, tree, filename)
@@ -462,8 +466,8 @@ class Simulator(object):
                 phylo.build_tree_parsimony()
             if tree_prompt.lower() == "ml":
                 phylo.maximum_likelihood()
-
-            self.thesis_results_sim(ancestral_seq, entropy_scores, filename)
+            '''
+            
 
 
 
@@ -489,8 +493,11 @@ class Simulator(object):
     
     def thesis_results_sim(self, ancestral_seq, entropy_scores, filename):
         #############special function used for masters thesis testing#############
+        from Bio import Phylo
         global seq_util
-        for _ in range(100):
+        trees = []
+        tree_methods = {0: 'nj', 1: 'upgma', 2: 'parsimony', 3: 'ml'}
+        for _ in range(4):
             col_time = seq_util.coalescence_time
             mu = seq_util.mu
             seq_util = SequenceUtil()
@@ -504,12 +511,16 @@ class Simulator(object):
             #print(sim_aligned_seqs)
             phylo = Phylogenize([seq[0] for seq in sim_aligned_seqs])
             #print(phylo.calculate_distance_k2p())
-            tree_prompt = phylo.prompt_tree_builder()
+            #tree_prompt = phylo.prompt_tree_builder()
+            tree_prompt = tree_methods[_]
             if tree_prompt.lower() == 'upgma' or tree_prompt == 'nj':
                 calculator, dm = phylo.biopython_calc_distances_upgma_nj()
-                phylo.build_tree_upgma_nj(calculator, dm, tree_prompt)
+                trees.append(phylo.build_tree_upgma_nj(calculator, dm, tree_prompt))
             if tree_prompt.lower() == 'parsimony':
-                phylo.build_tree_parsimony()
+                trees.append(phylo.build_tree_parsimony())
             if tree_prompt.lower() == "ml":
-                phylo.maximum_likelihood()
+                trees.append(phylo.maximum_likelihood())
+        
+        Phylo.write(trees, os.getcwd() + os.path.sep + 'sim' + os.path.sep +  filename + "-trees.xml", "phyloxml")
+
 

@@ -163,9 +163,6 @@ class Phylogenize(object):
         from Bio.Phylo.TreeConstruction import DistanceTreeConstructor
         from Bio import Phylo
         #neighbor joining = 'nj', UPGMA = 'upgma'
-        TREE_LIMIT = 500
-        trees = []
-
         
         constructor = DistanceTreeConstructor()
         if method == 'nj':
@@ -176,7 +173,8 @@ class Phylogenize(object):
         print(tree)
             
 
-        Phylo.draw(tree)
+        #Phylo.draw(tree)
+        return tree
 
         
     
@@ -212,7 +210,8 @@ class Phylogenize(object):
         pars_tree = constructor.build_tree(aln)
         print(pars_tree)
 
-        Phylo.draw(pars_tree)
+        #Phylo.draw(pars_tree)
+        return pars_tree
 
     
     def maximum_likelihood(self):
@@ -245,7 +244,8 @@ class Phylogenize(object):
         out_log, err_log = phyml()
         dnd_file = converted_file + '_phyml_tree.txt'
         tree = Phylo.read(dnd_file, 'newick')
-        Phylo.draw(tree)
+        #Phylo.draw(tree)
+        return tree
 
 
 
