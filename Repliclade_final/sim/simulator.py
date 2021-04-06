@@ -276,13 +276,15 @@ class Simulator(object):
                 seq_util.align_results_w2_multiple(generation_dict, generations, seq_ids)
 
     
-    def simulate_ancestor(self, sequence, mu, entropy_scores):
+    def simulate_ancestor(self, sequence, mu, entropy_scores, model=None):
         '''
         Simulates using one ancestral sequence inferred
         '''
+        from Bio.Phylo.BaseTree import Clade, Tree
+        from Bio import Phylo
 
         generations = 50000
-        evol_model = 'hasegawa'
+        evol_model = model
         cr_inp = 'N'
         #generations = self.prompt_time()
         #evol_model = self.prompt_model()
@@ -303,6 +305,7 @@ class Simulator(object):
             model = [HKY85(sequence)]
 
         node_num = 1
+        clades = [Clade(name=str(node_num))]
         tree = [TreeNode(sequence, root=True, num=node_num)]
         current_seqs = [sequence]
         ext_dict = {}
@@ -312,6 +315,7 @@ class Simulator(object):
         new_gen = []
         all_seqs = []
         all_nodes = []
+        all_clades = []
         
 
         for i in range(generations):
@@ -328,6 +332,9 @@ class Simulator(object):
                     node_num += 1
                     new_gen.append(current_seqs[j])
                     new_gen.append(current_seqs[j])
+                    new_clade = Clade(name=str(node_num))
+                    clades.append(new_clade)
+                    clades[j].clades.append(new_clade)
                     child = TreeNode(current_seqs[j], num=node_num)
                     tree.append(child)
                     tree[j].add_child(child)
@@ -339,16 +346,18 @@ class Simulator(object):
                     ext_dict[i] = "Sequence \n{0}\n went extinct at time generation {1}".format(current_seqs[j], i)
                     all_seqs.append(current_seqs[j])
                     all_nodes.append(tree[j])
+                    all_clades.append(clades[j])
                     del model[j]
                     del current_seqs[j]
                     del tree[j]
+                    del clades[j]
                     j-=1
                     seq_count -= 1
                     ext_event = False
-                elif indel_event:
-                    current_seqs[j] = model[j].execute_indel(current_seqs[j])
-                    tree[j].set_sequence(current_seqs[j])
-                    new_gen.append(current_seqs[j])
+                #elif indel_event:
+                    #current_seqs[j] = model[j].execute_indel(current_seqs[j])
+                    #tree[j].set_sequence(current_seqs[j])
+                    #new_gen.append(current_seqs[j])
                 else:
                     new_gen.append(current_seqs[j])
                 
@@ -363,7 +372,8 @@ class Simulator(object):
                 break
             else:
                 generation_dict[i] = current_seqs
-
+        
+        all_clades.extend(clades)
         all_seqs.extend(current_seqs)
         all_nodes.extend(tree)
         end = time.time()
@@ -387,7 +397,12 @@ class Simulator(object):
             print("Here is the tree for node {0}:\n".format(node.num))
             print_tree(node)
 
-        return all_nodes, all_seqs
+        root_clade = [clade for clade in all_clades if clade.name == '1'][0]
+        true_tree = Tree(root=root_clade) 
+        print(true_tree)
+        #Phylo.draw(true_tree)
+
+        return all_nodes, all_seqs, true_tree
         
 
 
@@ -497,30 +512,34 @@ class Simulator(object):
         global seq_util
         trees = []
         tree_methods = {0: 'nj', 1: 'upgma', 2: 'parsimony', 3: 'ml'}
-        for _ in range(4):
-            col_time = seq_util.coalescence_time
-            mu = seq_util.mu
-            seq_util = SequenceUtil()
-            seq_util.mu = mu
-            seq_util.coalescence_time = col_time
-            tree, post_sim_seqs = self.simulate_ancestor(ancestral_seq, seq_util.mu, entropy_scores)
-            filename_results = file_util.write_to_fasta_sim_results(post_sim_seqs, tree, filename)
-            seq_util.align_sequences_muscle_file(filename_results)
-            sim_aligned_seqs = file_util.read_from_alignment_results()
-            print([seq[1] for seq in sim_aligned_seqs])
-            #print(sim_aligned_seqs)
-            phylo = Phylogenize([seq[0] for seq in sim_aligned_seqs])
-            #print(phylo.calculate_distance_k2p())
-            #tree_prompt = phylo.prompt_tree_builder()
-            tree_prompt = tree_methods[_]
-            if tree_prompt.lower() == 'upgma' or tree_prompt == 'nj':
-                calculator, dm = phylo.biopython_calc_distances_upgma_nj()
-                trees.append(phylo.build_tree_upgma_nj(calculator, dm, tree_prompt))
-            if tree_prompt.lower() == 'parsimony':
-                trees.append(phylo.build_tree_parsimony())
-            if tree_prompt.lower() == "ml":
-                trees.append(phylo.maximum_likelihood())
-        
-        Phylo.write(trees, os.getcwd() + os.path.sep + 'sim' + os.path.sep +  filename + "-trees.xml", "phyloxml")
+        models = ['hasegawa', 'felsenstein']
+        for model in models:
+            for i in range(100):
+                col_time = seq_util.coalescence_time
+                mu = seq_util.mu
+                seq_util = SequenceUtil()
+                seq_util.mu = mu
+                seq_util.coalescence_time = col_time
+                tree, post_sim_seqs, true_tree = self.simulate_ancestor(ancestral_seq, seq_util.mu, entropy_scores, model)
+                filename_results = file_util.write_to_fasta_sim_results(post_sim_seqs, tree, filename)
+                seq_util.align_sequences_muscle_file(filename_results)
+                sim_aligned_seqs = file_util.read_from_alignment_results()
+                print([seq[1] for seq in sim_aligned_seqs])
+                #print(sim_aligned_seqs)
+                phylo = Phylogenize([seq[0] for seq in sim_aligned_seqs])
+                #print(phylo.calculate_distance_k2p())
+                #tree_prompt = phylo.prompt_tree_builder()
+                for _ in range(4):
+                    tree_prompt = tree_methods[_]
+                    if tree_prompt.lower() == 'upgma' or tree_prompt == 'nj':
+                        calculator, dm = phylo.biopython_calc_distances_upgma_nj()
+                        trees.append(phylo.build_tree_upgma_nj(calculator, dm, tree_prompt))
+                    if tree_prompt.lower() == 'parsimony':
+                        trees.append(phylo.build_tree_parsimony())
+                    if tree_prompt.lower() == "ml":
+                        trees.append(phylo.maximum_likelihood())
+                trees.append(true_tree)
+                Phylo.write(trees, os.getcwd() + os.path.sep + 'sim' + os.path.sep + 'results' + os.path.sep + 'trees' + os.path.sep + filename + "-trees_{0}_{1}.xml".format(model, i), "phyloxml")
+                trees = []
 
 

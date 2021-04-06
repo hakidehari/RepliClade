@@ -6,7 +6,7 @@ def print_tree(root):
     # Standard level order traversal code
     # using queue
     q = []  # Create a queue
-    q.append(root); # Enqueue root 
+    q.append(root) # Enqueue root 
     while len(q) != 0:
      
         n = len(q)
@@ -215,7 +215,6 @@ class Phylogenize(object):
 
     
     def maximum_likelihood(self):
-        ############IN PROGRESS###############
         import os
         from Bio import AlignIO
         from util.file_util import FileStream
@@ -230,7 +229,6 @@ class Phylogenize(object):
         else:
             phyml_ex_path = phyml_ex_path + 'PhyML-3.1_macOS-MountainLion'
         
-
 
         file_tool = FileStream()
         alignment_file = file_tool.most_recent_file()

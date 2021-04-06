@@ -361,6 +361,7 @@ class SequenceUtil(object):
 
         print("Please select an evolutionary model for the coalescent simulation.\n")
 
+        
         evol_model = sim_obj.prompt_model()
 
         print("Simulating the Coalescent.  This may take a while...")
