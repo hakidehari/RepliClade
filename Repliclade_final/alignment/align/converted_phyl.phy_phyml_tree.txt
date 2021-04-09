@@ -1,1 +1,1 @@
-(cytochrome_b_1_sim_5:0.61811901,cytochrome_b_1_sim_4:0.50343492,(cytochrome_b_1_sim_2:0.63845962,(cytochrome_b_1_sim_1:0.70011910,cytochrome_b_1_sim_3:0.67321448)0.893000:0.19641435)0.968000:0.28778569);
+(AGP_sim_1:0.57463219,AGP_sim_2:0.43976668,AGP_sim_3:0.40823910);

@@ -512,9 +512,9 @@ class Simulator(object):
         global seq_util
         trees = []
         tree_methods = {0: 'nj', 1: 'upgma', 2: 'parsimony', 3: 'ml'}
-        models = ['hasegawa', 'felsenstein']
+        models = ['felsenstein']
         for model in models:
-            for i in range(100):
+            for i in range(54, 100):
                 col_time = seq_util.coalescence_time
                 mu = seq_util.mu
                 seq_util = SequenceUtil()
