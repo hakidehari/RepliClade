@@ -1,0 +1,164 @@
+MUSCLE (3.8) multiple sequence alignment
+
+
+cytochrome_b_1_sim_3      TCATTGCCTCCAGCGTGCATCGCAA------CTCTGGGGGCGTCCGGCGTTCTCTGATCC
+cytochrome_b_1_sim_2      TGGTCGTCCGTAG-ATACAAGCTAATCCAGGCTCGGGGCGGGGCCGGAATTTTAT--CCG
+cytochrome_b_1_sim_1      -CATCGGGCGCGG---ACGCTATAT------CCCGAGACCCAATCG----TATGAAGTTT
+cytochrome_b_1_sim_4      -GTTCGGGTATTG-------------------ACGGGACCCGCCC-----TCTGTGGTTA
+                             * *      *                    *  *       *     * *       
+
+cytochrome_b_1_sim_3      GCTGACTCCCGCCTCTCGGACCACGCGT----------TGGGTCTAGTACTATATGATTG
+cytochrome_b_1_sim_2      GCTGAGCAGGGCGTCGTT-ACGGCGCATCCCTCCGTTGTGGGCCGTGCCTGGAATAGTG-
+cytochrome_b_1_sim_1      ACTGAGTAGGACGTAAC--ACCAAAGATGAGTTCAAA-TGGGTAATAAC--ACATAGTT-
+cytochrome_b_1_sim_4      AC-GGCGGGGATGTGCCTAGCCAATCCCAATCCCAAT-TGGGCCTGCACCGATATAGTC-
+                           * *         *      *                 ****           **  *  
+
+cytochrome_b_1_sim_3      TTAAGAAATGCGCCCTAATTCT------TGGGAGAACATCTTTATGGGTTCTGTGCGTCT
+cytochrome_b_1_sim_2      ---------GAACGATAACGTTTTCAAGTGACACCCGATCCTAACGGCGTTGAAATAAGC
+cytochrome_b_1_sim_1      ---CGACAGGTGTCCTAGGTCTTCAGCCTGTGG--AGACCCGTA-GGCCCTAAGACAGCT
+cytochrome_b_1_sim_4      ---TCAGTAGCGTC----TATTTCATACTGGGATCAGAGTCCT--GGCTGTTGATCCAAT
+                                   *           *      **       *       **             
+
+cytochrome_b_1_sim_3      TAGGGTTAACGTCGGAATAGACACAGCTGCACTTCAGCCGTCTAA---------------
+cytochrome_b_1_sim_2      TTGGGTTAT------AACAGTCATGTCGA-ACGTGCGGG--CTAGCAGGCTAT-------
+cytochrome_b_1_sim_1      TCGAACGATTTTT--AAGAAACGTGTCTG-ACCAGAGGTTCCCAACGTTCTACGCTGACA
+cytochrome_b_1_sim_4      CAATACA--------AAAAAGCGCAGCAA-GCACCAGGTACCTAGTAGTAAATCTTCACT
+                                         ** *  *    *    *    *    * *                
+
+cytochrome_b_1_sim_3      ------GGCGCGCTCGCGTTGGTT------TACGTTC--TCCGAGATTGGAGTAT-----
+cytochrome_b_1_sim_2      -CGATTGGTGCACGCAACTGTATC------GAATTTCATCCACGCGATTGAACATCGGTT
+cytochrome_b_1_sim_1      TAGTTCGCTACAATCGGCTT----------GAAGTTTGTCCCGGGGTTTGAGTCCTACGT
+cytochrome_b_1_sim_4      GCGATAATCGTAGCCAGCGGTACTCATTCATAGCTTTCACCTAGCGTCAGAGAACTTCTT
+                                        *                *  **    *        **         
+
+cytochrome_b_1_sim_3      ----GGCGCAAATAGAACCAACTCTCCTTATCTACAATGGCTCCTTGGATAGG-------
+cytochrome_b_1_sim_2      T---AGCGCTA-TAGGCCCGAAAGGGTTTAACCGTCGTGTACACTCACGTGTCACCCACC
+cytochrome_b_1_sim_1      GTCGGACGATA----------------TCACTCATAGCGCTATCTCAGGTGGC---CATG
+cytochrome_b_1_sim_4      A-CAGACGAGGGGAGACTGGGGGTGATTTAGCGAACGCTCTATCCAGGGTGCTACGGACA
+                                **                   * *             *     *          
+
+cytochrome_b_1_sim_3      -------------------------CGTGCTACAAACGCCTG------------------
+cytochrome_b_1_sim_2      ACTCCTGCCTACGCATCGCCTGGCCTATGCTACACAGATTCGACGTTTAAATCACCCGCC
+cytochrome_b_1_sim_1      TAGCCCA------------------TAAGTTTCACAAATCTGTTGCTCAA---------C
+cytochrome_b_1_sim_4      GAGCCGACAT--------------TTTTACTATGCGCA-CTGACGTTCAGAATCAGGAAC
+                                                        *          *                  
+
+cytochrome_b_1_sim_3      --CTGGAACCCCTACCTCCGACGTCGCGGTGCCCCCTGTGAGTACACCCTCGGCAATTCG
+cytochrome_b_1_sim_2      GACTAA------TTCTTACAATACGGGGATCGGCCGAAGAAAACTA--------------
+cytochrome_b_1_sim_1      GCCCCATTCATCCTCTTTCGATGGTGACGACTATCAGGTAAGCAAG--------------
+cytochrome_b_1_sim_4      GGCTCG-----CCAATTTCACCACTGATGTTTGCAAGAGAGGGACA--------------
+                            *             * *      *                                  
+
+cytochrome_b_1_sim_3      TACGAACTTTCTGGTCAGGACACCGTCACTGGACGCTGCGGATGAACAGCCACAGCTCCT
+cytochrome_b_1_sim_2      -ACGGTTAGC---ATTTGAACGCAGCTTACACAGTATAATTCCAAACAGCCCTAGTAGGA
+cytochrome_b_1_sim_1      -ACG--TATCCTGAT--GAGCTCCGTACTTACTCTATGGCAAAAGAACACCCCGAGTCTC
+cytochrome_b_1_sim_4      -GCGCACTTCTTGAGGGTACTTCAGCTATTATTCGCTGTTGTAAAAGTGGGCTTGTACGG
+                            **                  * *           *        *              
+
+cytochrome_b_1_sim_3      CGTGGGAAAAGCGAACTGATCGCTCTAGGGCACTGGC-----TGTACTCCAATGCGAACC
+cytochrome_b_1_sim_2      TGAGAGA----TTAAGCAACTCCTCAAGGCTACTAGCTACGCTGTTCTGGGGCGCCACGC
+cytochrome_b_1_sim_1      C----------CTAACTTTCAGCCTTAATTCGC---CCTCGATGAACTTTAGTATCAGG-
+cytochrome_b_1_sim_4      TTCCTGC----CTAAGTCCCCACGCATAGTCACCAGCCTC--CATTCGTCATTGTCATAC
+                                       **       *         *   *         *         *   
+
+cytochrome_b_1_sim_3      CATCGA----------------CGTGCTGAGC-CACGGATTGCAATCTTTACCAACT---
+cytochrome_b_1_sim_2      CATT-------------------ACTGTCAGC---------TCGCTACTGCCGAGCCCAT
+cytochrome_b_1_sim_1      -----------------------AACATCAGC----AAACCTTAATGCCGTCCTGCTCTA
+cytochrome_b_1_sim_4      TATCGGGAGGGAAGCTGTGTACAATGATCAGTGTATAACTCCCATTGTTGCCTAGTTCAC
+                                                     * **              *     *        
+
+cytochrome_b_1_sim_3      -----------------ATGCGCATCTGCTGTGTGTCTA----CGAACTTGGTGGCTGTC
+cytochrome_b_1_sim_2      AAGG-------------ACGTGGAAAGACAGTTCTTTGGCGA-GGGCTTCGGCAGTATCT
+cytochrome_b_1_sim_1      AGATCGCATGCCTTTTTGTCCATACTCACGATTACTCAACAATAGAACTTCACCGT----
+cytochrome_b_1_sim_4      GTAGCGTAACGAACTTCATGTACCCAGACAGTTTCGCTA--ATGGTACAGAGCGGCTTAA
+                                                      *  *            *         *     
+
+cytochrome_b_1_sim_3      TGGA----------ACG-GGTGGGTCTATTACGAAGACCTGGTGGTTTATTCAACGCCT-
+cytochrome_b_1_sim_2      T-------------ATTCAATGG----------------------TCTGTTAACCGCCTT
+cytochrome_b_1_sim_1      ------------------AACGG-----CGAGGAAGCCCT-----TCCACGATACGTTCT
+cytochrome_b_1_sim_4      CTCTAAGTGAAACCACGCGACGGGTATATGGGGGAGCGCT-----TCGGTTAAATAGCGG
+                                               **                      *              
+
+cytochrome_b_1_sim_3      --------ATTTTCAACCCAGTGTT--------CCGTTAGAGCTATGGACCATCA-----
+cytochrome_b_1_sim_2      ATCACG--ACGCAAGACCCTTCATT--CCACATCATTAGGCACTATTACTCATCAGGCGA
+cytochrome_b_1_sim_1      GCCATAGGAACCTCGACCTTGAATTGGTGAAAAC-----GAACCACT--CAATCACCTGT
+cytochrome_b_1_sim_4      GACTA---AACTTATCCCTAGCATTGACAACGACTCGCGGAGCCGGTGCTCATCATATGG
+                                  *       **     **        *     *  *        ****     
+
+cytochrome_b_1_sim_3      --G---GGGGATTAAATTAGGAATAC--ACCACCCTCAACGACT-----AATAGGCC-GC
+cytochrome_b_1_sim_2      CGG---GCGCGCTGTAGCCTAAGTACCGAACGAATACAATTAGA-----CACCATTC-GT
+cytochrome_b_1_sim_1      TCATCCGGATGCTTCGACGTCGGTGCTGGTCGCCGTCAGCGTCTAGCTCAATAGTTCTAC
+cytochrome_b_1_sim_4      GTGCCCAACTATTTAATCAACGGTGC-----GACTCTAACACC------GATCACTCTTC
+                                      *          * *           *            *     *   
+
+cytochrome_b_1_sim_3      TAAAGTAGCACCTTACGCGCGGGAGGAGGCAACTGATAGAAGTGGGGATCTCTGCATCTC
+cytochrome_b_1_sim_2      TAGAGTA-CTCTTTTCGGTTACACGTCAGAAGC----------------CTGT-------
+cytochrome_b_1_sim_1      TAAAGTT---CGCCGCAAACAACCGTACAATAC----------------CTGTATTTCAC
+cytochrome_b_1_sim_4      TAACGTTGCCGACCTTGAGAACGCGTCCGTAAC----------------TTCGGCATTCA
+                          **  **                  *       *                 *         
+
+cytochrome_b_1_sim_3      CGGGCCCGTAAGCCTAATAAACCCTATGAGAGACTATAATG----GTCACGTAG----AT
+cytochrome_b_1_sim_2      --TGCCTGCCCGC--TACCAACACTGTGCTAGAGTTTACGTAAGCGTGCC--------GT
+cytochrome_b_1_sim_1      AGAACTGTCTAGC--TACCCACGCTATTAGGGGGTGTGCTGGAGTACTACATGGAATCAT
+cytochrome_b_1_sim_4      GCCTCGTCCCAGCTTGATGGACCGTGGTCCTGA-------------------------AA
+                              *      **   *   **  *      *                            
+
+cytochrome_b_1_sim_3      TGCAGTTGTTTGCCAGACCCTGCGG-TGAGT----------CATAACCTCGGGTGGGGGT
+cytochrome_b_1_sim_2      TCTCGCGACCACTTGGCGACATATG-TGAGTCTCCCGACCTCATCACTTTGGGCTGG---
+cytochrome_b_1_sim_1      TCCCGCAA--GCTCAGATGTATTGG-GGATGAGCACCACTACAGAACAGTTGGCTCGGAG
+cytochrome_b_1_sim_4      TCCCGCCA--TGCCGGATCGGTTGGCTGATG----------CTTCGCAGTAGGTCAGAGC
+                          *   *          *        *  **            *    *    **   *   
+
+cytochrome_b_1_sim_3      GCTGACGGCCTTA----CGCCCTCACCAACTTTATGTACTCACGCCGTCACTAT---CGT
+cytochrome_b_1_sim_2      --------TCTCACTAGTGCATCCTACAGCCCGATAGTTGGAAGGTTTGACACAGTGTGC
+cytochrome_b_1_sim_1      GTCGCCCCCCTCG---GTGGCTCCTA---------AGTGGCCAGGCGT------------
+cytochrome_b_1_sim_4      AAACATC-CCTCGAACGTGTATTCTA-----CTATATCCACGAGCCGTGGCTTTGTGAGC
+                                   **       *    *                   *   *            
+
+cytochrome_b_1_sim_3      AATGCCATTTTATGGTATCACACCGAAGAAAACCTAC------CTGACGTTATCCATTAC
+cytochrome_b_1_sim_2      -ATG-TATTCAATGTAAACACGCGGATCCTCTCTTGCACTGAATAGGCCGGGTTAATTTC
+cytochrome_b_1_sim_1      -ATT-AATGCCGAGCGAACGCCCAACTGGTACTCTACAGGGAGCAGAACTTCTTGGTTC-
+cytochrome_b_1_sim_4      AACG-TAGTCGGT----------AGAGTGATTCCTGTAAGTAAAGGGACTTAATGATTA-
+                           *    *                           *          *          **  
+
+cytochrome_b_1_sim_3      CCCCGCCGACGGGCCAATA-----AGCCGGTCCCCGGTGATGCAAATCTTTATCTCGACA
+cytochrome_b_1_sim_2      CGCAGTATCCGAACTATAAAAAGGAGCCCACGCACGTTTGTGCAAAGCATAGTTGC----
+cytochrome_b_1_sim_1      -----------AGCTGTCA-----AGCCCGTACTC---------ACGTTTTATCGCGGTG
+cytochrome_b_1_sim_4      -----------------GAGATAGAGCATGT-----------------------------
+                                            *     ***                                 
+
+cytochrome_b_1_sim_3      CCAATTCAAGATATTGGTTAATTTGTTGGCCAGGCATTTCCCGCTCAAGGACACTAAACA
+cytochrome_b_1_sim_2      -------------------------------AGGCTACGAGGGATTAATGTC--------
+cytochrome_b_1_sim_1      CCATTCATT----------------------AATTAAGGCCTAATCCATGACGTGGCACG
+cytochrome_b_1_sim_4      -------------------------------ATGTAACTCGGGAGCGGTGAC-CAGTATA
+                                                         *                 * *        
+
+cytochrome_b_1_sim_3      TTGTGAG-TCACCAATCATAAAATGATTATGTATACTACCA---------------TGAG
+cytochrome_b_1_sim_2      ---------------CCGTCGAGCCGATGGGCTTGGTGCCG-------------------
+cytochrome_b_1_sim_1      TTAAATGTTGGATTTACATCAAACGATTGCACTAGGTATCAAAGCAACAGTAATACCCAG
+cytochrome_b_1_sim_4      GGGCGATTTCAATTACCATAAGGCGGATGATCTAGGAGTCAGCTGAACTGACAAACCAGT
+                                          * *        *           *                    
+
+cytochrome_b_1_sim_3      TTTCCTTTTGATCAATTGGGGAGGTACGCTCTGAGACCAACGGATTGTGGCGGTCCGACC
+cytochrome_b_1_sim_2      ---------GGCCTGGAATCGGCGTAAGAAAAGG-------AGGCTGTGGTAGCCTTACC
+cytochrome_b_1_sim_1      AGTACT---AGTTAACGCTAAGAGCACTCAACAGGCACCGTATGCAGCAGTTACTCGTCT
+cytochrome_b_1_sim_4      AGTTCTTCAAATTTGCAATCAATGCAAGTAAAAGTATCACCATGGTGC----ATCCGAAC
+                                                 * *                    *             
+
+cytochrome_b_1_sim_3      CAAAAAA-----ATGTTAGGAGCTTACGAAACGAACCTGTCACCGGGGCAATGTCTTAG-
+cytochrome_b_1_sim_2      AGCCAAGTCCTAGTACTGAGGACCTTACAGTCTACCCCCAGTTTT--------CCAGAGC
+cytochrome_b_1_sim_1      AGCTAGGAT---GTACTGTATGTATTAGAGACAAATCGGCGGACTGACTAAGATAACGGT
+cytochrome_b_1_sim_4      AAGCTGGACCAGATATGGAAACAGTGCGCGTCGAA---------TGATGAAAACTTGTGG
+                                       *          *      * *                        * 
+
+cytochrome_b_1_sim_3      ---GCCAATTTATCTAGTA------------GACGG------------------------
+cytochrome_b_1_sim_2      GCCGACAGTTTTCTTCTCACCCCCGCGTTACGATAATCATCATGCAGGTTGCCGGCCTCG
+cytochrome_b_1_sim_1      ACCGCGAGTTGCTTCTACG------------GAGTAGCAGC----------CTTGCATTA
+cytochrome_b_1_sim_4      GCCGTAAG--------GCA------------AATGGTTACC----------CCGTCTTC-
+                             *  *                         *                           
+
+cytochrome_b_1_sim_3      --------
+cytochrome_b_1_sim_2      ATGCTGAC
+cytochrome_b_1_sim_1      GTAAATCT
+cytochrome_b_1_sim_4      --------
+                                  

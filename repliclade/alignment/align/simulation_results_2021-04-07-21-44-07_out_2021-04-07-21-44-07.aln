@@ -1,0 +1,365 @@
+MUSCLE (3.8) multiple sequence alignment
+
+
+AGP_sim_4       ----------------------------------ATCAGATTGCTATCCCG--CCTTGCA
+AGP_sim_8       ----------------------CGAGCAAATTACTGGTGGCTGTCGATAG---CAACTGA
+AGP_sim_9       GTCACATGTTACCTCCAAACTAAATGAAGGTCTATATAGAGGGCGACTTTAACCTTGGCC
+AGP_sim_6       -----------------------------------TAAGGCTGCGAAT-----CGATATA
+AGP_sim_7       -------------------------------------------------------ATCCG
+AGP_sim_1       -------------------------------------AGCCTGACGAACAAACTAGATCA
+AGP_sim_3       -----------------------------------------------------GCTTGCA
+AGP_sim_2       ---------------------------------------CCTGTAGAT-----CGTTGCA
+AGP_sim_5       -------------------GGGTCCACGGTATTATTAGGACCGTGGACCACT-CCATACA
+                                                                            
+
+AGP_sim_4       CTTGTC-----------AAGCTTTTTCTACT-----------------TCGCGACTAT--
+AGP_sim_8       CTAAAGGG---------ATCCTTCCG----------------------------------
+AGP_sim_9       TTTAATC----------ATCCCTCTACCACGTCGGCGCGTTGAGGGGCTCGTTGGAATCC
+AGP_sim_6       AAGGTTAACTGGTTTATCTACTTCCGCTAGG-----------------TCCCGTGTCGCT
+AGP_sim_7       CTCGTAG-----------TGCCCCGGC---------------------------------
+AGP_sim_1       CCTAGTG----------CCACCCTTGCTATG-----------------CACTGGACATCA
+AGP_sim_3       CTCGA------------------CCGACACG-----------------CTGCGAGGCTCA
+AGP_sim_2       CAAAAAC----------CCACCCCCGTAGAT-----------------TCATGACAT---
+AGP_sim_5       TCTGAAGT---------TCATACCCACCAGG-----------------TCATCTACAGCC
+                                                                            
+
+AGP_sim_4       ----------------GACCATTCAGGAAATGATTAG---TTCCATTCGT------AAAC
+AGP_sim_8       ----------------GATAGCCGCAGTATAGTACAGGGTTCCTATAAGA------CTAC
+AGP_sim_9       ATAGCGCAACGTTTTAACCAATCGTGATAAGCATTTCCACTATAATGTGAATCGTCCGGC
+AGP_sim_6       AAAGCCATTCTACCCTTACCCTCTCAGGCACGGCTAA---ATTCACTTAT------CGGC
+AGP_sim_7       ----------------GCCAATT---GTACAAGACGA---GAGAACTTGC------CC--
+AGP_sim_1       ----------------ACCAGGTCGAGAAATCGTCCG---TTGGATGGGA------C---
+AGP_sim_3       AAGC------------TGCACCT---GGAATAATCAT---TTAGACTTGA------CTAT
+AGP_sim_2       ----------------GACAGTCGTCTGACAGCCCAA-----CTGCTTAG------CGGT
+AGP_sim_5       TAATACGGGACTGCAGGACATAT------CGGATCGA---TATAACGAGG------GGGT
+                                                                            
+
+AGP_sim_4       GACTCGAGTTCTGTTTAACTACATCAA------CGGGTGTCACTTTGAAAGAGTCGACGA
+AGP_sim_8       AATAACTAGGCGGAC------------------CTCGCGTAGGTCCCCCCAGAAGTATTG
+AGP_sim_9       AAGCTAAATGTGAATC-----------------GTTGGATCAACCCTTGCAACTAGATTG
+AGP_sim_6       GGCCATCGTATTAATGACGC-------------CATGAATAGACAGCCACAGACTAAAGG
+AGP_sim_7       -ACCGTAAGCAGATT------------------GATGGGTGGGCAC--CCCGGATGATGG
+AGP_sim_1       ---------------------------------CACATGAGAACCCGCCCATGATGACGG
+AGP_sim_3       AATCCTCAGTATGTTCTTGGTTGGCGG-----AGATGTAGAGTTTTTCAGAGTATATGTG
+AGP_sim_2       CCC------------------------------CACATGTAGATAC--TAGATATAAAGG
+AGP_sim_5       ACGCAATGTCTTAATTACCTGTAAGAGCTAATATATGTGTAAACCCCACTACTATCGTGC
+                                                                            
+
+AGP_sim_4       ATAAGAATACCCAATTTGAGCTCTCAGCGGGTAACAGAGCAT-CGCGGGAACATCATATT
+AGP_sim_8       T-----------------TCGTCGAGCCTTGTCTTAGGCATT-TGTTTAAAAGC------
+AGP_sim_9       A-CCTATGAGACTACTCTTAGTCAATGCGGACGATATCAGTTACATCGAGAAAAACTCTT
+AGP_sim_6       G--------------CTCAGCTTGAGCGGCGCCTGAGGCGGA-AATTAGGAAACA-----
+AGP_sim_7       G------------------------------GCGAAATCCGT-TATTAAATAGCTACA--
+AGP_sim_1       GTGGTGCGAGGCAACCTTAAGTTTCGGCACGCATTATCCTGC-TACCATTTAGCAATAAT
+AGP_sim_3       A--------------TGCAAAGTAACAATGGTGCTAGGGCGC-TGTTGGTGAAGTCCTCT
+AGP_sim_2       A---------------------CTAATAATGCGCTAAAATGT-CATTGAAGCACTGCCAT
+AGP_sim_5       A-----------------------------------ACATGT-TGTCGATAATCATAGAG
+                                                                            
+
+AGP_sim_4       ACCAGCCC-GATCGAG--------CCGAACGG----------------------------
+AGP_sim_8       -----------GAGCA--------CGGGATAGCCTTTGAC--------------------
+AGP_sim_9       AGTCGAGTCGCCCATGTGACTGCTCAGGCAGGTTCTAGGT--------------GAACTA
+AGP_sim_6       -----------TAACG--------CGGGG-------------------------------
+AGP_sim_7       ----------TTCTCG--------CCCAATGGAGACCCAT--------------------
+AGP_sim_1       ACTTTAAA-CCTTGTG--------CTGGAAGGGTCGATGT--------------------
+AGP_sim_3       AGAATG-G-GTCAACA--------CTGGCCTGGAACTGAGCACGCTCGAAGTTCAAAATT
+AGP_sim_2       TTTTGGTGCAGTTAAG--------CCGACCGTCTTCCGGT--------------------
+AGP_sim_5       ATTGGGTG-ACGCAGG--------CTGAATGGGATACCTT-----------TCACCGATG
+                                        *                                   
+
+AGP_sim_4       -------------TAGTTTTTTGATTCCTCAGCGTAGAATAGCCCGACAAGTAATTTAGA
+AGP_sim_8       --------------AGATTCTTGGATCTGAGGATGAAAATGGTACTAATCGAGGGCTTGT
+AGP_sim_9       ACTTACCTTAGTCCAGGTAGCATCGGCCGCGACAAATGGGCGTTCTGGTCAAAAACTAAT
+AGP_sim_6       ------------------------------------------------------------
+AGP_sim_7       -------------------TCATGTCTTTAAATTTACGTGAGTACAAGTAAGGCGTTAGG
+AGP_sim_1       ---------GCTACAGACAATGAAGAATAAGTTCGCGAAATGTGCCAACTGCAATTCTGA
+AGP_sim_3       CCATGTAGCACCCTAGCCACATGTTCACTGGTGTTCCATAAACCCCATTTTAAAATCTAG
+AGP_sim_2       --CAAGCGCATCTCCAGTCCGATCATTCACTGCCGAGGTCTGCACTAGCGTTGTATCTAA
+AGP_sim_5       TGGGTCACCATAACAGGACCAAACTCCCGCA--CCACCTTCGCTCCAGCTAAGCGTCAAA
+                                                                            
+
+AGP_sim_4       ACGCCTTTCCCGCAAGCTCGGCGGCCTCGTTTTTCCTC-----------GTGTATTTAAT
+AGP_sim_8       AT---------------CCGCCCAAGACCACACCCTGC----------------------
+AGP_sim_9       TCGATCACGCTCCATGGCTAAGATGGT--ATACCCCGC----------------------
+AGP_sim_6       --GCTCTTTGTGCGGCCCTTGACTGAACAATTCACCGT----------------------
+AGP_sim_7       AAGG-------------GTAAGCTCGCAAAGAGTTTCCATACAGAAAGTAACAATAAGTC
+AGP_sim_1       GGGTTCGTCAGTCG---CGGAATGAGCCAGTAACCCGC------------------TTAA
+AGP_sim_3       A-TGCCACCATAGTGTACCAGCCTGACTAAGGACATAC------------GCTCCGAGAT
+AGP_sim_2       AAGGTTATTGGGGCCGCCCATATCGGTAGATACCCTGT------------GGCCCCAAAC
+AGP_sim_5       T----------------GCTAATCGGTAGGGGATCCGC-----------TACTCCAGCAT
+                                                                            
+
+AGP_sim_4       GTCACATGAGCCTTCAAGATGGCTA--AAAAGGGACAACTAGCATAGGTAACACCAACAG
+AGP_sim_8       ----------------CAATGAGTGGCAGGAGGTTGAACCA--ATCGCCCTTTTTAATGA
+AGP_sim_9       ----------AGATAGCGCTGACTACACGCCGATAGGAATG--ATTTTTGATTTATATGG
+AGP_sim_6       ----CCGGAGATAACATGAATAAGGTAGAGAGGGTCACATA---TCGTGG-----CAGGA
+AGP_sim_7       GTGAGCGGAGAACCTTTGACTGGTCTCAGGGGTGGTATCTA---ACCTTAATATTTGACG
+AGP_sim_1       GACCCTTAGGAAAACTCGCTGACTCTAAAACGGGTCAAACG---TTATGGAGCTCTACGA
+AGP_sim_3       GATTCTTGAGGGATCCCGATCAGTC--AGACGAAACAAATGCAATCGTCCATATCGCAGA
+AGP_sim_2       CCCAATATCAAGACCCTGATGGTTT----AAGAGTCAGGTG----CGTCACTGGTCAAAT
+AGP_sim_5       GTTAAGATGGGTGCGTAGAGTACAAGAGTTAAGGAGAACTTCTGTTGTTTAGTTTTAGAA
+                                                                            
+
+AGP_sim_4       ATAATTGGCCCAC-----------------------------TCTATATTAATCGAGATG
+AGP_sim_8       CTACATATCCACCGAATTAGCAAACCTTTGTCCGAGACGCACTCCGTCTGGTGCAATGGG
+AGP_sim_9       TGAAATTCAGGATAGCCTCACGTATCTTGAAGCAG---------------GTTGGGAGGA
+AGP_sim_6       TTGGACGTCCAAC----CCACCCGTCATGGGATTGTGAG--GTAGATACCACTCC---GA
+AGP_sim_7       TCAGCTGTTGGGG--CGCTGCCCTATACGCCTCGCTAGG--GCCCGTCACATTCT---AC
+AGP_sim_1       T--GATCTCGAAC--TCTTGTCTCCCTCGTTGCGG------CCCTTTTTCTTACACTTGA
+AGP_sim_3       CTAAGCCTTTCAT--TCTGATC----------------G--GTCGTTATCCTGTGAAAAC
+AGP_sim_2       AGCAATGCTCAAT--CTCTGCGCATCGGGGTTAAG------TCCTATATAATGCC---GA
+AGP_sim_5       TAGTAAACCAGGG--CCTTA------------------------------ATTAGAGGGC
+                                                                            
+
+AGP_sim_4       CCA---------------------------------------GTGGTCTAAACCTACTAG
+AGP_sim_8       TAGAAC------------------------------------------TCGAGCAGACAG
+AGP_sim_9       TCGCCC---------------------------------TGGCTTCTTCGACTGAGTTCG
+AGP_sim_6       TAAGCC------------------------------------TCGGCCTGATCAGTGCTG
+AGP_sim_7       TGGAACTTTCAAGTTACCAAGGCCGGTCCGCTTAAACTCAGGGCGTTTCGACTGGACGGC
+AGP_sim_1       CTATAC---------------------------------CGACTAATTTCAAGACAATCA
+AGP_sim_3       CTGACG------------------------------------TGGGTTATAATGCAAACA
+AGP_sim_2       GTGAAC------------------------------------GCACTTTTGGTAGAGCAT
+AGP_sim_5       TAGCCT------------------------------------CTATTTCTGATTTACACT
+                                                                            
+
+AGP_sim_4       GTCACAGATA---TCAAATGTCTTTGGGGCCCAGCGAAAACCCGACTTAACATCGTCCAG
+AGP_sim_8       GTGGCTTGCTTTCAGTGTCGTCCTCACTGTAGAAGG-----ACCCTGTGGTCATACAAAA
+AGP_sim_9       GTAGCACACC---GTGAAGATTAATGA--------------CAATGTCGCACGCGGAGAG
+AGP_sim_6       GCTTCTCGTA---ATGGCCACTAGTGAAGGTTTAGG-----CCATACCGCTTCTGTCACT
+AGP_sim_7       GCGGTACGTA---TTAAGTATCAACAAAGAATGTCA-----CCCAATCGGTTCCATTTGA
+AGP_sim_1       CCATCCAGCT-------------------------------TCGTAACAATCATATCAAC
+AGP_sim_3       ACGTCATGTT---CCACTCGCCCATCATGATCTCCA-----TCGATCGGTCCATGGATAC
+AGP_sim_2       CATGCAGATG---TCGAATGGGTTTGCGGTGA---------CCACGAGAGCTTCCTATTG
+AGP_sim_5       CCTGCTAATGCTCCTGACCGCACTCGGTGCCA---------TAGCCGTACGCTCGTTAGA
+                                                                            
+
+AGP_sim_4       GTCGACAACTAGGAGAC-----------------------------ACAATCCTTGCGG-
+AGP_sim_8       ATGTATTGCGCGGATGGTCATAGTGACAGGTCCCCGTGTGAGTTTAGCATGTATGCTTT-
+AGP_sim_9       ACTGATCGCCCGAAGAT---------------------TGTCCACGACTACCAAGCTGGG
+AGP_sim_6       CCTGCGAGCGTAGG------------------------TTTGGGGAACCTCCGACGTGG-
+AGP_sim_7       GTTGATAACGCCAGACC---------------------TATTTGCAATAAGCTGACCAT-
+AGP_sim_1       CTGGGCAAGGAAGAATGGAACATGTTAGGTTACCAGCACTCACTTCTCGATC---CTGA-
+AGP_sim_3       TCAGACATCGCAGAACCACCCCACCG------------CAAGAGAGTTCATTCTCCTTA-
+AGP_sim_2       ACAGATACCACGGAATA-------------------------------GATGGTGCTGG-
+AGP_sim_5       ATCGACAGGTACAGATG------------------------GTGTAGTCATCATGCTAG-
+                                                                            
+
+AGP_sim_4       ----------AAGTTGG----CAAAAGATGGTGGTCTA-------------------TAC
+AGP_sim_8       ----------AACTCGGGCCTCGTGGAGTGTTAGACCC--------GGTCCTAGGTTCAT
+AGP_sim_9       GTGAGCACTAGACTTAGGCAAAGATAGACGGTAGTCTC------------GCCAATTTGA
+AGP_sim_6       ----------TAGCGCGACTACATGTCGTTTTACATTCGGC---TATATGGGCATGTTTT
+AGP_sim_7       ----------CAAGTGAAATAAAGAGATCAACAGTCTA----------------------
+AGP_sim_1       ----------CACGTCATATACAAAAGGTGAAGGATTAATCGCAACTTTGCAGATCCCTC
+AGP_sim_3       ----------AATCTTAGCCCCG-------------------------------------
+AGP_sim_2       ----------TGCGTTAAATGCGGACGTTGGTGCTCCA--------------TATTCCAT
+AGP_sim_5       ----------TATCTCTCCTATGGACCACGTTAGGCCG-----------------TATAT
+                                                                            
+
+AGP_sim_4       TCTAATGCGGAGAATATTAAAACACAGTAGACCT-------------CTAATAGGGAGTT
+AGP_sim_8       TTAAGGGCAGACGCTAGTTCCTCCAGACGAGTCAGCAGGGGA-----TCAGTAGTTACGT
+AGP_sim_9       CCTACGGTCTGTAC--------------CGGTCCTTCAATTAC----TAAATGCACGATA
+AGP_sim_6       TGCAGAACCAATAAGTTAGTGTCGGCCGTACACGTCCGACAC-----CCAACTGTGGGCG
+AGP_sim_7       ---AATGTGAGGGGTTAATTCGCAAGGTTGATTGTCAGGTC------TAATTGGTATATC
+AGP_sim_1       CTGAAGGCGAATAC-----TGTCAGCATTGAACTCTTGCTTGA----CTAGCGTTTATTG
+AGP_sim_3       CCTAACACGTGTTA------------GGTGATTACTTAAAACCAAAATAAGCGAGGATTT
+AGP_sim_2       CGTACTACCTGTGA------------CGTGGTCGCTTGATTTA----CGCTCGATGAACC
+AGP_sim_5       TCTAAAACCATAGA--------------AACTCGTTTGCTGT---------------ACT
+                   *                                                        
+
+AGP_sim_4       GCCTACGTA--------------------------------------CCTCCAGTAATCA
+AGP_sim_8       ATCAACATGCCCTGGCGACGTATACTTTTTTGGGTTCGACGATACGTCCCCTCGGATTAG
+AGP_sim_9       GTCAGAGTA--------------------------------------TGGCCCGGTGCAG
+AGP_sim_6       GCTGATGTT--------------------------------------TTACCTGTGTCGA
+AGP_sim_7       ATCCAAATA--------------------------------------TAGC---------
+AGP_sim_1       ATTGGCAGG---------------------------------------------------
+AGP_sim_3       GCAGGCA-----------------------------------------------------
+AGP_sim_2       GTGGACAGA--------------------------------------CGCCCTGGGTTAA
+AGP_sim_5       ATCGACGTG---------------------------------------------------
+                                                                            
+
+AGP_sim_4       GTGGAGG----------------------------ATGTTCTGTGTTGATGAAGATGATG
+AGP_sim_8       TTGGAGGAGAAATTACAAATCGCACTAGTGGAGCCATACTACGTGTCAGTTC-------T
+AGP_sim_9       TCTTGGATTCTGCAGCTAA----------------CTTCAACTTGCTAGCGA--------
+AGP_sim_6       CCTGATACATCGATAAAAG----------------TTCCTTCTAGTCAGCAA--------
+AGP_sim_7       -----------------------------------GAGCTTTGCGTAGGCCC--------
+AGP_sim_1       ---------------TTGAACGATCAAGAGGAAATATACTGCATATACTATCCATGCCTC
+AGP_sim_3       -----------------------------------GTGCCGCACGTCGG-----------
+AGP_sim_2       ---GAGATAATGCTATAGA----------------GTTGAACAAATGAGC----------
+AGP_sim_5       ----------AATAATAGA----------------GTCTCAAGTATCGGAGC--------
+                                                                            
+
+AGP_sim_4       GTGCCTACTATGAATATAATCCAAGGAATGTAATCCCTATGGGACCGTGTATGATACG-A
+AGP_sim_8       TCCTCCAGTTGGTATACGGACGTAGCACGAGCCACAGACTGTTACCCGTGAACATGCCAA
+AGP_sim_9       ----------CTGATAAAGACTACGACTTACGCTTATAATAAAAACACGCGCTAAATGTG
+AGP_sim_6       ------TCTCAGACCACCAGGCACATGCTAGCCGCTCTACACAGGCTCGGTCCTCTCG-G
+AGP_sim_7       ------ATCCATAGCCCCGCCCGCGAATATATATGCCGACGT----TCTCGCCAGGCG-A
+AGP_sim_1       TTCCCAGTTCAGGGTCTAACCACAAAATTGGAAGTTGAACAG-GCACCAAAACTGACG-G
+AGP_sim_3       ------------------------AGATTGGTTGTCTAACTC-ACCACAAATCCTACA-A
+AGP_sim_2       -------TTTGAGATCATAAAAGCGTACTTGTTTCTTACCGTCTCGGGAAACCCAGCGGT
+AGP_sim_5       -------TTCATGCCTAAGGAGGGGAACTGGCCGTACGGTGG-ACAGCAAAGTAACCGAG
+                                                                            
+
+AGP_sim_4       CTTTATGTACACCCATTAGCCGACGGTAGCTAAATAGTCAAACAAATTCAGATCCGTCTC
+AGP_sim_8       TTTGTTAGCTA-----------------------TGGCCCGACCAAGTTTTAGCCTTGTC
+AGP_sim_9       TTAAGTAATTCATTACTTTCCAGGGAAGAAAACTGATGTACACCTTCCTTTGTCCTCAAT
+AGP_sim_6       CT---------------------------------GAGTAAACTTTCCGGGGACCTGTTC
+AGP_sim_7       GT----------------------ATAGAATATCAGTTCAGACCGAGGCTAAACCCACCT
+AGP_sim_1       TTCGATCGCTCGTTATGTTGCGTGGCTCGCTTTCGA-----------TCAGAACTCTATA
+AGP_sim_3       CT----------------------------TCTTCATTTATATCACCCCTACACCCATTC
+AGP_sim_2       GCAGGGATGTAACGCTGAATCTATGTCGGCTACCACTGTAGCCTAAGTGCAATACCCTCC
+AGP_sim_5       TT---------------------------------ATCTAGGTCAACCCGTAACCCCAGC
+                                                                            
+
+AGP_sim_4       TAGCTGCTTC----------AAAATCCCCGACATCGACCTGAGTGTTCCTGTTCGGCCGG
+AGP_sim_8       A---------------GACTTGATTAGTAAGATTGAAGACGAA------------GTCGC
+AGP_sim_9       AGCGCCTGGT--------AGTACTTCAATAACATAGCCGTGAA------------GTCGC
+AGP_sim_6       GCTATGCGTA------GGTCTACCGGACTCAATCTATCCTGAATGTCTTTAT---AGATC
+AGP_sim_7       TCTCTTTTTAGGTTCAGATTATATTAGGCCATGTGGACAGGATAGTCCGCCT---ATCGC
+AGP_sim_1       GTGTTGCTTT-----CCATAATATTGATAGGAACTGGGATGACAGTTTCTGA---GT---
+AGP_sim_3       GCTTTACGGA------TGGTAAGTCGAGATGCTCGGAACTCAATTTT---GT---GCCGC
+AGP_sim_2       G-----------------AACAATTGTTCTGATTTGCGCTGATTGAT-GTGTCGGGAAGT
+AGP_sim_5       -CATTCCGAT-----------AATCGGGGTTTTTCGCCCACTCGCATCCCGT---GGAGC
+                                                                            
+
+AGP_sim_4       ACGGAAACAGGGGAATCAAGCATGAGGGGCG-----------------------------
+AGP_sim_8       TCCA-----------------ATTGCATATG-----------------------------
+AGP_sim_9       AC-------------------TCGAAGGACG-------------------------CACG
+AGP_sim_6       AGCACTACAGGC---------ACAACCCATA-----------------------------
+AGP_sim_7       GGCA-----------------CCAACGTATG-----------------------------
+AGP_sim_1       ---------------------GGGAGCGGTA-----------------------------
+AGP_sim_3       TTGAAC---------------TCGGCGAAGT-----------------------------
+AGP_sim_2       ATGACTTGGGTTAATAGGTTCACAAGATATATTACAGACAATAACAATGGCTTGAGCTAT
+AGP_sim_5       ACGATCCACTTATTACGACCACAAGTGTATA-----------------------------
+                                                                            
+
+AGP_sim_4       --TTGCCCGGTGAGCT----AGGT--CTTAGT------------CCCGCTAACTCTGAGC
+AGP_sim_8       --ATCGAAACTGAACTCTTAAAAT--CGCCGA------------CCCGATCAAATGATGC
+AGP_sim_9       AAAGCTCTAGGAAGCTGAGAGTTCAACGTTGT------------CGCATTCATGCAGGGT
+AGP_sim_6       --GTTTGAGATAATCTCGACGCCT--CTCTAA--------------------------AC
+AGP_sim_7       --ATCTCTTAGAATCTTAGGGGCG--CTCCAA------------TCCGGG---GGAG-AC
+AGP_sim_1       --ATATCGCAAAATGTTGTTACTA--TATTTT------------TCCGCT---TTAACAC
+AGP_sim_3       --ATTTCTGATGAACT-----------GTCAT------------TTCGCT---GCCGAAC
+AGP_sim_2       ACATTGCCAATGGAATGGCTACTC--CGTGGTAGTACACGACCAACCGCACCTGTGAAGC
+AGP_sim_5       --ATTCAGATTGAGGTGGTACCAC--CTCCGA------------TT------------AC
+                               *                                            
+
+AGP_sim_4       TAGCGGCCTTCCTAAATAATCGTACC----------------------------------
+AGP_sim_8       CGGAGGCATTCT--AGTGGACGTCCTTCAAGGAACAACCCGACTAATCATTTAGAATTGG
+AGP_sim_9       ACACGACT------GATTCATACGTTG----------------------------TCCCA
+AGP_sim_6       CAGCGGCTCTGA--CTTGCACGTGTTG-----------ATTCCGACTCTGGTATATCTGG
+AGP_sim_7       CGGTAAGATTCC--AATCCTTCCATTA-----------ATCGCTGATACCATATCAC---
+AGP_sim_1       ACATCGCCCCAA--CCAGATTTTCTCT-----------ATCGTGAGTGGAGGATATTAGG
+AGP_sim_3       TATCCACACAAT--GTTAGCTATACAT-----------ACC-------------------
+AGP_sim_2       CAATGACCCTGG--ATGGCAGACGCTA---------------CGTCTCAGACGCGACCGT
+AGP_sim_5       TGGCAACGTTAA--ATCGGAGATCTA--------------------------------CG
+                                                                            
+
+AGP_sim_4       -----ACTAGGGGAGATGGAAAAGGTAG---AGGCGTAGTAAATTTCGGTTTAGCGAAGC
+AGP_sim_8       TCAGACCTAGATGAAGAGATGAAATTAT---ATGAAGAATGCGCCTCGAATGTATGGCGC
+AGP_sim_9       TAATATTTAAGTGAGGTCTATGAGAAAT---CGGTTACACCCATCTTGACTAATAGGGGT
+AGP_sim_6       GCGAGACGATGCTAAGTATGCTACTTAC---CTCCTGACATAGTTAGGGGGGCCATACTC
+AGP_sim_7       ---ACTGTAGGCTACTGCTCCAACCAAA---CGTC--GCATGGGTGGGAGCATAATCCGA
+AGP_sim_1       ATTTGTCTAGGCAAG---------CTAC---AATGAAACACCGTCTAAGGCTCCAGTAAT
+AGP_sim_3       ------CAGTGCGACGTCAATATAAATG---CGA-----ACCGTCCCTAAAAAGCAGAGA
+AGP_sim_2       TTGTGCATACGCAATGTCTGAAAAGCTCGTATGTTTAAACTTCCCTTCATTGTGAGAAAC
+AGP_sim_5       GCACATTTATGTGAAGTC--------------------CAACGTGTAGGGTCTGTTGAGT
+                             *                                              
+
+AGP_sim_4       GGGCCTCTGCGAATCATATAAGCATCACATTTCCAACCCAAAGGGCAGAATGAATTTA--
+AGP_sim_8       AATCGGTG-------------------------------------TACTATTGACTCT--
+AGP_sim_9       GGCTCTCG----------------------------------TGGCGCTGTTAACCTCAT
+AGP_sim_6       GGTCGCCG-------------GGGCTCGGCCCCCGTGCGGTTCATGGGCGATAATCAA--
+AGP_sim_7       AATACTTG--------------------------ATACCGACTTGCCCTTTATATGCT--
+AGP_sim_1       GGTCGCTC-----------------CTTGGTTCGGTATCTTCTCCTGCTAGTTCATAC--
+AGP_sim_3       GGTACCGG----------------------TCCATTGAGGGGATACCCTGTTGGCAGC--
+AGP_sim_2       GGTCTCTA------------------------TCGATGTACCAAGAGGAGTTGACTAC--
+AGP_sim_5       GATCCCTGTTGCATTAATTGAGCCCCAAGACCCAGAGGT-----------TTGAACCT--
+                                                                            
+
+AGP_sim_4       -CGCCAATCTCATTGGGACC--AAGGACCGCTCAGAATCGTCTA----------------
+AGP_sim_8       -TTATGGCATACCGTGGAAGACTAAAGCGAGAGGGGTTTACCTG------GTGCGATACA
+AGP_sim_9       GCCGCGGCTCTCCGTTCGTTTGTCAAATCTTGCACGCTAATCGA----------------
+AGP_sim_6       -GAACAAATTTGTTGCGAAT--CACTAATCTGCTCGCAAAGCTG----------------
+AGP_sim_7       -GACCAACGTTGTTGCAATC--TAGGGCCAATATCAATAATCATTTGGGTTAGAGTGGCG
+AGP_sim_1       -CACATACATTGTCTTGGAG--TAAGGATATGCATGGTAGTCGC----------------
+AGP_sim_3       -CAACGACCAACGCTTGGAC--AAAGATTATGCGAGAGTAGCTGCGAGAACAGTAAGGTC
+AGP_sim_2       -AGAGTGCAATCCAGAAGAA--CATTAAGTGCCGTATTAGCCCCCTGACTCAGCGGG---
+AGP_sim_5       -CATCCGTAGACATTGTTCC----GCGCGTCGCCCGAAAAAGTGCCAGCATTGCGCGAAG
+                                                                            
+
+AGP_sim_4       CACCTGATATCGCTAAGGATTAGTGTATTTTCCTTATTCGGACTCAATAAGTAAGCAAGT
+AGP_sim_8       ATCTTGGTACCGTGCCGTCGGAAGTACTAGCTTTGCTCTCTGTTC---------------
+AGP_sim_9       -------TACCGTCACTGTTTA----------------------CTGCAACAAAATATCA
+AGP_sim_6       ----------------TGCCCGAAGTAGCAACCATCCCTCGATGATGCTGCGCCTCACTA
+AGP_sim_7       AGCCCCCTACCGCTTCGCCACAGAAAATAATACTCCCCTCTGCTGAATACGAATTAAGCA
+AGP_sim_1       ----------------------------------CCTCTTGACTTTAATAGGCTAATGTA
+AGP_sim_3       TTCCTCCAATCGCCAATACTTAGAAACGCACATAGCTCTCAGTTTGGCGCTCAAACAACA
+AGP_sim_2       -TATCGCTAATGTTGGTTTTTAGTAACCCGCACGGCCCGTGATTCAAGGAACTTGTAGTG
+AGP_sim_5       TCGTTCGTGTTAAGTGGACTCAGCACTCTGAATTTCCTTTGGCTTTGTGGCAAAACGGCC
+                                                                            
+
+AGP_sim_4       A-----------------------------ATTAGCAACCTTGAGTTCCTTCCGGCTATC
+AGP_sim_8       ------------------------------ATGTATGTGCCTTGGCACGCGCTAAAGATA
+AGP_sim_9       C-----------------------------AGAAGGGGGGATGGGCGCACTCGTGCGGGG
+AGP_sim_6       CATGCTCGTG--------------------GTGATCA---GGGGTTGAGTATTAGAAGCC
+AGP_sim_7       CCATTGGCTGTTACATCGTACATCTTGGTGTCAAACA---ACAGTCTCAGTTCAATAACT
+AGP_sim_1       CACC--------------------------AGAAAATATCAAAGGCGCATGTTAAACGCA
+AGP_sim_3       CCTT--------------------------GTGAGGT---AGTATCG-ACTTGTGCAGAA
+AGP_sim_2       ACT---------------------------ACTCAGAAAAACTTGCGCCCTCCGGCAGTA
+AGP_sim_5       CCCAGCAGCGACCAAGCGGAA---------GTGAATG---ATGGGATCACTCAATATGCG
+                                                                            
+
+AGP_sim_4       TCAA-AATTCGC------------------------------------------ACGTCC
+AGP_sim_8       TTAT-TCTT---------------------------------TTACCTTCCTTCGCCTCC
+AGP_sim_9       GAAAAAACG---------------------------------CTGTCATAGGATGCTCTC
+AGP_sim_6       TTAT-GCGAGGCAGGGGCTCTAACAGAGGGAACTATTGTAGTTAGTCGTGGTTCACGACT
+AGP_sim_7       CCAT-ACCCCGCG-----------------------------GTCTCACGTTCGACGTTC
+AGP_sim_1       CAAA-GGGAGTCTTCTGCTTCATCCTAATCGCA---------ATAGTATCCGATATTCAT
+AGP_sim_3       TAGC-GATTACTAATCGTTCTTCTCG----------------GGATTATGAGTTGCGGG-
+AGP_sim_2       CTCTCGCCCGGCAAGAG-------------------------CTGTTACGGCTTTCCCCC
+AGP_sim_5       TACT-ATTAGGCCACTCGCGCATCGGTATTGGCTAC------CTGTTATATTACACATCT
+                                                                            
+
+AGP_sim_4       GTCATTATATACTTTAACTTTT--------------------------CCTGCTCCCTAC
+AGP_sim_8       CTAGAACTGAGAGTTCGTCAAG--------------------------CTATGACCCGAG
+AGP_sim_9       GTTAAAT-----------------------------------------CTAAATCCCTAA
+AGP_sim_6       ATCA----TCCATTTA--------------------------------CTGTAGTCGATG
+AGP_sim_7       ATTC----ACCGTCCTGTGCTTTCTGTATGAATGCATTTCTGCCAAACCTAATTCCATAA
+AGP_sim_1       GTCCTCTTATAGTCTTCTGGTTTAAA----------------------CCAGGGTTAAAC
+AGP_sim_3       --------ACAAGTTAACGGTT--------------------------CCAACCCCTAAG
+AGP_sim_2       ACTCAATTATCCACTAAG------------------------------CTAACTTAAGAA
+AGP_sim_5       GTTAAACGGCTACTTACCCATTTCAGTACAGAGATAAAGTCGATACATATATAGTGCAGT
+                                                                            
+
+AGP_sim_4       ACA------ATCGCTGATGCTGTCCATCATATACTTAGATCTG-----------------
+AGP_sim_8       AATCTGATGGATACTGACGGTCTCTATG--------------------------------
+AGP_sim_9       GCA---------------------------------------------------------
+AGP_sim_6       CAGCAGACGGCGCGCAAGCCAGTTGAATGAATGGTGGTTCCGGCCATAAGGCTCAGAATT
+AGP_sim_7       AAGTCCATCATCAGATATAACACCAAAGGAAGACATCGGC--------------------
+AGP_sim_1       ACTTCTCTTCGCTCTCGCTCGCCTAAGGAAACGCCCATACC-------------------
+AGP_sim_3       AAGTAGATTCT----------ATGAAAAAAACACCTGGACTTTGCACAAGATTACCGAGG
+AGP_sim_2       GAGT--------------------------------------------------------
+AGP_sim_5       GCACCTATGGTCGC------------GTGAATACCTCGGTCTCTATT-------------
+                                                                            
+
+AGP_sim_4       ------------------------------------------------------------
+AGP_sim_8       ------------------------------------------------------------
+AGP_sim_9       ------------------------------------------------------------
+AGP_sim_6       ACCGCGCACTCCCCTTCTCTCGAGGTCA--------------------------------
+AGP_sim_7       ---ACCTTCCAATCACTCCGCGC-------------------------------------
+AGP_sim_1       ------------------------------------------------------------
+AGP_sim_3       AAGGCCGTACTACCCTGCCGCATCCGATGGTTTGGATCTCTGCAAGTTGCTAGATTTGTC
+AGP_sim_2       ------------------------------------------------------------
+AGP_sim_5       ------------------------------------------------------------
+                                                                            
+
+AGP_sim_4       -----------------
+AGP_sim_8       -----------------
+AGP_sim_9       -----------------
+AGP_sim_6       -----------------
+AGP_sim_7       -----------------
+AGP_sim_1       -----------------
+AGP_sim_3       TTCAAGAGTTTAGGAGG
+AGP_sim_2       -----------------
+AGP_sim_5       -----------------
+                                 
