@@ -2,7 +2,7 @@ from __future__ import division
 import random
 import numpy as np
 import math
-from util.seq_util import SequenceUtil
+from repliclade.util.seq_util import SequenceUtil
 
 
 seq_util = SequenceUtil()
@@ -645,7 +645,7 @@ class HKY85(object):
 
 
 class Tamura92(object):
-    def __init__(self, frequences):
+    def __init__(self, frequencies):
         self.t = 0
         self.K = 0.25
         self.frequencies = frequencies

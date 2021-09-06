@@ -1,20 +1,12 @@
 from __future__ import division
 from Bio.Align.Applications import (
-    ClustalOmegaCommandline,
     ClustalwCommandline,
     MuscleCommandline,
 )
-from Bio.Phylo.TreeConstruction import (
-    ParsimonyScorer,
-    NNITreeSearcher,
-    ParsimonyTreeConstructor,
-)
-from Bio import SeqIO
-from Bio import Phylo
-from Bio import AlignIO
+from Bio import Phylo, AlignIO
 from Bio.Seq import Seq
 from datetime import datetime
-from util.file_util import FileStream
+from repliclade.util.file_util import FileStream
 import numpy as np
 import os
 import random

@@ -1,10 +1,7 @@
-import sys
 import os
 from config import config
-from DNA import *
-from Bio import Entrez
-from Bio import SeqIO
-from Bio.Blast import NCBIWWW, NCBIXML
+from Bio import Entrez, SeqIO
+from Bio.Blast import NCBIWWW
 import base64
 
 

@@ -1,3 +1,11 @@
+from Bio.Phylo.TreeConstruction import DistanceCalculator, DistanceTreeConstructor, ParsimonyScorer, NNITreeSearcher, ParsimonyTreeConstructor
+from Bio.Phylo.Applications import PhymlCommandline
+from Bio import AlignIO, Phylo
+from repliclade.util.file_util import FileStream
+import numpy as np
+import os
+
+
 def print_tree(root):
 
     if root == None:
@@ -62,9 +70,6 @@ class Phylogenize(object):
         """
         Calculates pairwise distances for the Jukes Cantor Model
         """
-
-        import numpy as np
-
         dist_matrix = [[0] * len(self.__sequences) for seq in self.__sequences]
         for i in range(len(self.__sequences)):
             for j in range(len(self.__sequences)):
@@ -87,9 +92,6 @@ class Phylogenize(object):
         """
         Calculates pairwise distances for the Kimura 2P Model
         """
-
-        import numpy as np
-
         transversions = {
             "A": ["C", "T"],
             "G": ["C", "T"],
@@ -128,10 +130,6 @@ class Phylogenize(object):
         return dist_matrix
 
     def biopython_calc_distances_upgma_nj(self):
-        from Bio.Phylo.TreeConstruction import DistanceCalculator
-        from Bio import AlignIO
-        from util.file_util import FileStream
-
         file_tool = FileStream()
         # read most recent alignment file
         alignment_file = file_tool.most_recent_file()
@@ -144,9 +142,6 @@ class Phylogenize(object):
         return calculator, dm
 
     def build_tree_upgma_nj(self, calculator, dm, method):
-        from Bio.Phylo.TreeConstruction import DistanceTreeConstructor
-        from Bio import Phylo
-
         # neighbor joining = 'nj', UPGMA = 'upgma'
 
         constructor = DistanceTreeConstructor()
@@ -173,15 +168,6 @@ class Phylogenize(object):
         return method
 
     def build_tree_parsimony(self):
-        from Bio import AlignIO
-        from Bio.Phylo.TreeConstruction import (
-            ParsimonyScorer,
-            NNITreeSearcher,
-            ParsimonyTreeConstructor,
-        )
-        from util.file_util import FileStream
-        from Bio import Phylo
-
         file_tool = FileStream()
         # read from most recent alignment file
         alignment_file = file_tool.most_recent_file()
@@ -201,12 +187,6 @@ class Phylogenize(object):
         return pars_tree
 
     def maximum_likelihood(self):
-        import os
-        from Bio import AlignIO
-        from util.file_util import FileStream
-        from Bio import Phylo
-        from Bio.Phylo.Applications import PhymlCommandline
-
         print(os.getcwd())
 
         phyml_ex_path = (

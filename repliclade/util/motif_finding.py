@@ -1,5 +1,5 @@
 from Bio import SeqIO
-from util.prb_motif import MotifPrb
+from repliclade.util.prb_motif import MotifPrb
 
 
 class MotifFinding:

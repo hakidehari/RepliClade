@@ -1,9 +1,9 @@
-from util.genbank_connector import GenBankConnector
-from util.file_util import FileStream
-from util.seq_util import SequenceUtil
-from util.motif_finding import MotifFinding
-from util.evolve import JukesCantor, Kimura, Felsenstein, HKY85
-from util.evol_tree import TreeNode, print_tree, Phylogenize
+from repliclade.util.genbank_connector import GenBankConnector
+from repliclade.util.file_util import FileStream
+from repliclade.util.seq_util import SequenceUtil
+from repliclade.util.motif_finding import MotifFinding
+from repliclade.util.evolve import JukesCantor, Kimura, Felsenstein, HKY85
+from repliclade.util.evol_tree import TreeNode, print_tree, Phylogenize
 import os
 import json
 import time
