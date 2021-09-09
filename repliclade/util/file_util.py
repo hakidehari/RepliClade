@@ -32,8 +32,6 @@ class FileStream(object):
         path_to_file = (
             os.getcwd()
             + os.path.sep
-            + "sim"
-            + os.path.sep
             + "results"
             + os.path.sep
             + "*.json"
@@ -49,8 +47,6 @@ class FileStream(object):
         path_to_file = (
             os.getcwd()
             + os.path.sep
-            + "sim"
-            + os.path.sep
             + "results"
             + os.path.sep
             + "*.fasta"
@@ -65,8 +61,6 @@ class FileStream(object):
         """
         path_to_file = (
             os.getcwd()
-            + os.path.sep
-            + "sim"
             + os.path.sep
             + "results"
             + os.path.sep
@@ -222,7 +216,7 @@ class FileStream(object):
 
     def write_to_fasta_results(self, seq_id, sequences):
         dest_dir = (
-            os.getcwd() + os.path.sep + "sim" + os.path.sep + "results" + os.path.sep
+            os.getcwd() + os.path.sep + "results" + os.path.sep
         )
         with open(
             dest_dir + "{}_results.fasta".format(seq_id.replace("|", "")), "w"
@@ -232,7 +226,7 @@ class FileStream(object):
 
     def write_to_fasta_results_multiple(self, seq_ids, sequences):
         dest_dir = (
-            os.getcwd() + os.path.sep + "sim" + os.path.sep + "results" + os.path.sep
+            os.getcwd() + os.path.sep + "results" + os.path.sep
         )
         with open(dest_dir + "post_sim_results.fasta", "w") as open_file:
             for i in range(len(sequences)):
@@ -244,7 +238,7 @@ class FileStream(object):
         """
         date_time = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
         path_to_file = (
-            os.getcwd() + os.path.sep + "sim" + os.path.sep + "results" + os.path.sep
+            os.getcwd() + os.path.sep + "results" + os.path.sep
         )
         filename = "sim_results_{}.json".format(date_time)
         with open(path_to_file + filename, "w") as open_file:
@@ -254,7 +248,7 @@ class FileStream(object):
     def log_simulation_output_to_json(self, output_dict):
         date_time = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
         path_to_file = (
-            os.getcwd() + os.path.sep + "sim" + os.path.sep + "results" + os.path.sep
+            os.getcwd() + os.path.sep + "results" + os.path.sep
         )
         filename = "sim_output_{}.json".format(date_time)
         with open(path_to_file + filename, "w") as open_file:
