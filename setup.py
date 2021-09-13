@@ -5,6 +5,7 @@ import versioneer
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
+
 def extract_requires():
     with open(os.path.join(HERE, "requirements/requirements.txt"), "r") as reqs:
         return [line.split(" ")[0] for line in reqs if not line[0] in ("-", "#")]
@@ -22,9 +23,5 @@ setup(
     include_package_data=True,
     install_requires=extract_requires(),
     data_files=[("requirements", ["requirements/requirements.txt"])],
-    entry_points={
-        "console_scripts": [
-            "repliclade = repliclade.__main__:main"
-        ]
-    }
+    entry_points={"console_scripts": ["repliclade = repliclade.__main__:main"]},
 )

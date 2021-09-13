@@ -9,7 +9,6 @@ from Bio import Phylo
 import time
 
 
-
 gen_con = GenBankConnector()
 file_util = FileStream()
 
@@ -126,7 +125,6 @@ class Simulator(object):
         """
         Simulates using one ancestral sequence inferred
         """
-        
 
         generations = 50000
         evol_model = model
