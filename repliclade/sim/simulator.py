@@ -1,11 +1,9 @@
 from repliclade.util.genbank_connector import GenBankConnector
 from repliclade.util.file_util import FileStream
 from repliclade.util.seq_util import SequenceUtil
-from repliclade.util.motif_finding import MotifFinding
 from repliclade.util.evolve import JukesCantor, Kimura, Felsenstein, HKY85
 from repliclade.util.evol_tree import TreeNode, print_tree, Phylogenize
 from Bio.Phylo.BaseTree import Clade, Tree
-from Bio import Phylo
 import time
 
 
@@ -49,7 +47,7 @@ class Simulator(object):
                         years_per_generation = float(years_per_generation)
                     except:
                         continue
-            generations = int(seq_util.coalescence_time / years_per_generation)
+            generations = int(self.seq_util.coalescence_time / years_per_generation)
             print("The simulation will run for {} generations".format(generations))
             return generations
         else:
@@ -291,7 +289,7 @@ class Simulator(object):
         ancestral_seq = self.seq_util.coalesce_v2(aligned_seqs)
 
         tree, post_sim_seqs = self.simulate_ancestor(
-            ancestral_seq, seq_util.mu, entropy_scores
+            ancestral_seq, self.seq_util.mu, entropy_scores
         )
 
         filename_results = file_util.write_to_fasta_sim_results(
