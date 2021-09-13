@@ -17,6 +17,7 @@ import time
 
 file_tool = FileStream()
 
+
 class SequenceUtil(object):
     """
     All functions related to working directly with sequences other than the motif
@@ -37,29 +38,17 @@ class SequenceUtil(object):
 
         print("Aligning sequences using ClustalW2...")
         time = self.get_time()
-        in_file = (
-            ReplicladeSettings.FASTAS_PATH
-            + "{0}.fasta".format(gene_name)
-        )
-        out_file = (
-            ReplicladeSettings.ALIGNMENTS_PATH
-            + "{0}_out_{1}.aln".format(gene_name, time)
+        in_file = ReplicladeSettings.FASTAS_PATH + "{0}.fasta".format(gene_name)
+        out_file = ReplicladeSettings.ALIGNMENTS_PATH + "{0}_out_{1}.aln".format(
+            gene_name, time
         )
 
         if os.name == "nt":
-            executable = (
-                ReplicladeSettings.EXECUTABLES_PATH
-                + "clustalw2.exe"
-            )
+            executable = ReplicladeSettings.EXECUTABLES_PATH + "clustalw2.exe"
         else:
-            executable = (
-                ReplicladeSettings.EXECUTABLES_PATH
-                + "clustalw2"
-            )
+            executable = ReplicladeSettings.EXECUTABLES_PATH + "clustalw2"
 
-        ClustalwCommandline(
-            executable, infile=in_file, outfile=out_file
-        )()
+        ClustalwCommandline(executable, infile=in_file, outfile=out_file)()
 
         align = AlignIO.read(out_file, "clustal")
 
@@ -72,29 +61,17 @@ class SequenceUtil(object):
         print("Aligning sequences using ClustalW2...")
         print("file name:", filename)
         time = self.get_time()
-        in_file = (
-            ReplicladeSettings.DNA_PATH
-            + "{}.fasta".format(filename)
-        )
-        out_file = (
-            ReplicladeSettings.ALIGNMENTS_PATH
-            + "{0}_out_{1}.aln".format(filename, time)
+        in_file = ReplicladeSettings.DNA_PATH + "{}.fasta".format(filename)
+        out_file = ReplicladeSettings.ALIGNMENTS_PATH + "{0}_out_{1}.aln".format(
+            filename, time
         )
 
         if os.name == "nt":
-            executable = (
-                ReplicladeSettings.EXECUTABLES_PATH
-                + "clustalw2.exe"
-            )
+            executable = ReplicladeSettings.EXECUTABLES_PATH + "clustalw2.exe"
         else:
-            executable = (
-                ReplicladeSettings.EXECUTABLES_PATH
-                + "clustalw2"
-            )
+            executable = ReplicladeSettings.EXECUTABLES_PATH + "clustalw2"
 
-        ClustalwCommandline(
-            executable, infile=in_file, outfile=out_file
-        )()
+        ClustalwCommandline(executable, infile=in_file, outfile=out_file)()
         align = AlignIO.read(out_file, "clustal")
 
         print("Finished aligning sequences.")
@@ -106,29 +83,17 @@ class SequenceUtil(object):
         print("Aligning sequences using Muscle...")
         print("file name:", filename)
         time = self.get_time()
-        in_file = (
-            ReplicladeSettings.DNA_PATH
-            + "{}.fasta".format(filename)
-        )
-        out_file = (
-            ReplicladeSettings.ALIGNMENTS_PATH
-            + "{0}_out_{1}.aln".format(filename, time)
+        in_file = ReplicladeSettings.DNA_PATH + "{}.fasta".format(filename)
+        out_file = ReplicladeSettings.ALIGNMENTS_PATH + "{0}_out_{1}.aln".format(
+            filename, time
         )
 
         if os.name == "nt":
-            executable = (
-                ReplicladeSettings.EXECUTABLES_PATH
-                + "muscle.exe"
-            )
+            executable = ReplicladeSettings.EXECUTABLES_PATH + "muscle.exe"
         else:
-            executable = (
-                ReplicladeSettings.EXECUTABLES_PATH
-                + "muscle"
-            )
+            executable = ReplicladeSettings.EXECUTABLES_PATH + "muscle"
 
-        MuscleCommandline(
-            executable, input=in_file, out=out_file, clw=True
-        )()
+        MuscleCommandline(executable, input=in_file, out=out_file, clw=True)()
         align = AlignIO.read(out_file, "clustal")
 
         print("Finished aligning sequences.")
@@ -143,25 +108,16 @@ class SequenceUtil(object):
         file_tool.write_to_fasta_results(seq_id, sequences_gens)
         time = cls.get_time()
         in_file = file_tool.most_recent_fasta_results()
-        out_file = (
-            ReplicladeSettings.ALIGNMENTS_PATH
-            + "{0}_{1}_aln".format(seq_id.replace("|", ""), time)
+        out_file = ReplicladeSettings.ALIGNMENTS_PATH + "{0}_{1}_aln".format(
+            seq_id.replace("|", ""), time
         )
 
         if os.name == "nt":
-            executable = (
-                ReplicladeSettings.EXECUTABLES_PATH
-                + "clustalw2.exe"
-            )
+            executable = ReplicladeSettings.EXECUTABLES_PATH + "clustalw2.exe"
         else:
-            executable = (
-                ReplicladeSettings.EXECUTABLES_PATH
-                + "clustalw2"
-            )
+            executable = ReplicladeSettings.EXECUTABLES_PATH + "clustalw2"
 
-        ClustalwCommandline(
-            executable, infile=in_file, outfile=out_file
-        )()
+        ClustalwCommandline(executable, infile=in_file, outfile=out_file)()
         align = AlignIO.read(out_file, "clustal")
 
         print("Finished aligning sequences.")
@@ -182,19 +138,11 @@ class SequenceUtil(object):
         )
 
         if os.name == "nt":
-            executable = (
-                ReplicladeSettings.EXECUTABLES_PATH
-                + "clustalw2.exe"
-            )
+            executable = ReplicladeSettings.EXECUTABLES_PATH + "clustalw2.exe"
         else:
-            executable = (
-                ReplicladeSettings.EXECUTABLES_PATH
-                + "clustalw2"
-            )
+            executable = ReplicladeSettings.EXECUTABLES_PATH + "clustalw2"
 
-        ClustalwCommandline(
-            executable, infile=in_file, outfile=out_file
-        )()
+        ClustalwCommandline(executable, infile=in_file, outfile=out_file)()
         align = AlignIO.read(out_file, "clustal")
 
         print("Finished aligning sequences.")
@@ -382,7 +330,6 @@ class SequenceUtil(object):
             )
 
     def coalesce_v2(self, sequences):
-
         def merge_sequences(seq1, seq2):
             ancestor = ""
             for i in range(len(seq1)):

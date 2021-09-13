@@ -4,10 +4,10 @@ from repliclade.util.seq_util import SequenceUtil
 from repliclade.util.motif_finding import MotifFinding
 from repliclade.util.evolve import JukesCantor, Kimura, Felsenstein, HKY85
 from repliclade.util.evol_tree import TreeNode, print_tree, Phylogenize
-import os
-import json
+from Bio.Phylo.BaseTree import Clade, Tree
+from Bio import Phylo
 import time
-import random
+
 
 
 gen_con = GenBankConnector()
@@ -18,14 +18,15 @@ class Simulator(object):
     def __init__(self):
         self.seq_util = SequenceUtil()
 
-    def file_prompt(self):
+    @staticmethod
+    def file_prompt():
         filename = input("Please specify the name of the file: ")
         return filename
 
     def prompt_time(self):
         print(
             "We have estimated earlier that the total ancestor coalescence time is {}".format(
-                seq_util.coalescence_time
+                self.seq_util.coalescence_time
             )
         )
         print(
@@ -69,7 +70,8 @@ class Simulator(object):
                         continue
             return generations
 
-    def prompt_model(self):
+    @staticmethod
+    def prompt_model():
         evol_models = ["kimura", "jukescantor", "felsenstein", "hasegawa"]
         for model in evol_models:
             print(model)
@@ -82,7 +84,8 @@ class Simulator(object):
             )
         return model.lower()
 
-    def cr_prompt(self):
+    @staticmethod
+    def cr_prompt():
         inp = input(
             "Would you like to consider conserved regions previously identified?  Please input Y or N: "
         )
@@ -90,7 +93,8 @@ class Simulator(object):
             inp = input("Invalid Input.  Please specify Y or N")
         return inp
 
-    def align_results_prompt(self):
+    @staticmethod
+    def align_results_prompt():
         inp = input(
             "Would you like to perform an alignment on the results for the sequence/sequences? Please input 'Y' or 'N': "
         )
@@ -98,7 +102,8 @@ class Simulator(object):
             inp = input("Invalid Input.  Please specify Y or N")
         return inp
 
-    def align_single_or_multiple_prompt(self):
+    @staticmethod
+    def align_single_or_multiple_prompt():
         inp = input(
             "Would you like to align all of the sequences and their results or just a specific sequence? Please specify 'single' or multiple': "
         )
@@ -106,7 +111,8 @@ class Simulator(object):
             inp = input("Invalid input.  Please specify single or multiple")
         return inp
 
-    def which_sequence_align_prompt(self, seq_ids):
+    @staticmethod
+    def which_sequence_align_prompt(seq_ids):
         [print(seq_id.lower()) for seq_id in seq_ids]
         seq_ids = [seq.lower() for seq in seq_ids]
         inp = input(
@@ -120,8 +126,7 @@ class Simulator(object):
         """
         Simulates using one ancestral sequence inferred
         """
-        from Bio.Phylo.BaseTree import Clade, Tree
-        from Bio import Phylo
+        
 
         generations = 50000
         evol_model = model
@@ -320,5 +325,6 @@ class Simulator(object):
         if tree_prompt.lower() == "ml":
             phylo.maximum_likelihood()
 
-    def fetch_gene_sequence_from_genbank(self, genes):
+    @staticmethod
+    def fetch_gene_sequence_from_genbank(genes):
         return gen_con.fetch_sequences(genes)

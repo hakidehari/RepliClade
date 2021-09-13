@@ -381,7 +381,6 @@ class Felsenstein(object):
 
 # TODO
 class Kimura3P(object):
-
     def __init__(self, mu):
         """
         2D probability matrix for nucleotide substitutions
@@ -640,6 +639,7 @@ class HKY85(object):
         # return self.delete_indel(seq)
         # else:
         return self.insert_indel(seq)
+
 
 # TODO
 class Tamura92(object):

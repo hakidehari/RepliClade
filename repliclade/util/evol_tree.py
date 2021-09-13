@@ -1,4 +1,10 @@
-from Bio.Phylo.TreeConstruction import DistanceCalculator, DistanceTreeConstructor, ParsimonyScorer, NNITreeSearcher, ParsimonyTreeConstructor
+from Bio.Phylo.TreeConstruction import (
+    DistanceCalculator,
+    DistanceTreeConstructor,
+    ParsimonyScorer,
+    NNITreeSearcher,
+    ParsimonyTreeConstructor,
+)
 from Bio.Phylo.Applications import PhymlCommandline
 from Bio import AlignIO, Phylo
 from repliclade.util.file_util import FileStream
