@@ -129,7 +129,8 @@ class Phylogenize(object):
 
         return dist_matrix
 
-    def biopython_calc_distances_upgma_nj(self):
+    @staticmethod
+    def biopython_calc_distances_upgma_nj():
         file_tool = FileStream()
         # read most recent alignment file
         alignment_file = file_tool.most_recent_file()
@@ -141,7 +142,8 @@ class Phylogenize(object):
 
         return calculator, dm
 
-    def build_tree_upgma_nj(self, calculator, dm, method):
+    @staticmethod
+    def build_tree_upgma_nj(calculator, dm, method):
         # neighbor joining = 'nj', UPGMA = 'upgma'
 
         constructor = DistanceTreeConstructor()
@@ -155,7 +157,8 @@ class Phylogenize(object):
         # Phylo.draw(tree)
         return tree
 
-    def prompt_tree_builder(self):
+    @staticmethod
+    def prompt_tree_builder():
         choices = ["upgma", "parsimony", "nj", "ml"]
         print("How would you like to build the phylogenetic tree of the simulation?")
         method = input(
@@ -167,14 +170,13 @@ class Phylogenize(object):
             )
         return method
 
-    def build_tree_parsimony(self):
+    @staticmethod
+    def build_tree_parsimony():
         file_tool = FileStream()
         # read from most recent alignment file
         alignment_file = file_tool.most_recent_file()
         aln = AlignIO.read(alignment_file, "clustal")
         # instantiate parsimony scorer and NNI Tree Searcher
-
-        trees = []
 
         scorer = ParsimonyScorer()
         searcher = NNITreeSearcher(scorer)
@@ -186,7 +188,8 @@ class Phylogenize(object):
         # Phylo.draw(pars_tree)
         return pars_tree
 
-    def maximum_likelihood(self):
+    @staticmethod
+    def maximum_likelihood():
         print(os.getcwd())
 
         phyml_ex_path = (
@@ -212,9 +215,7 @@ class Phylogenize(object):
             alignment_file, "clustal", converted_file, "phylip-relaxed"
         )
 
-        phyml = PhymlCommandline(cmd=phyml_ex_path, input=converted_file)
-        out_log, err_log = phyml()
+        phyml = PhymlCommandline(cmd=phyml_ex_path, input=converted_file)()
         dnd_file = converted_file + "_phyml_tree.txt"
         tree = Phylo.read(dnd_file, "newick")
-        # Phylo.draw(tree)
         return tree

@@ -13,7 +13,8 @@ class GenBankConnector(object):
         )
         Entrez.email = base64.b64decode(config.genbank_auth["email"]).decode("utf-8")
 
-    def fetch_sequences(self, sequences):
+    @staticmethod
+    def fetch_sequences(sequences):
         """
         Fetches sequences from GenBank given an array of GenBank Id's or singular Id
 
@@ -39,7 +40,8 @@ class GenBankConnector(object):
         print("Finished fetching sequences from GenBank.")
         return seq_array
 
-    def run_ncbi_blast(self, gene):
+    @staticmethod
+    def run_ncbi_blast(gene):
         print("Executing BLAST on the sequences")
         fasta_path = (
             os.getcwd()
@@ -60,7 +62,8 @@ class GenBankConnector(object):
         save_file.close()
         result_handle.close()
 
-    def run_ncbi_blast_input_file(self, filename):
+    @staticmethod
+    def run_ncbi_blast_input_file(filename):
         print("Executing BLAST on the sequences")
         fasta_path = os.getcwd() + os.path.sep + "DNA" + os.path.sep + filename
         record = SeqIO.read(open(fasta_path), format="fasta")

@@ -1,4 +1,4 @@
-from sim.simulator import Simulator
+from repliclade.sim.simulator import Simulator
 
 
 simulator = Simulator()

@@ -1,4 +1,3 @@
-from __future__ import division
 from Bio.Align.Applications import (
     ClustalwCommandline,
     MuscleCommandline,
@@ -7,13 +6,16 @@ from Bio import Phylo, AlignIO
 from Bio.Seq import Seq
 from datetime import datetime
 from repliclade.util.file_util import FileStream
+from repliclade.util.evol_tree import Phylogenize
+from repliclade.util.evolve import JukesCantor, Kimura, Felsenstein, HKY85
+from repliclade.sim.simulator import Simulator
+from repliclade.settings.settings import ReplicladeSettings
 import numpy as np
 import os
 import random
 import time
 
 file_tool = FileStream()
-
 
 class SequenceUtil(object):
     """
@@ -36,49 +38,29 @@ class SequenceUtil(object):
         print("Aligning sequences using ClustalW2...")
         time = self.get_time()
         in_file = (
-            os.getcwd()
-            + os.path.sep
-            + "alignment"
-            + os.path.sep
-            + "fastas"
-            + os.path.sep
+            ReplicladeSettings.FASTAS_PATH
             + "{0}.fasta".format(gene_name)
         )
         out_file = (
-            os.getcwd()
-            + os.path.sep
-            + "alignment"
-            + os.path.sep
-            + "align"
-            + os.path.sep
+            ReplicladeSettings.ALIGNMENTS_PATH
             + "{0}_out_{1}.aln".format(gene_name, time)
         )
 
         if os.name == "nt":
             executable = (
-                os.getcwd()
-                + os.path.sep
-                + "alignment"
-                + os.path.sep
-                + "executables"
-                + os.path.sep
+                ReplicladeSettings.EXECUTABLES_PATH
                 + "clustalw2.exe"
             )
         else:
             executable = (
-                os.getcwd()
-                + os.path.sep
-                + "alignment"
-                + os.path.sep
-                + "executables"
-                + os.path.sep
+                ReplicladeSettings.EXECUTABLES_PATH
                 + "clustalw2"
             )
 
-        clustalw_cline = ClustalwCommandline(
+        ClustalwCommandline(
             executable, infile=in_file, outfile=out_file
-        )
-        stdout, stderr = clustalw_cline()
+        )()
+
         align = AlignIO.read(out_file, "clustal")
 
         print("Finished aligning sequences.")
@@ -91,47 +73,28 @@ class SequenceUtil(object):
         print("file name:", filename)
         time = self.get_time()
         in_file = (
-            os.getcwd()
-            + os.path.sep
-            + "DNA"
-            + os.path.sep
+            ReplicladeSettings.DNA_PATH
             + "{}.fasta".format(filename)
         )
         out_file = (
-            os.getcwd()
-            + os.path.sep
-            + "alignment"
-            + os.path.sep
-            + "align"
-            + os.path.sep
+            ReplicladeSettings.ALIGNMENTS_PATH
             + "{0}_out_{1}.aln".format(filename, time)
         )
 
         if os.name == "nt":
             executable = (
-                os.getcwd()
-                + os.path.sep
-                + "alignment"
-                + os.path.sep
-                + "executables"
-                + os.path.sep
+                ReplicladeSettings.EXECUTABLES_PATH
                 + "clustalw2.exe"
             )
         else:
             executable = (
-                os.getcwd()
-                + os.path.sep
-                + "alignment"
-                + os.path.sep
-                + "executables"
-                + os.path.sep
+                ReplicladeSettings.EXECUTABLES_PATH
                 + "clustalw2"
             )
 
-        clustalw_cline = ClustalwCommandline(
+        ClustalwCommandline(
             executable, infile=in_file, outfile=out_file
-        )
-        stdout, stderr = clustalw_cline()
+        )()
         align = AlignIO.read(out_file, "clustal")
 
         print("Finished aligning sequences.")
@@ -144,47 +107,28 @@ class SequenceUtil(object):
         print("file name:", filename)
         time = self.get_time()
         in_file = (
-            os.getcwd()
-            + os.path.sep
-            + "DNA"
-            + os.path.sep
+            ReplicladeSettings.DNA_PATH
             + "{}.fasta".format(filename)
         )
         out_file = (
-            os.getcwd()
-            + os.path.sep
-            + "alignment"
-            + os.path.sep
-            + "align"
-            + os.path.sep
+            ReplicladeSettings.ALIGNMENTS_PATH
             + "{0}_out_{1}.aln".format(filename, time)
         )
 
         if os.name == "nt":
             executable = (
-                os.getcwd()
-                + os.path.sep
-                + "alignment"
-                + os.path.sep
-                + "executables"
-                + os.path.sep
+                ReplicladeSettings.EXECUTABLES_PATH
                 + "muscle.exe"
             )
         else:
             executable = (
-                os.getcwd()
-                + os.path.sep
-                + "alignment"
-                + os.path.sep
-                + "executables"
-                + os.path.sep
+                ReplicladeSettings.EXECUTABLES_PATH
                 + "muscle"
             )
 
-        muscle_cline = MuscleCommandline(
+        MuscleCommandline(
             executable, input=in_file, out=out_file, clw=True
-        )
-        stdout, stderr = muscle_cline()
+        )()
         align = AlignIO.read(out_file, "clustal")
 
         print("Finished aligning sequences.")
@@ -192,103 +136,74 @@ class SequenceUtil(object):
 
         self.display_phylo_tree(align)
 
-    def align_results_w2_single(self, generation_dict, generations, index, seq_id):
+    @classmethod
+    def align_results_w2_single(cls, generation_dict, generations, index, seq_id):
         print("Aligning results...")
         sequences_gens = [generation_dict[i][index] for i in range(generations)]
         file_tool.write_to_fasta_results(seq_id, sequences_gens)
-        time = self.get_time()
+        time = cls.get_time()
         in_file = file_tool.most_recent_fasta_results()
         out_file = (
-            os.getcwd()
-            + os.path.sep
-            + "alignment"
-            + os.path.sep
-            + "align"
-            + os.path.sep
+            ReplicladeSettings.ALIGNMENTS_PATH
             + "{0}_{1}_aln".format(seq_id.replace("|", ""), time)
         )
 
         if os.name == "nt":
             executable = (
-                os.getcwd()
-                + os.path.sep
-                + "alignment"
-                + os.path.sep
-                + "executables"
-                + os.path.sep
+                ReplicladeSettings.EXECUTABLES_PATH
                 + "clustalw2.exe"
             )
         else:
             executable = (
-                os.getcwd()
-                + os.path.sep
-                + "alignment"
-                + os.path.sep
-                + "executables"
-                + os.path.sep
+                ReplicladeSettings.EXECUTABLES_PATH
                 + "clustalw2"
             )
 
-        clustalw_cline = ClustalwCommandline(
+        ClustalwCommandline(
             executable, infile=in_file, outfile=out_file
-        )
-        stdout, stderr = clustalw_cline()
+        )()
         align = AlignIO.read(out_file, "clustal")
 
         print("Finished aligning sequences.")
         print(align)
 
-        self.display_phylo_tree_results()
+        cls.display_phylo_tree_results()
 
-    def align_results_w2_multiple(self, generation_dict, generations, seq_ids):
+    @classmethod
+    def align_results_w2_multiple(cls, generation_dict, generations, seq_ids):
         print("Aligning results...")
         sequences = generation_dict[generations - 1]
         file_tool.write_to_fasta_results_multiple(seq_ids, sequences)
-        time = self.get_time()
+        time = cls.get_time()
         in_file = file_tool.most_recent_fasta_results()
         out_file = (
-            os.getcwd()
-            + os.path.sep
-            + "alignment"
-            + os.path.sep
-            + "align"
-            + os.path.sep
+            ReplicladeSettings.ALIGNMENTS_PATH
             + "post_sim_alignment_{}.aln".format(time)
         )
 
         if os.name == "nt":
             executable = (
-                os.getcwd()
-                + os.path.sep
-                + "alignment"
-                + os.path.sep
-                + "executables"
-                + os.path.sep
+                ReplicladeSettings.EXECUTABLES_PATH
                 + "clustalw2.exe"
             )
         else:
             executable = (
-                os.getcwd()
-                + os.path.sep
-                + "alignment"
-                + os.path.sep
-                + "executables"
-                + os.path.sep
+                ReplicladeSettings.EXECUTABLES_PATH
                 + "clustalw2"
             )
 
-        clustalw_cline = ClustalwCommandline(
+        ClustalwCommandline(
             executable, infile=in_file, outfile=out_file
-        )
-        stdout, stderr = clustalw_cline()
+        )()
         align = AlignIO.read(out_file, "clustal")
 
         print("Finished aligning sequences.")
         print(align)
 
-        self.display_phylo_tree_results()
+        cls.display_phylo_tree_results()
 
-    def display_phylo_tree(self, alignment):
+    @staticmethod
+    def display_phylo_tree(alignment):
         """
         Reads from the dnd file produced by the ClustalW2 alignment
         and displays the phylogenetic tree based on the results of the alignment
@@ -297,7 +212,6 @@ class SequenceUtil(object):
                filename  --> specifies the path to the file
         output: Diplays phylogenetic tree using the Phylo biopython module
         """
-        from util.evol_tree import Phylogenize
 
         # MP
         print("Displaying Phylogenetic tree of sequences...")
@@ -316,13 +230,15 @@ class SequenceUtil(object):
         calc, dm = phylo.biopython_calc_distances_upgma_nj()
         phylo.build_tree_upgma_nj(calc, dm, "nj")
 
-    def display_phylo_tree_results(self):
+    @staticmethod
+    def display_phylo_tree_results():
         print("Displaying Phylogenetic tree of sequences...")
         dnd_file = file_tool.most_recent_dnd_results()
         tree = Phylo.read(dnd_file, "newick")
         Phylo.draw(tree)
 
-    def calculate_conserved_regions(self):
+    @staticmethod
+    def calculate_conserved_regions():
         """
         Naively determines conserved regions based on the alignment of the sequences
 
@@ -337,7 +253,6 @@ class SequenceUtil(object):
 
         seq_len = len(aligned_seqs[0])
         total_seqs = len(aligned_seqs)
-        frequency_dict = {}
         potential_values = ["A", "G", "T", "C", "-"]
 
         # iterate over sequence length
@@ -362,7 +277,8 @@ class SequenceUtil(object):
 
         return shannon_entropy_dict
 
-    def check_for_cr(self, index, c_regions):
+    @staticmethod
+    def check_for_cr(index, c_regions):
         """
         checks if the nucleotide is a conserved region.  If it is, does not mutate
         """
@@ -373,13 +289,16 @@ class SequenceUtil(object):
                 return True
         return False
 
-    def all_same(self, items):
+    @staticmethod
+    def all_same(items):
         return all(x == items[0] for x in items)
 
-    def sequencify(self, seq_array):
+    @staticmethod
+    def sequencify(seq_array):
         return [Seq(seq) for seq in seq_array]
 
-    def get_time(self):
+    @classmethod
+    def get_time(cls):
         return datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
 
     def roll_duplication(self):
@@ -402,7 +321,8 @@ class SequenceUtil(object):
         self.gens_passed_ext += 1
         return False
 
-    def roll_indel(self):
+    @staticmethod
+    def roll_indel():
         # Julienne M. Mullaney1,2, Ryan E. Mills4, W. Stephen Pittard5 and Scott E. Devine1,2,3,∗
         THRESHOLD = 0.2
         roll = random.random()
@@ -410,25 +330,29 @@ class SequenceUtil(object):
             return True
         return False
 
-    def get_gc_content(self, seq):
+    @staticmethod
+    def get_gc_content(seq):
         if len(seq) == 0:
             return 0
         return float((seq.count("G") + seq.count("C")) / len(seq))
 
-    def get_nuc_count(self, seq):
+    @staticmethod
+    def get_nuc_count(seq):
         count_dict = {"A": 0, "G": 0, "T": 0, "C": 0}
         for key in count_dict:
             count_dict[key] = seq.count(key)
         return count_dict
 
-    def get_nuc_count_multiple(self, seqs):
+    @staticmethod
+    def get_nuc_count_multiple(seqs):
         count_dict = {"A": 0, "G": 0, "T": 0, "C": 0}
         for seq in seqs:
             for key in count_dict:
                 count_dict[key] += seq.count(key)
             return count_dict
 
-    def prompt_theta_method(self):
+    @staticmethod
+    def prompt_theta_method():
         theta_method = input(
             "Please enter a choice of method for estimation of θ (variation)\nYou can choose either the Watterson Method (watterson)(Watterson 1975) or the Fay and Wu Method (faywu)(Fay and Wu 2000) "
         )
@@ -438,7 +362,8 @@ class SequenceUtil(object):
             )
         return theta_method
 
-    def estimate_substitutions_generations(self, generation_dict, generations):
+    @staticmethod
+    def estimate_substitutions_generations(generation_dict, generations):
         first_gen = generation_dict[0]
         final_gen = generation_dict[generations - 1]
 
@@ -457,10 +382,6 @@ class SequenceUtil(object):
             )
 
     def coalesce_v2(self, sequences):
-
-        from util.evolve import JukesCantor, Kimura, Felsenstein, HKY85
-        from sim.simulator import Simulator
-        import math
 
         def merge_sequences(seq1, seq2):
             ancestor = ""
@@ -607,109 +528,7 @@ class SequenceUtil(object):
         )
         return sequences[0]
 
-    def coalesce(self, sequences):
-        """
-        Infers the ancestral sequence of a group of sequences generated from BLAST
-        input:  array of DNA sequences
-        output:  inferred ancestral sequence
-        """
-        total_seqs = len(sequences)
-        sequences_clone = sequences
-
-        def merge(seq1, seq2):
-            ancestor = ""
-            for i in range(len(seq1)):
-                s1 = seq1[i]
-                s2 = seq2[i]
-
-                if s1 == s2 and s1 != "-":
-                    ancestor += s1
-                elif s1 == "-" and s2 == "-":
-                    ancestor += random.choice(["A", "G", "T", "C"])
-                elif s1 == "-" or s2 == "-":
-                    ancestor += s1 if s1 != "-" else s2
-                else:
-                    nuc = random.choice([s1, s2])
-                    ancestor += nuc
-            return ancestor
-
-        while len(sequences) > 1:
-
-            rand1 = random.randint(0, len(sequences) - 1)
-            rand2 = random.randint(0, len(sequences) - 1)
-
-            while rand1 == rand2:
-                rand1 = random.randint(0, len(sequences) - 1)
-                rand2 = random.randint(0, len(sequences) - 1)
-
-            seq1 = sequences[rand1]
-            seq2 = sequences[rand2]
-
-            temp1 = rand1 if rand1 < rand2 else rand2
-            temp2 = rand2 if rand2 > rand1 else rand1
-
-            sequences = (
-                sequences[:temp1]
-                + sequences[temp1 + 1 : temp2]
-                + sequences[temp2 + 1 :]
-            )
-
-            new_seq = merge(seq1, seq2)
-
-            sequences.append(new_seq)
-
-        print("Ancestral sequence inferred: ", sequences[0])
-
-        theta_method = self.prompt_theta_method()
-
-        if theta_method == "watterson":
-            print("Estimating effective population size using the Watterson method...")
-
-            eff_pop_size = self.estimate_eff_pop_size_watterson(sequences_clone)
-
-            time_to_coalescence = sum(
-                (4 * eff_pop_size) / (i * (i - 1)) for i in range(2, total_seqs + 1)
-            )
-        else:
-            print("Estimating effective population size using the Fay and Wu method...")
-
-            eff_pop_size = self.estimate_eff_pop_size_faywu(sequences_clone)
-
-            time_to_coalescence = sum(
-                (4 * eff_pop_size) / (i * (i - 1)) for i in range(2, total_seqs + 1)
-            )
-
-        print(
-            "These sequences shared a common ancestor roughly {} years ago.".format(
-                time_to_coalescence
-            )
-        )
-        return sequences[0]
-
-    def estimate_eff_pop_size_using_N(self):
-        """
-        Estimates effective population size
-        """
-        census = ""
-        try:
-            census = int(
-                input(
-                    "Please enter a number for the census population size estimate:  "
-                )
-            )
-        except:
-            while not isinstance(census, int):
-                census = input(
-                    "invalid input.  Please enter a number for the census population size estimate:  "
-                )
-                try:
-                    census = int(census)
-                except:
-                    continue
-        nf = int(census / 2)
-        nm = int(census / 2)
-        return (4 * nm * nf) / (nm + nf)
-
+    # TODO
     def estimate_eff_pop_size_jf_phylo(self, sequences):
         """
         Estimates the effective population size using Joseph Felsenstein's method
@@ -717,7 +536,8 @@ class SequenceUtil(object):
         """
         pass
 
-    def promt_mutation_rate(self):
+    @staticmethod
+    def prompt_mutation_rate():
         """
         Prompts the user for mutation rate
         """
@@ -802,7 +622,7 @@ class SequenceUtil(object):
             time_to_coalescence,
         )
 
-        inp_mu = self.promt_mutation_rate()
+        inp_mu = self.prompt_mutation_rate()
 
         if inp_mu is not None:
             Ne = theta_h / (4 * inp_mu)
@@ -878,7 +698,7 @@ class SequenceUtil(object):
             time_to_coalescence,
         )
 
-        inp_mu = self.promt_mutation_rate()
+        inp_mu = self.prompt_mutation_rate()
 
         if inp_mu is not None:
             Ne = theta_w / (4 * inp_mu)

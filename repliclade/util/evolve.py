@@ -1,4 +1,3 @@
-from __future__ import division
 import random
 import numpy as np
 import math
@@ -233,7 +232,7 @@ class Kimura(object):
 
 ###############################################################################
 
-
+# TODO
 class Blaisdell(object):
     def __init__(self):
         pass
@@ -380,9 +379,8 @@ class Felsenstein(object):
 
 ################################################################################################
 
-
+# TODO
 class Kimura3P(object):
-    ###########IN PROGRESS ################
 
     def __init__(self, mu):
         """
@@ -643,7 +641,7 @@ class HKY85(object):
         # else:
         return self.insert_indel(seq)
 
-
+# TODO
 class Tamura92(object):
     def __init__(self, frequencies):
         self.t = 0
