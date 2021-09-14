@@ -8,7 +8,7 @@ from datetime import datetime
 from repliclade.util.file_util import FileStream
 from repliclade.util.evol_tree import Phylogenize
 from repliclade.util.evolve import JukesCantor, Kimura, Felsenstein, HKY85
-from repliclade.sim.simulator import Simulator
+from repliclade.util.prompts import prompt_model
 from repliclade.settings.settings import ReplicladeSettings
 import numpy as np
 import os
@@ -368,11 +368,9 @@ class SequenceUtil(object):
                 (4 * eff_pop_size) / (i * (i - 1)) for i in range(2, total_seqs + 1)
             )
 
-        sim_obj = Simulator()
-
         print("Please select an evolutionary model for the coalescent simulation.\n")
 
-        evol_model = sim_obj.prompt_model()
+        evol_model = prompt_model()
 
         print("Simulating the Coalescent.  This may take a while...")
 

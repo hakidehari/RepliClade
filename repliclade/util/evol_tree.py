@@ -5,6 +5,7 @@ from Bio.Phylo.TreeConstruction import (
     NNITreeSearcher,
     ParsimonyTreeConstructor,
 )
+from repliclade.settings.settings import ReplicladeSettings
 from Bio.Phylo.Applications import PhymlCommandline
 from Bio import AlignIO, Phylo
 from repliclade.util.file_util import FileStream
@@ -198,23 +199,15 @@ class Phylogenize(object):
     def maximum_likelihood():
         print(os.getcwd())
 
-        phyml_ex_path = (
-            os.getcwd() + os.sep + "alignment" + os.sep + "executables" + os.sep
-        )
         if os.name == "nt":
-            phyml_ex_path = phyml_ex_path + "PhyML-3.1_win32.exe"
+            phyml_ex_path = ReplicladeSettings.EXECUTABLES_PATH + "PhyML-3.1_win32.exe"
         else:
-            phyml_ex_path = phyml_ex_path + "PhyML-3.1_macOS-MountainLion"
+            phyml_ex_path = ReplicladeSettings.EXECUTABLES_PATH + "PhyML-3.1_macOS-MountainLion"
 
         file_tool = FileStream()
         alignment_file = file_tool.most_recent_file()
         converted_file = (
-            os.getcwd()
-            + os.sep
-            + "alignment"
-            + os.sep
-            + "align"
-            + os.sep
+            ReplicladeSettings.ALIGNMENTS_PATH
             + "converted_phyl.phy"
         )
         aln = AlignIO.convert(

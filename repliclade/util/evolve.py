@@ -1,10 +1,13 @@
 import random
 import numpy as np
 import math
-from repliclade.util.seq_util import SequenceUtil
 
 
-seq_util = SequenceUtil()
+def get_nuc_count(seq):
+    count_dict = {"A": 0, "G": 0, "T": 0, "C": 0}
+    for key in count_dict:
+        count_dict[key] = seq.count(key)
+    return count_dict
 
 
 class JukesCantor(object):
@@ -65,27 +68,6 @@ class JukesCantor(object):
                             cur = self.seq_list[j]
                             break
                 ret_seq += cur
-        self.t += 1
-        self.calculate_matrix(self.alpha, self.t)
-        return ret_seq
-
-    def evolve_cr(self, seq, c_regions):
-        ret_seq = ""
-        for i in range(len(seq)):
-            cur = seq[i]
-            if seq_util.check_for_cr(i, c_regions):
-                ret_seq += cur
-                continue
-            if cur == "-":
-                ret_seq += cur
-                continue
-            for j in range(len(self.prb_matrix[cur])):
-                if self.prb_matrix[cur][j] != 0:
-                    roll = random.random()
-                    if roll <= self.prb_matrix[cur][j]:
-                        cur = self.seq_list[j]
-                        break
-            ret_seq += cur
         self.t += 1
         self.calculate_matrix(self.alpha, self.t)
         return ret_seq
@@ -184,30 +166,6 @@ class Kimura(object):
         self.calculate_matrix(self.alpha, self.beta, self.t)
         return ret_seq
 
-    def evolve_cr(self, seq, c_regions):
-        """
-        Evolves the sequence while considering conserved regions
-        """
-        ret_seq = ""
-        for i in range(len(seq)):
-            cur = seq[i]
-            if seq_util.check_for_cr(i, c_regions):
-                ret_seq += cur
-                continue
-            if cur == "-":
-                ret_seq += cur
-                continue
-            for j in range(len(self.prb_matrix[cur])):
-                if self.prb_matrix[cur][j] != 0:
-                    roll = random.random()
-                    if roll <= self.prb_matrix[cur][j]:
-                        cur = self.seq_list[j]
-                        break
-            ret_seq += cur
-        self.t += 1
-        self.calculate_matrix(self.alpha, self.beta, self.t)
-        return ret_seq
-
     def insert_indel(self, seq):
         roll = random.randint(1, 3)
         indel_len = roll * 3
@@ -243,7 +201,7 @@ class Blaisdell(object):
 
 class Felsenstein(object):
     def __init__(self, seq):
-        frequencies = seq_util.get_nuc_count(seq)
+        frequencies = get_nuc_count(seq)
         self.A = float(frequencies["A"] / len(seq))
         self.C = float(frequencies["C"] / len(seq))
         self.G = float(frequencies["G"] / len(seq))
@@ -328,30 +286,6 @@ class Felsenstein(object):
                 ret_seq += cur
         self.t += 1
         self.calculate_matrix()
-        return ret_seq
-
-    def evolve_cr(self, seq, c_regions):
-        """
-        Evolves the sequence while considering conserved regions
-        """
-        ret_seq = ""
-        for i in range(len(seq)):
-            cur = seq[i]
-            if seq_util.check_for_cr(i, c_regions):
-                ret_seq += cur
-                continue
-            if cur == "-":
-                ret_seq += cur
-                continue
-            for j in range(len(self.prb_matrix[cur])):
-                if self.prb_matrix[cur][j] != 0:
-                    roll = random.random()
-                    if roll <= self.prb_matrix[cur][j]:
-                        cur = self.seq_list[j]
-                        break
-            ret_seq += cur
-        self.t += 1
-        self.calculate_matrix(self.t)
         return ret_seq
 
     def insert_indel(self, seq):
@@ -448,30 +382,6 @@ class Kimura3P(object):
         self.calculate_matrix(self.alpha, self.beta, self.t)
         return ret_seq
 
-    def evolve_cr(self, seq, c_regions):
-        """
-        Evolves the sequence while considering conserved regions
-        """
-        ret_seq = ""
-        for i in range(len(seq)):
-            cur = seq[i]
-            if seq_util.check_for_cr(i, c_regions):
-                ret_seq += cur
-                continue
-            if cur == "-":
-                ret_seq += cur
-                continue
-            for j in range(len(self.prb_matrix[cur])):
-                if self.prb_matrix[cur][j] != 0:
-                    roll = random.random()
-                    if roll <= self.prb_matrix[cur][j]:
-                        cur = self.seq_list[j]
-                        break
-            ret_seq += cur
-        self.t += 1
-        self.calculate_matrix(self.alpha, self.beta, self.t)
-        return ret_seq
-
     def insert_indel(self, seq):
         roll = random.randint(1, 3)
         indel_len = roll * 3
@@ -500,7 +410,7 @@ class Kimura3P(object):
 
 class HKY85(object):
     def __init__(self, seq):
-        frequencies = seq_util.get_nuc_count(seq)
+        frequencies = get_nuc_count(seq)
         self.A = float(frequencies["A"] / len(seq))
         self.C = float(frequencies["C"] / len(seq))
         self.G = float(frequencies["G"] / len(seq))

@@ -3,6 +3,7 @@ from repliclade.util.file_util import FileStream
 from repliclade.util.seq_util import SequenceUtil
 from repliclade.util.evolve import JukesCantor, Kimura, Felsenstein, HKY85
 from repliclade.util.evol_tree import TreeNode, print_tree, Phylogenize
+from repliclade.util.prompts import prompt_model
 from Bio.Phylo.BaseTree import Clade, Tree
 import time
 
@@ -68,20 +69,6 @@ class Simulator(object):
             return generations
 
     @staticmethod
-    def prompt_model():
-        evol_models = ["kimura", "jukescantor", "felsenstein", "hasegawa"]
-        for model in evol_models:
-            print(model)
-        model = input(
-            "Please specify the evolutionary model you would like to use from the ones given above: "
-        )
-        while model.lower() not in evol_models:
-            model = input(
-                "Invalid input.  Please specify the evolutionary model you would like to use from the ones given above: "
-            )
-        return model.lower()
-
-    @staticmethod
     def cr_prompt():
         inp = input(
             "Would you like to consider conserved regions previously identified?  Please input Y or N: "
@@ -124,11 +111,9 @@ class Simulator(object):
         Simulates using one ancestral sequence inferred
         """
 
-        generations = 50000
-        evol_model = model
         cr_inp = "N"
-        # generations = self.prompt_time()
-        # evol_model = self.prompt_model()
+        generations = self.prompt_time()
+        evol_model = prompt_model()
         # cr_inp = self.cr_prompt()
 
         print("Beginning simulation...")
@@ -265,7 +250,7 @@ class Simulator(object):
         filename = self.file_prompt()
 
         # commented out to speed up testing
-        gen_con.run_ncbi_blast_input_file(filename)
+        #gen_con.run_ncbi_blast_input_file(filename)
 
         seqs_blast = file_util.read_from_blast(filename)
 
@@ -288,12 +273,12 @@ class Simulator(object):
 
         ancestral_seq = self.seq_util.coalesce_v2(aligned_seqs)
 
-        tree, post_sim_seqs = self.simulate_ancestor(
+        all_nodes, post_sim_seqs, tree = self.simulate_ancestor(
             ancestral_seq, self.seq_util.mu, entropy_scores
         )
 
         filename_results = file_util.write_to_fasta_sim_results(
-            post_sim_seqs, tree, filename
+            post_sim_seqs, all_nodes, filename
         )
 
         self.seq_util.align_sequences_muscle_file(filename_results)

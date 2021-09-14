@@ -1,11 +1,14 @@
 from Bio import SeqIO
 from Bio.Blast import NCBIXML
 from datetime import datetime
-from repliclade.util.seq_util import SequenceUtil
 from repliclade.settings.settings import ReplicladeSettings
 import os
 import json
 import glob
+
+
+def get_time():
+    return datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
 
 
 class FileStream(object):
@@ -155,11 +158,10 @@ class FileStream(object):
     @staticmethod
     def write_to_fasta_sim_results(sequences, nodes, filename_original):
 
-        seq_obj = SequenceUtil()
         filename_original = filename_original.replace(".fasta", "").replace(
             ".FASTA", ""
         )
-        filename = "simulation_results_{}".format(seq_obj.get_time())
+        filename = "simulation_results_{}".format(get_time())
 
         with open(
             ReplicladeSettings.DNA_PATH + "{}.fasta".format(filename), "w"

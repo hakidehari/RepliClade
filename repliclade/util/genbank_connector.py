@@ -2,6 +2,7 @@ import os
 from config import config
 from Bio import Entrez, SeqIO
 from Bio.Blast import NCBIWWW
+from repliclade.settings.settings import ReplicladeSettings
 import base64
 
 
@@ -65,13 +66,10 @@ class GenBankConnector(object):
     @staticmethod
     def run_ncbi_blast_input_file(filename):
         print("Executing BLAST on the sequences")
-        fasta_path = os.getcwd() + os.path.sep + "DNA" + os.path.sep + filename
+        fasta_path = ReplicladeSettings.DNA_PATH + filename
         record = SeqIO.read(open(fasta_path), format="fasta")
         result_handle = NCBIWWW.qblast("blastn", "nt", record.format("fasta"))
-        if os.name == "nt":
-            save_file_path = os.getcwd() + "\\DNA\\{}.xml".format(filename)
-        else:
-            save_file_path = os.getcwd() + "/DNA/{}.xml".format(filename)
+        save_file_path = ReplicladeSettings.DNA_PATH + "{}.xml".format(filename)
         save_file = open(save_file_path, "w")
         save_file.write(result_handle.read())
         save_file.close()
