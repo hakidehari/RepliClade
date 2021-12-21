@@ -5,31 +5,31 @@
                          Copyright CNRS - Universite Montpellier II                                 
  oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 
-. Sequence filename: 			converted_phyl.phy
+. Sequence filename: 			C:\Users\haki_\Desktop\RepliClade\filesystem\alignment\align\converted_phyl.phy
 . Data set: 				#1
 . Tree topology search : 		NNIs
 . Initial tree: 			BioNJ
 . Model of nucleotides substitution: 	HKY85
-. Number of taxa: 			4
-. Log-likelihood: 			-6358.31833
-. Unconstrained likelihood: 		-9326.90792
-. Parsimony: 				1439
-. Tree size: 				2.06718
+. Number of taxa: 			7
+. Log-likelihood: 			-11233.01863
+. Unconstrained likelihood: 		-12432.49561
+. Parsimony: 				3131
+. Tree size: 				5.44885
 . Discrete gamma model: 		Yes
   - Number of categories: 		4
-  - Gamma shape parameter: 		11.743
-. Transition/transversion ratio: 	2.936
+  - Gamma shape parameter: 		4.122
+. Transition/transversion ratio: 	2.671
 . Nucleotides frequencies:
-  - f(A)= 0.25099
-  - f(C)= 0.24722
-  - f(G)= 0.24324
-  - f(T)= 0.25855
+  - f(A)= 0.25891
+  - f(C)= 0.25040
+  - f(G)= 0.24339
+  - f(T)= 0.24730
 
 . Run ID:				none
-. Random seed:				1631596406
+. Random seed:				1640120138
 . Subtree patterns aliasing:		no
 . Version:				20120412
-. Time used:				0h0m1s (1 seconds)
+. Time used:				0h0m8s (8 seconds)
 
  oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
  Suggested citations:

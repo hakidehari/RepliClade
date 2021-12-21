@@ -202,14 +202,13 @@ class Phylogenize(object):
         if os.name == "nt":
             phyml_ex_path = ReplicladeSettings.EXECUTABLES_PATH + "PhyML-3.1_win32.exe"
         else:
-            phyml_ex_path = ReplicladeSettings.EXECUTABLES_PATH + "PhyML-3.1_macOS-MountainLion"
+            phyml_ex_path = (
+                ReplicladeSettings.EXECUTABLES_PATH + "PhyML-3.1_macOS-MountainLion"
+            )
 
         file_tool = FileStream()
         alignment_file = file_tool.most_recent_file()
-        converted_file = (
-            ReplicladeSettings.ALIGNMENTS_PATH
-            + "converted_phyl.phy"
-        )
+        converted_file = ReplicladeSettings.ALIGNMENTS_PATH + "converted_phyl.phy"
         aln = AlignIO.convert(
             alignment_file, "clustal", converted_file, "phylip-relaxed"
         )

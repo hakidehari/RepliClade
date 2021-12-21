@@ -1,6 +1,7 @@
 import random
 import numpy as np
 import math
+from abc import ABC
 
 
 def get_nuc_count(seq):
@@ -10,7 +11,17 @@ def get_nuc_count(seq):
     return count_dict
 
 
-class JukesCantor(object):
+class EvolModel(ABC):
+    """Abstract Class for Evolutionary Model implementation"""
+
+    def calculate_matrix(*args, **kwargs):
+        pass
+
+    def evolve(*args, **kwargs):
+        pass
+
+
+class JukesCantor(EvolModel):
     def __init__(self, mu):
         """
         2D probability matrix for nucleotide substitutions
@@ -98,7 +109,7 @@ class JukesCantor(object):
 ###########################################################################################
 
 
-class Kimura(object):
+class Kimura(EvolModel):
     def __init__(self, mu):
         """
         2D probability matrix for nucleotide substitutions
@@ -199,7 +210,7 @@ class Blaisdell(object):
 ###############################################################################
 
 
-class Felsenstein(object):
+class Felsenstein(EvolModel):
     def __init__(self, seq):
         frequencies = get_nuc_count(seq)
         self.A = float(frequencies["A"] / len(seq))
@@ -314,7 +325,7 @@ class Felsenstein(object):
 ################################################################################################
 
 # TODO
-class Kimura3P(object):
+class Kimura3P(EvolModel):
     def __init__(self, mu):
         """
         2D probability matrix for nucleotide substitutions
@@ -408,7 +419,7 @@ class Kimura3P(object):
 ###############################################################
 
 
-class HKY85(object):
+class HKY85(EvolModel):
     def __init__(self, seq):
         frequencies = get_nuc_count(seq)
         self.A = float(frequencies["A"] / len(seq))
