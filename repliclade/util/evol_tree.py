@@ -77,9 +77,9 @@ class Phylogenize(object):
         """
         Calculates pairwise distances for the Jukes Cantor Model
         """
-        dist_matrix = [[0] * len(self.__sequences) for seq in self.__sequences]
-        for i in range(len(self.__sequences)):
-            for j in range(len(self.__sequences)):
+        dist_matrix = [[0] * len(self.__sequences) for seq in self.__sequences] 
+        for i in range(len(self.__sequences)): 
+            for j in range(len(self.__sequences)): 
                 if i == j:
                     pass
                 else:

@@ -228,10 +228,10 @@ class Felsenstein(EvolModel):
         """
         u = float(1.0) / (
             float(1.0)
-            - float(self.A ** 2)
-            - float(self.C ** 2)
-            - float(self.G ** 2)
-            - float(self.T ** 2)
+            - float(self.A**2)
+            - float(self.C**2)
+            - float(self.G**2)
+            - float(self.T**2)
         )
 
         self.prb_matrix = {

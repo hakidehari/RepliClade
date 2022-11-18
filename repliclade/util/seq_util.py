@@ -8,7 +8,7 @@ from datetime import datetime
 from repliclade.util.file_util import FileStream
 from repliclade.util.evol_tree import Phylogenize
 from repliclade.util.evolve import JukesCantor, Kimura, Felsenstein, HKY85
-from repliclade.util.prompts import prompt_model
+from repliclade.util.prompts import prompt_model, prompt_mutation_rate
 from repliclade.settings.settings import ReplicladeSettings
 import numpy as np
 import os
@@ -481,33 +481,6 @@ class SequenceUtil(object):
         """
         pass
 
-    @staticmethod
-    def prompt_mutation_rate():
-        """
-        Prompts the user for mutation rate
-        """
-        inp = input(
-            "Would you like to estimate the effective pop size with our own input? Please enter y or n: "
-        )
-        while inp.lower() not in ["y", "n"]:
-            inp = input("Invalid input.  Please enter y or n: ")
-        if inp.lower() == "y":
-            mu = 0
-            try:
-                mu = float(input("Please enter a value for the mutation rate: "))
-            except:
-                while not isinstance(mu, float):
-                    mu = input(
-                        "Invalid input.  Please enter a valid number for the mutation rate"
-                    )
-                    try:
-                        mu = float(mu)
-                    except:
-                        continue
-            return mu
-        else:
-            return None
-
     def estimate_eff_pop_size_faywu(self, sequences):
         """
         Estimates the effective population size using the Fay and Wu estimator
@@ -545,7 +518,7 @@ class SequenceUtil(object):
             K = 0
 
         theta_h = sum(
-            ((i ** 2) * final_dict[i]) / ((total_seqs * (total_seqs - 1)) / 2)
+            ((i**2) * final_dict[i]) / ((total_seqs * (total_seqs - 1)) / 2)
             for i in range(1, total_seqs)
         )
 
@@ -643,7 +616,7 @@ class SequenceUtil(object):
             time_to_coalescence,
         )
 
-        inp_mu = self.prompt_mutation_rate()
+        inp_mu = prompt_mutation_rate()
 
         if inp_mu is not None:
             Ne = theta_w / (4 * inp_mu)

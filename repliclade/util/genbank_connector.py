@@ -58,9 +58,8 @@ class GenBankConnector(object):
             save_file_path = os.getcwd() + "\\alignment\\blast\\{}.xml".format(gene)
         else:
             save_file_path = os.getcwd() + "/alignment/blast/{}.xml".format(gene)
-        save_file = open(save_file_path, "w")
-        save_file.write(result_handle.read())
-        save_file.close()
+        with open(save_file_path, "w") as f:
+            f.write(result_handle.read())
         result_handle.close()
 
     @staticmethod
@@ -70,7 +69,6 @@ class GenBankConnector(object):
         record = SeqIO.read(open(fasta_path), format="fasta")
         result_handle = NCBIWWW.qblast("blastn", "nt", record.format("fasta"))
         save_file_path = ReplicladeSettings.DNA_PATH + "{}.xml".format(filename)
-        save_file = open(save_file_path, "w")
-        save_file.write(result_handle.read())
-        save_file.close()
+        with open(save_file_path, "w") as f:
+            f.write(result_handle.read())
         result_handle.close()
