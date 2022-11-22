@@ -17,7 +17,7 @@ numpy==1.19.5
     #   -r requirements.in
     #   biopython
     #   matplotlib
-pillow==8.3.2
+pillow==9.3.0
     # via matplotlib
 pyparsing==2.4.7
     # via matplotlib
